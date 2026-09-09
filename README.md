@@ -60,3 +60,27 @@ python3 generate.py && python3 build.py
   separates them.
 - The colour choices past the measured rules are one person's taste, tuned by
   hand and read back out of the tool. They are not claimed to generalise.
+
+## App themes
+
+`themes/` holds generated theme files and `make_marktext.py` builds them.
+
+**MarkText** has no theme directory — only Preferences → Theme → Custom CSS.
+Its built-in themes set 79 variables on `:root`, so overriding those reaches the
+sidebar and buttons as well as the editor. `themes/_marktext-base-vars.css` is
+that variable block, lifted from the app bundle; the generator re-points every
+colour onto one of our palettes.
+
+Two things needed hand-mapping rather than colour-matching:
+
+- MarkText's headings run h1 red through h6 blue. Matched by role, h1 lands on
+  our dimmest colour. They are re-pointed by prominence instead.
+- Prism hardcodes the code-block token colours as literal hexes, so those get
+  explicit rules appended.
+
+```
+python3 make_marktext.py ashen themes/_marktext-base-vars.css
+```
+
+then paste the result into Custom CSS, or write it to the `customCss` field of
+`~/Library/Application Support/marktext/preferences.json` with MarkText closed.
