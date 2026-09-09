@@ -7,8 +7,11 @@ not just the editor. Every colour in that block is mapped to its nearest
 Solarized palette entry and replaced by our counterpart, keeping whatever
 lightness offset the original had -- so a button-hover shade stays a shade.
 """
+import pathlib
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent
 import json, re, sys, math
-exec(open('pal.py').read().split('# ---------- Solarized reference')[0])
+exec(open(HERE / 'pal.py').read().split('# ---------- Solarized reference')[0])
 
 SOL = {'base03':'#002b36','base02':'#073642','base01':'#586e75','base00':'#657b83',
        'base0':'#839496','base1':'#93a1a1','base2':'#eee8d5','base3':'#fdf6e3',
@@ -117,8 +120,10 @@ def prism_rules(c):
 
 if __name__ == '__main__':
     name = sys.argv[1]
-    block = open(sys.argv[2], encoding='utf-8').read()
-    schemes = {s['name']: s for s in json.load(open('schemes.json'))}
+    block = open(sys.argv[2] if len(sys.argv) > 2
+                 else ROOT / 'marktext-colors-solar-eclipse' / '_base-vars.css',
+                 encoding='utf-8').read()
+    schemes = {s['name']: s for s in json.load(open(ROOT / 'schemes.json'))}
     s = schemes[name]
     palette = decorpse(s['colors'])
     css = build(block, palette)
@@ -137,7 +142,7 @@ if __name__ == '__main__':
             f" * Overrides whichever built-in theme is selected. */\n"
             ":root {\n" + "\n".join(lines) + "\n}\n"
             + prism_rules(palette) + "\n")
-    out = f'themes/marktext-solar-eclipse-{name}.css'
+    out = str(ROOT / 'marktext-colors-solar-eclipse' / f'Solar Eclipse {s["label"]}.css')
     open(out, 'w', encoding='utf-8').write(body)
     print(f'{out}: {len(body)} bytes, '
           f'{len(re.findall(r"--[a-zA-Z0-9]+\s*:", body))} variables')

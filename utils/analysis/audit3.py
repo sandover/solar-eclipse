@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math, json
-src=open(_P).read()
+src=open(ROOT / 'utils' / 'pal.py').read()
 exec(src.split('# ---------- Solarized reference')[0])
 exec(src.split('# ---------- OKLab')[1].split('\n',1)[1])
 def okdE(a,b):
@@ -20,7 +21,7 @@ NM={'fn':'function names','str':'strings','meta':'special','kw':'keywords',
     'num':'numbers','ty':'type names','err':'errors','sp':'preprocessor'}
 LIKE={'nocturne':'LIKES','ashen':'LIKES','aubergine-clear':'LIKES',
       'verdigris':'pink annoying','cove':'too green','sloe':'too red, too bright'}
-d=json.load(open('schemes.json'))
+d=json.load(open(ROOT / 'schemes.json'))
 print("The standout: whichever accent sits furthest from the ground.\n")
 print(f"{'system':22}{'ground':>8}{'standout role':>16}{'its band':>9}{'dist':>7}   verdict")
 for s in d:

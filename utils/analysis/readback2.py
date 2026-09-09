@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math, json
-src=open(_P).read()
+src=open(ROOT / 'utils' / 'pal.py').read()
 exec(src.split('# ---------- Solarized reference')[0])
 POLICY={'everywhere':(8.0,1.00),'common':(7.5,0.50),'occasional':(-4.5,0.65),'rare':(-2.0,0.70)}
 FREQ={'fn':'everywhere','str':'everywhere','meta':'occasional','kw':'common',
@@ -14,7 +15,7 @@ EDITS={
               "str":[-3.5,1.05],"ty":[-8,0.9]},
  'damson':{"fn":[-8,1]},
 }
-d=json.load(open('schemes.json')); BY={s['name']:s for s in d}
+d=json.load(open(ROOT / 'schemes.json')); BY={s['name']:s for s in d}
 floors=0
 for nm,ed in EDITS.items():
     s=BY[nm]

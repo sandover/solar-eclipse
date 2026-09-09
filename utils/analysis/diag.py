@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math
-exec(open(_P).read().split('# ---------- Solarized reference')[0])
+exec(open(ROOT / 'utils' / 'pal.py').read().split('# ---------- Solarized reference')[0])
 SOL={'base03':'#002b36','yellow':'#b58900','orange':'#cb4b16','red':'#dc322f',
  'magenta':'#d33682','violet':'#6c71c4','blue':'#268bd2','cyan':'#2aa198','green':'#859900'}
 A={k:lab2lch(hex2lab(v)) for k,v in SOL.items()}

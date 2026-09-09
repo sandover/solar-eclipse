@@ -1,5 +1,8 @@
+import pathlib
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent
 import math, json
-src=open('pal.py').read()
+src=open(HERE / 'pal.py').read()
 exec(src.split('# ---------- Solarized reference')[0])
 exec(src.split('# ---------- OKLab')[1].split('\n',1)[1])
 
@@ -170,7 +173,7 @@ SPECS=[
   None,True,None),
 ]
 
-prev={s['name']:s['colors'] for s in json.load(open('schemes.json'))}
+prev={s['name']:s['colors'] for s in json.load(open(ROOT / 'schemes.json'))}
 schemes=[]
 for name,label,fam,G,mir,cm,fav,note,blurb,ban,six,picked in SPECS:
     if name=='solarized':
@@ -243,7 +246,7 @@ ref=schemes[0]['colors']['base03']
 for s in schemes:
     s['dE']=round(dE(s['colors']['base03'],ref),1)
     s['pair']={t['name']:round(dE(s['colors']['base03'],t['colors']['base03']),1) for t in schemes}
-json.dump(schemes,open('schemes.json','w'),indent=1)
+json.dump(schemes,open(ROOT / str(ROOT / 'schemes.json'),'w'),indent=1)
 
 sol=schemes[0]
 print(f"Solarized's furthest accent from its own background: {sol['far']:.3f}   spread {sol['spreadr']}x\n")

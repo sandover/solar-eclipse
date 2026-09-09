@@ -1,3 +1,6 @@
+import pathlib
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent
 import math, json
 
 # ---------- sRGB <-> CIELAB (D65) ----------

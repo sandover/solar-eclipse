@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math, json
-src=open(_P).read()
+src=open(ROOT / 'utils' / 'pal.py').read()
 exec(src.split('# ---------- Solarized reference')[0])
 exec(src.split('# ---------- OKLab')[1].split('\n',1)[1])
 
@@ -34,7 +35,7 @@ r=(sum((cols['L'][i]-mx)*(cols['C'][i]-my) for i in range(n))/
    math.sqrt(sum((x-mx)**2 for x in cols['L'])*sum((y-my)**2 for y in cols['C'])))
 print(f"\nLightness vs chroma correlation in Solarized: r = {r:+.2f}")
 
-d=json.load(open('schemes.json'))
+d=json.load(open(ROOT / 'schemes.json'))
 FAV=['nocturne','aubergine','damson','verdigris','ashen']
 print("\n\nDistance from own background, OKLab. Solarized's range is "
       f"{min(cols['ok']):.3f} to {max(cols['ok']):.3f}\n")

@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math, json
-src=open(_P).read()
+src=open(ROOT / 'utils' / 'pal.py').read()
 exec(src.split('# ---------- Solarized reference')[0])
 exec(src.split('# ---------- OKLab')[1].split('\n',1)[1])
 def okdE(a,b):
@@ -15,7 +16,7 @@ FREQ={'fn':'everywhere','str':'everywhere','meta':'occasional','kw':'common',
       'num':'occasional','ty':'occasional','err':'rare','sp':'rare'}
 ORDER=['fn','str','meta','kw','num','ty','err','sp']
 
-d=json.load(open('schemes.json'))
+d=json.load(open(ROOT / 'schemes.json'))
 s=[x for x in d if x['name']=='nocturne'][0]
 bg=s['colors']['base03']; body=s['colors']['base0']
 bodyL=lab2lch(hex2lab(body))[0]

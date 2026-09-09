@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math, json
-src=open(_P).read()
+src=open(ROOT / 'utils' / 'pal.py').read()
 exec(src.split('# ---------- Solarized reference')[0])
 exec(src.split('# ---------- OKLab')[1].split('\n',1)[1])
 def okdE(a,b):
@@ -11,7 +12,7 @@ GREEN=(80,170)          # olive through green-teal
 NM={'fn':'function names','str':'strings','meta':'special','kw':'keywords',
     'num':'numbers','ty':'type names','err':'errors','sp':'preprocessor'}
 ORDER=['fn','str','meta','kw','num','ty','err','sp']
-d=json.load(open('schemes.json')); BY={s['name']:s for s in d}
+d=json.load(open(ROOT / 'schemes.json')); BY={s['name']:s for s in d}
 
 def isgreen(h): return GREEN[0] <= h <= GREEN[1]
 

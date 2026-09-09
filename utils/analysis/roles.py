@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math
-exec(open(_P).read().split('# ---------- Solarized reference')[0])
+exec(open(ROOT / 'utils' / 'pal.py').read().split('# ---------- Solarized reference')[0])
 SOL={'green':'#859900','cyan':'#2aa198','blue':'#268bd2','yellow':'#b58900',
      'magenta':'#d33682','red':'#dc322f','orange':'#cb4b16','violet':'#6c71c4'}
 ROLE={'green':'keywords','cyan':'strings','blue':'function names','yellow':'type names',

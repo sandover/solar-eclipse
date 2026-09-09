@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math, json
-exec(open(_P).read().split('# ---------- Solarized reference')[0])
+exec(open(ROOT / 'utils' / 'pal.py').read().split('# ---------- Solarized reference')[0])
 
 def max_C(L,h):
     lo,hi=0.0,150.0
@@ -24,7 +25,7 @@ for k,v in SOL.items():
     sol_ratio[k]=C/m
     print(f"{NAME[k]:16}{h:6.0f}{L:6.0f}{C:9.1f}{m:14.1f}{C/m:10.0%}")
 
-d=json.load(open('schemes.json'))
+d=json.load(open(ROOT / 'schemes.json'))
 print("\nMY SYSTEMS: same measurement, for the five you picked\n")
 print(f"{'system':11}{'role':16}{'hue':>6}{'L*':>6}{'C*':>7}{'avail':>7}{'restraint':>11}   note")
 FAV=['nocturne','aubergine','damson','verdigris','ashen']

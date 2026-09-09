@@ -1,8 +1,9 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math, json
-exec(open(_P).read().split('# ---------- Solarized reference')[0])
-exec(open(_P).read().split('# ---------- OKLab')[1].split('\n',1)[1])
+exec(open(ROOT / 'utils' / 'pal.py').read().split('# ---------- Solarized reference')[0])
+exec(open(ROOT / 'utils' / 'pal.py').read().split('# ---------- OKLab')[1].split('\n',1)[1])
 
 SOL={'fn':'#268bd2','str':'#2aa198','meta':'#6c71c4','kw':'#859900',
      'num':'#d33682','ty':'#b58900','err':'#dc322f','sp':'#cb4b16'}
@@ -20,7 +21,7 @@ for k in ORDER:
 print(f"\n  Lab C* spread:      {min(lab2lch(hex2lab(SOL[k]))[1] for k in ORDER):.0f} to {max(lab2lch(hex2lab(SOL[k]))[1] for k in ORDER):.0f}   ({max(lab2lch(hex2lab(SOL[k]))[1] for k in ORDER)/min(lab2lch(hex2lab(SOL[k]))[1] for k in ORDER):.2f}x)")
 print(f"  OKLab spread:       {min(sol):.3f} to {max(sol):.3f}   ({max(sol)/min(sol):.2f}x)")
 
-d=json.load(open('schemes.json'))
+d=json.load(open(ROOT / 'schemes.json'))
 FAV=['nocturne','aubergine','damson','verdigris','ashen']
 print("\n\nMINE: OKLab chroma of the 'seen rarely' colours vs Solarized's\n")
 print(f"{'system':12}{'type names':>12}{'errors':>10}{'preproc':>10}{'   worst vs Solarized'}")

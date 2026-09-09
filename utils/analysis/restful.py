@@ -1,7 +1,8 @@
 import pathlib
-_P = str(pathlib.Path(__file__).resolve().parent.parent / 'pal.py')
+HERE = pathlib.Path(__file__).resolve().parent
+ROOT = HERE.parent.parent
 import math, json
-src=open(_P).read()
+src=open(ROOT / 'utils' / 'pal.py').read()
 exec(src.split('# ---------- Solarized reference')[0])
 exec(src.split('# ---------- OKLab')[1].split('\n',1)[1])
 def okdE(a,b):
@@ -14,7 +15,7 @@ NM={'fn':'function names','str':'strings','meta':'special','kw':'keywords',
 R=['fn','str','meta','kw','num','ty','err','sp']
 SOL={'fn':'#268bd2','str':'#2aa198','meta':'#6c71c4','kw':'#859900',
      'num':'#d33682','ty':'#b58900','err':'#dc322f','sp':'#cb4b16'}
-d=json.load(open('schemes.json')); s=[x for x in d if x['name']=='nocturne'][0]
+d=json.load(open(ROOT / 'schemes.json')); s=[x for x in d if x['name']=='nocturne'][0]
 bg=s['colors']['base03']
 b01=lab2lch(hex2lab(s['colors']['base01']))[0]
 b0 =lab2lch(hex2lab(s['colors']['base0']))[0]
