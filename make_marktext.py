@@ -54,6 +54,36 @@ def build(block, target):
 # MarkText's own assignments follow Solarized's roles, and our schemes move the
 # hues around per role -- so a heading that was red becomes our dimmest colour.
 # These are re-pointed by prominence instead: h1 brightest, h6 quietest.
+# MarkText-only correction. A markdown document is mostly headings and prose,
+# so a warm mid-chroma accent that a code editor would spend on numbers ends up
+# on every h2 and h3 here -- and drained warm hues read as skin, not restraint.
+# Each offending colour keeps its brightness and vividness and moves to the
+# coolest hue that stays clear of the rest. The palette itself is untouched.
+WARM = (312, 90)
+def decorpse(colors, roles=('fn','str','meta','kw','num','ty','err','sp')):
+    """Merged roles share a hex, so work per distinct colour and move them together."""
+    c = dict(colors)
+    groups = {}
+    for k in roles:
+        groups.setdefault(c[k], []).append(k)
+    hues = [lab2lch(hex2lab(h))[2] for h in groups
+            if not (lab2lch(hex2lab(h))[2] >= WARM[0] or lab2lch(hex2lab(h))[2] <= WARM[1])]
+    for hexv, keys in list(groups.items()):
+        L, C, h = lab2lch(hex2lab(hexv))
+        warm = h >= WARM[0] or h <= WARM[1]
+        if not (warm and 8 <= C <= 45):
+            continue
+        best, bh = -1, None
+        for cand in range(95, 310, 5):
+            d = min(abs((cand - x + 180) % 360 - 180) for x in hues) if hues else 180
+            if d > best:
+                best, bh = d, cand
+        moved, _ = lch2hex((L, C, bh))
+        for k in keys:
+            c[k] = moved
+        hues.append(float(bh))
+    return c
+
 ROLE_OVERRIDE = {
     '--themeColor': 'str', '--linkColor': 'str', '--focusColor': 'str',
     '--headingColor': 'base1', '--strongColor': 'base1',
@@ -90,7 +120,8 @@ if __name__ == '__main__':
     block = open(sys.argv[2], encoding='utf-8').read()
     schemes = {s['name']: s for s in json.load(open('schemes.json'))}
     s = schemes[name]
-    css = build(block, s['colors'])
+    palette = decorpse(s['colors'])
+    css = build(block, palette)
     css = re.sub(r'/\*.*?\*/', '', css, count=1, flags=re.S)
     lines = []
     for l in css.splitlines():
@@ -99,13 +130,13 @@ if __name__ == '__main__':
             continue
         var = l.split(':', 1)[0].strip()
         if var in ROLE_OVERRIDE:
-            l = f"{var}: {s['colors'][ROLE_OVERRIDE[var]]};"
+            l = f"{var}: {palette[ROLE_OVERRIDE[var]]};"
         lines.append('  ' + l)
     body = (f"/* solar-eclipse-{name} for MarkText\n"
             f" * Paste into Preferences -> Theme -> Custom CSS.\n"
             f" * Overrides whichever built-in theme is selected. */\n"
             ":root {\n" + "\n".join(lines) + "\n}\n"
-            + prism_rules(s['colors']) + "\n")
+            + prism_rules(palette) + "\n")
     out = f'themes/marktext-solar-eclipse-{name}.css'
     open(out, 'w', encoding='utf-8').write(body)
     print(f'{out}: {len(body)} bytes, '

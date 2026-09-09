@@ -23,7 +23,7 @@
   --editorColor10: rgba(136, 147, 151, 0.1);
   --editorColor04: rgba(136, 147, 151, 0.04);
   --editorBgColor: #0f181e;
-  --deleteColor: #785863;
+  --deleteColor: #486478;
   --iconColor: rgba(136, 147, 151, 0.56);
   --codeBgColor: #182228;
   --codeBlockBgColor: #182228;
@@ -56,9 +56,9 @@
   /* Markdown element colors */
   --headingColor: #97a0a2;
   --h1Color: #67a7a6;
-  --h2Color: #937469;
+  --h2Color: #5a818c;
   --h3Color: #849585;
-  --h4Color: #785863;
+  --h4Color: #486478;
   --h5Color: #87838f;
   --h6Color: #716e64;
   --blockquoteTextColor: rgba(136, 147, 151, 0.6);
@@ -66,8 +66,8 @@
   --hrColor: #182228;
   --linkColor: #67a7a6;
   --strongColor: #97a0a2;
-  --emColor: #937469;
-  --listMarkerColor: #937469;
+  --emColor: #5a818c;
+  --listMarkerColor: #5a818c;
   /*marktext*/
   --sideBarColor: rgba(136, 147, 151, 0.6);
   --sideBarIconColor: var(--iconColor);
@@ -91,8 +91,8 @@
 .token.keyword,.token.atrule,.token.important { color: #849585; background: none; }
 .token.string,.token.char,.token.attr-value,.token.regex { color: #67a7a6; background: none; }
 .token.function,.token.function-name,.token.selector { color: #87838f; background: none; }
-.token.number,.token.boolean,.token.constant,.token.symbol { color: #937469; background: none; }
-.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #937469; background: none; }
+.token.number,.token.boolean,.token.constant,.token.symbol { color: #5a818c; background: none; }
+.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #5a818c; background: none; }
 .token.operator,.token.variable,.token.entity,.token.url { color: #889397; background: none; }
 .token.deleted { color: #716e64; background: none; }
 .token.inserted { color: #849585; background: none; }
