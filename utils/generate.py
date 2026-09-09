@@ -153,7 +153,7 @@ SPECS=[
  # Blend of Nocturne, Aubergine and Aubergine-no-green: they shared this ground
  # already, so the blend is a per-role pick -- no greens, the standout stays the
  # sky blue he tuned by hand, and the colour seen most is the quietest.
- ('nocturne','Nocturne','purple',287,1,1.10,1,'',
+ ('nocturne','Nocturne','purple',262,1,1.10,1,'',
   'Violet. Sky blue is the one bright colour; everything else is nearly drained.',
   None,True,
   {'fn':'#85969e','str':'#55b2ce','meta':'#7a5955','kw':'#a08e77',

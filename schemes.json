@@ -129,7 +129,7 @@
   "dE": 0.0,
   "pair": {
    "solarized": 0.0,
-   "nocturne": 15.8,
+   "nocturne": 11.5,
    "verdigris": 8.3,
    "ashen": 12.1
   }
@@ -152,14 +152,14 @@
   "note": "",
   "blurb": "Violet. Sky blue is the one bright colour; everything else is nearly drained.",
   "colors": {
-   "base03": "#11182d",
-   "base02": "#1b2139",
-   "base01": "#676a7a",
-   "base00": "#747688",
-   "base0": "#8a929c",
-   "base1": "#979fa8",
-   "base2": "#daeddf",
-   "base3": "#e8fbed",
+   "base03": "#001a2d",
+   "base02": "#05253a",
+   "base01": "#5f6c7b",
+   "base00": "#6b7988",
+   "base0": "#85939b",
+   "base1": "#94a0a6",
+   "base2": "#e3ebd9",
+   "base3": "#f1f9e7",
    "fn": "#85969e",
    "str": "#55b2ce",
    "meta": "#7a5955",
@@ -170,8 +170,8 @@
    "sp": "#725d60"
   },
   "prev": {
-   "base03": "#181d33",
-   "base02": "#222840",
+   "base03": "#11182d",
+   "base02": "#1b2139",
    "base01": "#676a7a",
    "base00": "#747688",
    "base0": "#8a929c",
@@ -190,126 +190,126 @@
   "roles": {
    "fn": {
     "hue": 235,
-    "dist": 51,
+    "dist": 29,
     "L": 61,
     "C": 8,
-    "reach": 0.449,
+    "reach": 0.454,
     "used": 21,
     "merged": ""
    },
    "str": {
     "hue": 229,
-    "dist": 57,
+    "dist": 35,
     "L": 68,
     "C": 30,
-    "reach": 0.509,
+    "reach": 0.512,
     "used": 77,
     "merged": ""
    },
    "meta": {
     "hue": 31,
-    "dist": 104,
+    "dist": 126,
     "L": 41,
     "C": 15,
-    "reach": 0.293,
+    "reach": 0.302,
     "used": 20,
     "merged": ""
    },
    "kw": {
     "hue": 78,
-    "dist": 152,
+    "dist": 174,
     "L": 60,
     "C": 15,
-    "reach": 0.45,
+    "reach": 0.456,
     "used": 23,
     "merged": ""
    },
    "num": {
     "hue": 180,
-    "dist": 106,
+    "dist": 84,
     "L": 56,
     "C": 19,
-    "reach": 0.403,
+    "reach": 0.406,
     "used": 50,
     "merged": "numbers and types"
    },
    "ty": {
     "hue": 180,
-    "dist": 106,
+    "dist": 84,
     "L": 56,
     "C": 19,
-    "reach": 0.403,
+    "reach": 0.406,
     "used": 50,
     "merged": "numbers and types"
    },
    "err": {
     "hue": 9,
-    "dist": 83,
+    "dist": 105,
     "L": 42,
     "C": 9,
-    "reach": 0.291,
+    "reach": 0.299,
     "used": 13,
     "merged": "errors and preprocessor"
    },
    "sp": {
     "hue": 9,
-    "dist": 83,
+    "dist": 105,
     "L": 42,
     "C": 9,
-    "reach": 0.291,
+    "reach": 0.299,
     "used": 13,
     "merged": "errors and preprocessor"
    }
   },
-  "ground": 286,
-  "paper": 152,
+  "ground": 264,
+  "paper": 127,
   "mirror": 1,
-  "clear": 51,
+  "clear": 29,
   "peak": 77,
-  "far": 0.509,
-  "spreadr": 1.75,
+  "far": 0.512,
+  "spreadr": 1.71,
   "c_body": 5.6,
-  "c_cmt": 3.29,
+  "c_cmt": 3.3,
   "lch": {
    "base03": [
-    8.67,
+    8.38,
     15.77,
-    286.04
+    264.23
    ],
    "base02": [
-    13.33,
-    17.23,
-    287.63
+    13.6,
+    16.97,
+    261.54
    ],
    "base01": [
-    45.08,
-    9.59,
-    284.62
+    45.06,
+    10.05,
+    262.4
    ],
    "base00": [
-    50.03,
-    10.54,
-    287.44
+    50.19,
+    10.04,
+    260.25
    ],
    "base0": [
-    60.21,
-    6.32,
-    262.71
+    60.09,
+    6.78,
+    240.9
    ],
    "base1": [
-    65.12,
-    5.74,
-    259.86
+    65.11,
+    5.47,
+    236.66
    ],
    "base2": [
-    92.04,
-    9.97,
-    152.3
+    92.02,
+    9.75,
+    126.75
    ],
    "base3": [
-    96.93,
-    9.86,
-    152.33
+    96.91,
+    9.64,
+    126.77
    ],
    "fn": [
     61.02,
@@ -352,12 +352,12 @@
     9.38
    ]
   },
-  "dE": 15.8,
+  "dE": 11.5,
   "pair": {
-   "solarized": 15.8,
+   "solarized": 11.5,
    "nocturne": 0.0,
-   "verdigris": 19.8,
-   "ashen": 11.6
+   "verdigris": 15.7,
+   "ashen": 10.2
   }
  },
  {
@@ -581,7 +581,7 @@
   "dE": 8.3,
   "pair": {
    "solarized": 8.3,
-   "nocturne": 19.8,
+   "nocturne": 15.7,
    "verdigris": 0.0,
    "ashen": 10.7
   }
@@ -798,7 +798,7 @@
   "dE": 12.1,
   "pair": {
    "solarized": 12.1,
-   "nocturne": 11.6,
+   "nocturne": 10.2,
    "verdigris": 10.7,
    "ashen": 0.0
   }

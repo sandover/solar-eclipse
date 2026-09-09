@@ -13,34 +13,34 @@
   --themeColor20: rgba(133, 150, 158, 0.2);
   --themeColor10: rgba(133, 150, 158, 0.1);
   --highlightColor: rgba(133, 150, 158, 0.6);
-  --selectionColor: rgba(27, 33, 57, 0.8);
-  --editorColor: #8a929c;
-  --editorColor80: rgba(138, 146, 156, 0.8);
-  --editorColor60: rgba(138, 146, 156, 0.6);
-  --editorColor50: rgba(138, 146, 156, 0.5);
-  --editorColor40: rgba(138, 146, 156, 0.4);
-  --editorColor30: rgba(138, 146, 156, 0.3);
-  --editorColor10: rgba(138, 146, 156, 0.1);
-  --editorColor04: rgba(138, 146, 156, 0.04);
-  --editorBgColor: #11182d;
+  --selectionColor: rgba(5, 37, 58, 0.8);
+  --editorColor: #85939b;
+  --editorColor80: rgba(133, 147, 155, 0.8);
+  --editorColor60: rgba(133, 147, 155, 0.6);
+  --editorColor50: rgba(133, 147, 155, 0.5);
+  --editorColor40: rgba(133, 147, 155, 0.4);
+  --editorColor30: rgba(133, 147, 155, 0.3);
+  --editorColor10: rgba(133, 147, 155, 0.1);
+  --editorColor04: rgba(133, 147, 155, 0.04);
+  --editorBgColor: #001a2d;
   --deleteColor: #686148;
-  --iconColor: rgba(138, 146, 156, 0.56);
-  --codeBgColor: #1b2139;
-  --codeBlockBgColor: #1b2139;
-  --footnoteBgColor: rgba(27, 33, 57, 0.3);
-  --inputBgColor: #030821;
+  --iconColor: rgba(133, 147, 155, 0.56);
+  --codeBgColor: #05253a;
+  --codeBlockBgColor: #05253a;
+  --footnoteBgColor: rgba(5, 37, 58, 0.3);
+  --inputBgColor: #000a15;
   --focusColor: #55b2ce;
-  --buttonFontColor: rgba(138, 146, 156, 0.6);
-  --buttonBgColor: #1b2139;
+  --buttonFontColor: rgba(133, 147, 155, 0.6);
+  --buttonBgColor: #05253a;
   --buttonBorder: 1px solid rgba(0, 0, 0, 0.2);
   --buttonShadow: none;
   --buttonFontColorHover: var(--buttonFontColor);
-  --buttonBgColorHover: #2d324c;
+  --buttonBgColorHover: #1c374d;
   --buttonBorderHover: 1px solid rgba(0, 0, 0, 0.3);
   --buttonFontColorActive: var(--buttonFontColor);
-  --buttonBgColorActive: #10172c;
+  --buttonBgColorActive: #00192c;
   --buttonBorderActive: var(--buttonBorder);
-  --buttonPrimaryFontColor: #11182d;
+  --buttonPrimaryFontColor: #001a2d;
   --buttonPrimaryBgColor: var(--themeColor);
   --buttonPrimaryBorder: none;
   --buttonPrimaryShadow: none;
@@ -51,34 +51,34 @@
   --buttonPrimaryBgColorActive: #6b7b83;
   --buttonPrimaryBorderActive: var(--buttonPrimaryBorder);
   --buttonPrimaryFocusBorder: none;
-  --buttonPrimaryFocusShadow: inset 0 0 0 1px rgba(2, 7, 32, 0.5), 0 0 0 1px var(--themeColor);
-  --tableBorderColor: #1b2139;
+  --buttonPrimaryFocusShadow: inset 0 0 0 1px rgba(0, 9, 19, 0.5), 0 0 0 1px var(--themeColor);
+  --tableBorderColor: #05253a;
   /* Markdown element colors */
-  --headingColor: #979fa8;
+  --headingColor: #94a0a6;
   --h1Color: #55b2ce;
   --h2Color: #5d8f85;
   --h3Color: #968da6;
   --h4Color: #686148;
   --h5Color: #85969e;
   --h6Color: #5a6558;
-  --blockquoteTextColor: rgba(138, 146, 156, 0.6);
-  --blockquoteBorderColor: #676a7a;
-  --hrColor: #1b2139;
+  --blockquoteTextColor: rgba(133, 147, 155, 0.6);
+  --blockquoteBorderColor: #5f6c7b;
+  --hrColor: #05253a;
   --linkColor: #55b2ce;
-  --strongColor: #979fa8;
+  --strongColor: #94a0a6;
   --emColor: #5d8f85;
   --listMarkerColor: #5d8f85;
   /*marktext*/
-  --sideBarColor: rgba(138, 146, 156, 0.6);
+  --sideBarColor: rgba(133, 147, 155, 0.6);
   --sideBarIconColor: var(--iconColor);
-  --sideBarTitleColor: rgba(138, 146, 156, 0.8);
-  --sideBarTextColor: rgba(138, 146, 156, 0.4);
-  --sideBarBgColor: #0b1126;
-  --sideBarItemHoverBgColor: rgba(138, 146, 156, 0.03);
-  --itemBgColor: #1b2139;
-  --floatFontColor: rgba(138, 146, 156, 0.7);
-  --floatBgColor: #1b2139;
-  --floatHoverColor: rgba(138, 146, 156, 0.04);
+  --sideBarTitleColor: rgba(133, 147, 155, 0.8);
+  --sideBarTextColor: rgba(133, 147, 155, 0.4);
+  --sideBarBgColor: #001322;
+  --sideBarItemHoverBgColor: rgba(133, 147, 155, 0.03);
+  --itemBgColor: #05253a;
+  --floatFontColor: rgba(133, 147, 155, 0.7);
+  --floatBgColor: #05253a;
+  --floatHoverColor: rgba(133, 147, 155, 0.04);
   --floatBorderColor: rgba(0, 0, 0, 0.05);
   --floatShadow: rgba(0, 0, 0, 0.2);
   --maskColor: rgba(0, 0, 0, 0.7);
@@ -86,13 +86,13 @@
 }
 
 /* fenced code blocks: Prism hardcodes these, so they are set here */
-.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #676a7a; background: none; }
-.token.punctuation { color: #747688; background: none; }
+.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #5f6c7b; background: none; }
+.token.punctuation { color: #6b7988; background: none; }
 .token.keyword,.token.atrule,.token.important { color: #968da6; background: none; }
 .token.string,.token.char,.token.attr-value,.token.regex { color: #55b2ce; background: none; }
 .token.function,.token.function-name,.token.selector { color: #85969e; background: none; }
 .token.number,.token.boolean,.token.constant,.token.symbol { color: #5d8f85; background: none; }
 .token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #5d8f85; background: none; }
-.token.operator,.token.variable,.token.entity,.token.url { color: #8a929c; background: none; }
+.token.operator,.token.variable,.token.entity,.token.url { color: #85939b; background: none; }
 .token.deleted { color: #5a6558; background: none; }
 .token.inserted { color: #968da6; background: none; }

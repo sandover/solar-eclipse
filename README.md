@@ -11,14 +11,14 @@ at than the original.
 
 | role | Nocturne | Verdigris | Ashen |
 | --- | --- | --- | --- |
-| background | `#11182d` | `#002324` | `#0f181e` |
-| highlight | `#1b2139` | `#002e2f` | `#182228` |
-| comments | `#676a7a` | `#527070` | `#656b70` |
-| faint text | `#747688` | `#5e7d7d` | `#72787d` |
-| body text | `#8a929c` | `#839590` | `#889397` |
-| bright text | `#979fa8` | `#94a19c` | `#97a0a2` |
-| pale | `#daeddf` | `#f8e5d7` | `#e7ead7` |
-| palest | `#e8fbed` | `#fff5ed` | `#f6f8e5` |
+| background | `#001a2d` | `#002324` | `#0f181e` |
+| highlight | `#05253a` | `#002e2f` | `#182228` |
+| comments | `#5f6c7b` | `#527070` | `#656b70` |
+| faint text | `#6b7988` | `#5e7d7d` | `#72787d` |
+| body text | `#85939b` | `#839590` | `#889397` |
+| bright text | `#94a0a6` | `#94a19c` | `#97a0a2` |
+| pale | `#e3ebd9` | `#f8e5d7` | `#e7ead7` |
+| palest | `#f1f9e7` | `#fff5ed` | `#f6f8e5` |
 | function names | `#85969e` | `#84939d` | `#87838f` |
 | strings | `#55b2ce` | `#53b3c5` | `#67a7a6` |
 | special | `#7a5955` | `#546490` | `#785863` |
@@ -91,6 +91,14 @@ python3 utils/make_vscode.py
 - The closest pair of backgrounds is Solarized and Verdigris, 0.040 apart in
   OKLab where 0.05 reads as clearly different. Only their lightness gap
   separates them.
+- **A ground recedes in proportion to how close its hue sits to the daylight
+  axis** — roughly hue 45 to 225 in CIELAB, warm at one end and cool at the
+  other. Colour constancy discounts variation along that axis, so a ground near
+  it reads as illumination and disappears; one far from it reads as paint and
+  keeps announcing itself. Ranked against real verdicts this was monotonic:
+  everything kept sits under 27 degrees off the axis, everything rejected over
+  60. It is also why purple is hard — purple is off-axis by definition, so a
+  ground that reads as violet cannot fully recede.
 - Warm hues fail at both ends in a palette this drained: saturated they read as
   too red, drained they read as skin. Accents avoid the band. Drained *greens*
   are fine — they read as sage.
