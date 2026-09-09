@@ -1,0 +1,32 @@
+{
+  "name": "solar-eclipse-themes",
+  "displayName": "Solar Eclipse",
+  "description": "Dark themes built from Solarized's measured structure.",
+  "version": "1.0.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Solar Eclipse Nocturne",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Nocturne-color-theme.json"
+      },
+      {
+        "label": "Solar Eclipse Verdigris",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Verdigris-color-theme.json"
+      },
+      {
+        "label": "Solar Eclipse Ashen",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Ashen-color-theme.json"
+      }
+    ]
+  }
+}
