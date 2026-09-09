@@ -1,0 +1,278 @@
+<title>How Solarized Works</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#131417; --panel:#1a1c20; --panel2:#202329; --rule:#2c2f36; --rule2:#3a3e47;
+  --ink:#d8dae0; --ink2:#a4aab4; --dim:#868c96; --faint:#5c626c; --accent:#e9e2ce;
+  --serif:"IBM Plex Serif",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 28px}
+.wide{max-width:1080px;margin:0 auto;padding:0 28px}
+h1,h2,h3{text-wrap:balance;margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+header{padding:64px 0 40px;border-bottom:1px solid var(--rule)}
+header h1{font-family:var(--serif);font-weight:600;font-size:clamp(36px,5vw,56px);line-height:1.03;
+  letter-spacing:-.02em;margin:14px 0 0;max-width:19ch}
+header h1 em{font-style:normal;color:var(--accent)}
+.stand{color:var(--ink2);font-size:16.5px;margin:20px 0 0;max-width:62ch}
+.stand b{color:var(--ink);font-weight:500}
+
+section{padding:46px 0;border-bottom:1px solid var(--rule)}
+.num{font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.1em}
+h2{font-family:var(--serif);font-size:27px;font-weight:600;letter-spacing:-.015em;margin:6px 0 0}
+section p{color:var(--ink2);font-size:15px;max-width:64ch;margin:16px 0 0}
+section p b{color:var(--ink);font-weight:500}
+.tight{max-width:60ch}
+.lead-in{color:var(--dim);font-size:13px;margin-top:6px}
+
+/* lightness axis */
+.axis{margin:30px 0 0;background:var(--panel);border:1px solid var(--rule);padding:24px 26px 16px}
+.axis-row{position:relative;height:44px;margin-top:6px}
+.axis-lab{font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.09em;
+  text-transform:uppercase;display:flex;justify-content:space-between;align-items:baseline}
+.axis-lab span:last-child{color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:0;text-transform:none}
+.track{position:absolute;left:0;right:0;top:19px;height:2px;background:var(--rule2)}
+.pip{position:absolute;top:8px;width:24px;height:24px;border-radius:50%;transform:translateX(-50%);
+  border:2px solid var(--panel)}
+.band{position:absolute;top:4px;height:32px;background:rgba(233,226,206,.10);
+  border-left:1px solid var(--accent);border-right:1px solid var(--accent)}
+.ticks{position:relative;height:16px;margin-top:2px}
+.tick{position:absolute;font-family:var(--mono);font-size:9.5px;color:var(--faint);transform:translateX(-50%)}
+.verdict{display:flex;gap:36px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--rule)}
+.verdict div{flex:1;min-width:190px}
+.verdict .big{font-family:var(--mono);font-size:30px;font-variant-numeric:tabular-nums;line-height:1}
+.verdict .cap{color:var(--dim);font-size:12.5px;margin-top:6px}
+
+/* ramp */
+.ramp{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin-top:28px}
+.ramp>div{background:var(--panel);padding:0 0 11px}
+.ramp .sw{height:52px}
+.ramp .n{font-family:var(--mono);font-size:10.5px;color:var(--ink);padding:9px 10px 0;font-variant-numeric:tabular-nums}
+.ramp .u{font-size:10.5px;color:var(--faint);padding:1px 10px 0}
+.pairs{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:1px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--dim)}
+.pairs div{background:var(--panel2);padding:6px 10px;text-align:center}
+
+/* generic table */
+table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:11.5px;
+  font-variant-numeric:tabular-nums;margin-top:26px}
+th,td{padding:7px 11px;text-align:right;border-bottom:1px solid var(--rule);white-space:nowrap}
+th{color:var(--dim);font-weight:500;font-size:10px;letter-spacing:.09em;text-transform:uppercase}
+td:first-child,th:first-child,td:nth-child(2),th:nth-child(2){text-align:left}
+.scroll{overflow-x:auto}
+.sq{display:inline-block;width:10px;height:10px;border-radius:1px;margin-right:8px;vertical-align:-1px}
+.bar{display:inline-block;height:5px;border-radius:2px;vertical-align:1px}
+
+.two{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:40px;align-items:start;margin-top:28px}
+.two p{margin-top:0}
+figure{margin:0}
+figcaption{color:var(--faint);font-size:11.5px;margin-top:12px;line-height:1.6}
+
+.miss{background:var(--panel);border:1px solid var(--rule);border-left:2px solid var(--accent);
+  padding:18px 22px;margin-top:14px}
+.miss h3{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink)}
+.miss p{font-size:13.5px;margin-top:6px;color:var(--ink2)}
+.miss .when{font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint)}
+footer{padding:40px 0 80px;color:var(--faint);font-size:12.5px}
+footer a{color:var(--accent)}
+@media (max-width:760px){.two{grid-template-columns:1fr;gap:20px}.ramp{grid-template-columns:repeat(4,1fr)}
+  .pairs{grid-template-columns:repeat(2,1fr)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="wide">
+  <p class="eyebrow">Reference &middot; measured from the palette itself</p>
+  <h1>A palette holds together when only <em>one</em> thing varies.</h1>
+  <p class="stand">Solarized lets hue vary across its full range and holds everything else nearly still.
+  Its eight accent colours sit inside an <b>11-point brightness band</b>; eight hues taken straight off the
+  colour wheel spread across <b>65 points</b>. That single difference is most of why one reads as a considered
+  palette and the other as a jumble.</p>
+</header>
+
+<section class="wide">
+  <p class="num">01</p>
+  <h2>Brightness is the unifier</h2>
+  <p>Brightness is what your eye uses to work out structure: what is foreground, what matters, what to look at
+  first. If eight colours differ wildly in brightness, they read as eight different levels of importance, and the
+  page feels noisy no matter how carefully the hues were chosen. Solarized removes brightness from the equation
+  entirely, so the only thing a colour tells you is <b>which kind of thing this is</b>, never how loud it is.</p>
+  <div class="axis" id="axis"></div>
+</section>
+
+<section class="wide">
+  <p class="num">02</p>
+  <h2>The band is bounded by the text itself</h2>
+  <p>The 11-point band is not floating anywhere convenient. Its floor is the comment colour and its ceiling is
+  the body text colour. <b>No coloured token is ever brighter than the prose around it, or dimmer than a
+  comment.</b> Syntax highlighting can only ever sit inside the range plain text already occupies.</p>
+  <div class="scroll"><table id="accTable"></table></div>
+</section>
+
+<section class="wide">
+  <p class="num">03</p>
+  <h2>Everything shares one atmosphere</h2>
+  <p>The background is not black and the text is not grey. Every one of the eight monotones is tinted, and all
+  the dark-mode ones fall within 31 degrees of the same hue. That shared cast is what makes a coloured background
+  look like <b>light in a room</b> rather than a filter laid over neutral text. The tint is strongest in the
+  backgrounds and fades as the tones get lighter, so the text stays legible while the ground carries the mood.</p>
+  <div class="ramp" id="ramp"></div>
+  <div class="pairs" id="pairs"></div>
+  <p class="lead-in">Four pairs, each about five points apart, separated by wide empty bands. In dark mode you
+  read the first pair as backgrounds and the third as text; in light mode it inverts.</p>
+</section>
+
+<section class="wide">
+  <p class="num">04</p>
+  <h2>Every accent is the same distance out</h2>
+  <div class="two">
+    <p>Brightness and saturation are traded against each other so that each accent sits the same perceptual
+    distance from the background. Solarized's red is the most saturated colour in the palette, yet it has
+    <b>less contrast than the body text</b> you read. Vivid and recessive at once. Nothing reaches further off
+    the page than anything else, so nothing grabs you first.</p>
+    <figure>
+      <div class="scroll"><table id="reachTable"></table></div>
+      <figcaption>Distance measured in OKLab, where a step means roughly the same amount of visible change at
+      any hue. The spread across all eight is 1.27&times;. Compare 2.26&times; if you measure saturation instead,
+      which is why saturation alone is the wrong thing to hold steady.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="wide">
+  <p class="num">05</p>
+  <h2>Hue does all the work of telling things apart</h2>
+  <p>With brightness and presence pinned, hue is the only free variable, and it is spent deliberately. The eight
+  accents are unevenly spaced, and the background sits in the <b>widest gap in the ring, 36 degrees clear</b> of
+  its nearest accent, so it never competes with a text colour. How far a colour sits from the background tracks
+  how often you see it: function names and strings, which cover most of a screen, sit closest and stay quiet;
+  errors and preprocessor marks sit furthest and are allowed to shout.</p>
+  <div class="scroll"><table id="hueTable"></table></div>
+</section>
+
+<section class="wide">
+  <p class="num">06</p>
+  <h2>Nothing touches the edge</h2>
+  <p>A colour pushed to the limit of what a screen can display is what reads as acid. Solarized takes on average
+  <b>87 percent</b> of the colour available at each hue and brightness, leaving headroom everywhere. The only two
+  it pushes to the limit are its olive and its mustard, which are the two colours people most often say they
+  dislike about it.</p>
+</section>
+
+<section class="wide">
+  <p class="num">07</p>
+  <h2>And some of it is simply taste</h2>
+  <p>Worth being honest about the limits of all this. The documentation says the hues were "adjusted within a
+  small range to achieve the most pleasing combination of colours" after the geometry was set, and that the result
+  was "tested extensively in real world use on colour calibrated displays." So the rules above describe the
+  structure, not every decision. The places where the measurements refuse to fit a clean line are where a person
+  was making judgements, and no amount of arithmetic recovers those.</p>
+</section>
+
+<section class="wide">
+  <p class="num">08</p>
+  <h2>What I had wrong, and when</h2>
+  <p class="tight">Each of these should have come out of the first reading rather than out of a complaint.</p>
+  <div class="miss"><p class="when">Missed until you said it looked garish</p>
+    <h3>The accents are placed relative to the background</h3>
+    <p>Rotating the ground while leaving the text colours where they were put the background on top of an accent.
+    In one scheme the two were three degrees apart.</p></div>
+  <div class="miss"><p class="when">Missed until you said the greens were loud</p>
+    <h3>Nothing is allowed near the edge of the display gamut</h3>
+    <p>I was pinning colours at 100 percent of available saturation in exactly the hues you flagged.</p></div>
+  <div class="miss"><p class="when">Missed until you said nothing in Solarized feels loud</p>
+    <h3>Presence is held constant by trading brightness against saturation</h3>
+    <p>I had been holding saturation constant instead, which is a different and worse thing to fix.</p></div>
+  <div class="miss"><p class="when">Missed until you told me to stop and study it</p>
+    <h3>No accent may be brighter than the body text</h3>
+    <p>Two or three accents per scheme were sitting above it. This one is the simplest rule of the lot and it was
+    visible in the first table I ever printed.</p></div>
+</section>
+
+<footer class="wide">
+  Every figure on this page is computed from the sixteen published hex values, not quoted from the
+  documentation. Lightness and saturation in CIELAB; perceptual distance in OKLab.
+  Source: <a href="https://ethanschoonover.com/solarized/">ethanschoonover.com/solarized</a>.
+</footer>
+
+<script id="payload" type="application/json">{"mono":[{"k":"base03","hex":"#002b36","use":"background","L":15.5,"C":14.5,"h":230},{"k":"base02","hex":"#073642","use":"highlight","L":20.3,"C":15.6,"h":229},{"k":"base01","hex":"#586e75","use":"comments","L":45.0,"C":9.2,"h":226},{"k":"base00","hex":"#657b83","use":"faint text","L":50.2,"C":9.3,"h":229},{"k":"base0","hex":"#839496","use":"body text","L":60.1,"C":6.4,"h":209},{"k":"base1","hex":"#93a1a1","use":"bright text","L":65.2,"C":5.2,"h":199},{"k":"base2","hex":"#eee8d5","use":"pale","L":92.0,"C":10.0,"h":97},{"k":"base3","hex":"#fdf6e3","use":"palest","L":97.0,"C":10.0,"h":95}],"acc":[{"k":"blue","hex":"#268bd2","role":"function names","freq":"everywhere","L":55.6,"C":44.5,"h":266,"dist":36,"reach":0.361,"used":94,"ct":4.08},{"k":"cyan","hex":"#2aa198","role":"strings","freq":"everywhere","L":60.1,"C":34.2,"h":188,"dist":42,"reach":0.382,"used":91,"ct":4.75},{"k":"violet","hex":"#6c71c4","role":"special","freq":"occasional","L":50.7,"C":48.3,"h":294,"dist":64,"reach":0.334,"used":57,"ct":3.43},{"k":"green","hex":"#859900","role":"keywords","freq":"common","L":59.7,"C":66.9,"h":111,"dist":119,"reach":0.412,"used":100,"ct":4.69},{"k":"magenta","hex":"#d33682","role":"numbers","freq":"occasional","L":49.6,"C":66.0,"h":355,"dist":125,"reach":0.404,"used":83,"ct":3.3},{"k":"yellow","hex":"#b58900","role":"type names","freq":"occasional","L":59.6,"C":65.0,"h":84,"dist":146,"reach":0.423,"used":100,"ct":4.68},{"k":"red","hex":"#dc322f","role":"errors","freq":"rare","L":49.1,"C":77.3,"h":34,"dist":164,"reach":0.408,"used":85,"ct":3.25},{"k":"orange","hex":"#cb4b16","role":"preprocessor","freq":"rare","L":49.2,"C":72.5,"h":48,"dist":178,"reach":0.384,"used":89,"ct":3.26}],"raw":[{"k":"blue","hex":"#0000ff","L":32.3,"C":133.8},{"k":"cyan","hex":"#00ffff","L":91.1,"C":50.1},{"k":"violet","hex":"#8000ff","L":40.9,"C":125.0},{"k":"green","hex":"#00ff00","L":87.7,"C":119.8},{"k":"magenta","hex":"#ff00ff","L":60.3,"C":115.5},{"k":"yellow","hex":"#ffff00","L":97.1,"C":96.9},{"k":"red","hex":"#ff0000","L":53.2,"C":104.6},{"k":"orange","hex":"#ff8000","L":67.1,"C":85.5}],"facts":{"bandLo":49.1,"bandHi":60.1,"rawLo":32.3,"rawHi":97.1,"reachLo":0.334,"reachHi":0.423,"usedMean":87,"bodyCt":4.75,"cmtCt":2.79}}</script>
+<script>
+(function(){
+"use strict";
+var D = JSON.parse(document.getElementById('payload').textContent);
+var F = D.facts;
+
+/* 01 -- the lightness axis */
+function row(label, items, note){
+  var pips = items.map(function(c){
+    return '<span class="pip" style="left:'+c.L+'%;background:'+c.hex+'" title="'+c.k+' L*'+c.L+'"></span>';
+  }).join('');
+  return '<div class="axis-lab"><span>'+label+'</span><span>'+note+'</span></div>'+
+         '<div class="axis-row"><div class="track"></div>'+pips+'</div>';
+}
+var lo = F.bandLo, hi = F.bandHi;
+document.getElementById('axis').innerHTML =
+  row('Solarized accents', D.acc, (hi-lo).toFixed(0)+' points wide') +
+  '<div class="axis-row" style="height:0"></div>' +
+  row('Eight hues off the wheel', D.raw, (F.rawHi-F.rawLo).toFixed(0)+' points wide') +
+  '<div class="ticks">'+[0,25,50,75,100].map(function(t){
+     return '<span class="tick" style="left:'+t+'%">'+t+'</span>'; }).join('')+'</div>'+
+  '<div class="verdict"><div><div class="big" style="color:var(--accent)">'+(hi-lo).toFixed(0)+'</div>'+
+    '<div class="cap">points of brightness across all eight Solarized accents</div></div>'+
+    '<div><div class="big">'+(F.rawHi-F.rawLo).toFixed(0)+'</div>'+
+    '<div class="cap">points across eight hues taken straight off the wheel</div></div>'+
+    '<div><div class="big">360</div><div class="cap">degrees of hue, the one thing Solarized lets run free</div></div></div>';
+
+/* 02 -- accents against the text tones */
+var b01 = D.mono.filter(function(m){ return m.k==='base01'; })[0];
+var b0  = D.mono.filter(function(m){ return m.k==='base0';  })[0];
+var sorted = D.acc.slice().sort(function(a,b){ return a.L-b.L; });
+document.getElementById('accTable').innerHTML =
+  '<thead><tr><th>Accent</th><th>Used for</th><th>Brightness</th><th>Saturation</th>'+
+  '<th>Contrast on the ground</th></tr></thead><tbody>'+
+  '<tr style="color:var(--accent)"><td><span class="sq" style="background:'+b01.hex+'"></span>base01</td>'+
+    '<td>comments &mdash; the floor</td><td>'+b01.L.toFixed(1)+'</td><td>'+b01.C.toFixed(0)+'</td>'+
+    '<td>'+F.cmtCt.toFixed(2)+'</td></tr>'+
+  sorted.map(function(a){
+    return '<tr><td><span class="sq" style="background:'+a.hex+'"></span>'+a.hex+'</td><td>'+a.role+
+      '</td><td>'+a.L.toFixed(1)+'</td><td>'+a.C.toFixed(0)+'</td><td>'+a.ct.toFixed(2)+'</td></tr>';
+  }).join('')+
+  '<tr style="color:var(--accent)"><td><span class="sq" style="background:'+b0.hex+'"></span>base0</td>'+
+    '<td>body text &mdash; the ceiling</td><td>'+b0.L.toFixed(1)+'</td><td>'+b0.C.toFixed(0)+'</td>'+
+    '<td>'+F.bodyCt.toFixed(2)+'</td></tr></tbody>';
+
+/* 03 -- the monotone ramp */
+document.getElementById('ramp').innerHTML = D.mono.map(function(m){
+  return '<div><div class="sw" style="background:'+m.hex+'"></div>'+
+    '<div class="n">'+m.L.toFixed(1)+'</div><div class="u">'+m.use+'</div></div>';
+}).join('');
+document.getElementById('pairs').innerHTML =
+  ['backgrounds','de-emphasised','text','emphasis'].map(function(t){ return '<div>'+t+'</div>'; }).join('');
+
+/* 04 -- presence */
+var maxr = Math.max.apply(null, D.acc.map(function(a){ return a.reach; }));
+document.getElementById('reachTable').innerHTML =
+  '<thead><tr><th>Accent</th><th>Distance from the background</th><th>Saturation</th>'+
+  '<th>Brightness</th></tr></thead><tbody>'+
+  D.acc.slice().sort(function(a,b){ return a.reach-b.reach; }).map(function(a){
+    return '<tr><td><span class="sq" style="background:'+a.hex+'"></span>'+a.role+'</td>'+
+      '<td><span class="bar" style="width:'+Math.round(a.reach/maxr*104)+'px;background:'+a.hex+'"></span>'+
+      ' '+a.reach.toFixed(3)+'</td><td>'+a.C.toFixed(0)+'</td><td>'+a.L.toFixed(1)+'</td></tr>';
+  }).join('')+'</tbody>';
+
+/* 05 -- hue */
+document.getElementById('hueTable').innerHTML =
+  '<thead><tr><th>Accent</th><th>Used for</th><th>How often you see it</th>'+
+  '<th>Degrees from the background</th><th>Saturation</th></tr></thead><tbody>'+
+  D.acc.slice().sort(function(a,b){ return a.dist-b.dist; }).map(function(a){
+    return '<tr><td><span class="sq" style="background:'+a.hex+'"></span>'+a.hex+'</td><td>'+a.role+'</td>'+
+      '<td style="color:var(--dim)">'+a.freq+'</td><td>'+a.dist+'</td><td>'+a.C.toFixed(0)+'</td></tr>';
+  }).join('')+'</tbody>';
+})();
+</script>

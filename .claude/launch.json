@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "eclipse",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8731", "--directory", "/Users/brandonharvey/src/solar-eclipse"],
+      "port": 8731
+    }
+  ]
+}
