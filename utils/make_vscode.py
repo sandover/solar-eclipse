@@ -165,13 +165,24 @@ def tokens(c):
       r("meta.decorator, punctuation.decorator, entity.name.function.decorator", c['meta']),
       r("invalid, invalid.illegal", c['err']),
       r("invalid.deprecated", c['err'], "italic"),
-      r("markup.heading, entity.name.section", c['str'], "bold"),
+      # Prose is mostly headings and inline code. Painting both with the standout
+      # puts the loudest colour on the most frequent thing -- the same error as
+      # strings in a JSON file. Headings descend; inline code goes quiet.
+      # Only h1 carries colour. A heading ramp needs several cool tones bright
+      # enough to head a section, and a drained scheme has two or three -- so a
+      # ramp lands on the warm accent, which is everywhere in a document full of
+      # ## sections. Weight separates the rest.
+      r("markup.heading.1, markup.heading.1 entity.name", c['str'], "bold"),
+      r("markup.heading, entity.name.section", c['base1'], "bold"),
+      r("punctuation.definition.heading", c['base01']),
       r("markup.bold", c['base1'], "bold"),
       r("markup.italic", c['base1'], "italic"),
       r("markup.underline.link, string.other.link", c['fn']),
-      r("markup.inline.raw, markup.raw", c['str']),
+      r("markup.inline.raw, markup.raw.inline", c['base1']),
+      r("punctuation.definition.raw", c['base01']),
+      r("markup.fenced_code.block, markup.raw.block", c['base0']),
       r("markup.quote", c['base01'], "italic"),
-      r("markup.list punctuation.definition.list", c['num']),
+      r("markup.list punctuation.definition.list, punctuation.definition.list.begin", c['base01']),
       r("markup.inserted", c['kw']),
       r("markup.deleted", c['err']),
       r("markup.changed", c['ty']),

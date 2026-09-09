@@ -268,10 +268,23 @@
       }
     },
     {
-      "scope": "markup.heading, entity.name.section",
+      "scope": "markup.heading.1, markup.heading.1 entity.name",
       "settings": {
         "foreground": "#5c9c9b",
         "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": "markup.heading, entity.name.section",
+      "settings": {
+        "foreground": "#97a0a2",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "scope": "punctuation.definition.heading",
+      "settings": {
+        "foreground": "#656b70"
       }
     },
     {
@@ -295,9 +308,21 @@
       }
     },
     {
-      "scope": "markup.inline.raw, markup.raw",
+      "scope": "markup.inline.raw, markup.raw.inline",
       "settings": {
-        "foreground": "#5c9c9b"
+        "foreground": "#97a0a2"
+      }
+    },
+    {
+      "scope": "punctuation.definition.raw",
+      "settings": {
+        "foreground": "#656b70"
+      }
+    },
+    {
+      "scope": "markup.fenced_code.block, markup.raw.block",
+      "settings": {
+        "foreground": "#889397"
       }
     },
     {
@@ -308,9 +333,9 @@
       }
     },
     {
-      "scope": "markup.list punctuation.definition.list",
+      "scope": "markup.list punctuation.definition.list, punctuation.definition.list.begin",
       "settings": {
-        "foreground": "#937469"
+        "foreground": "#656b70"
       }
     },
     {
