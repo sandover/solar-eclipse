@@ -11,8 +11,8 @@ at than the original.
 
 | role | Nocturne | Verdigris | Ashen |
 | --- | --- | --- | --- |
-| background | `#181d33` | `#002324` | `#0f181e` |
-| highlight | `#222840` | `#002e2f` | `#182228` |
+| background | `#11182d` | `#002324` | `#0f181e` |
+| highlight | `#1b2139` | `#002e2f` | `#182228` |
 | comments | `#676a7a` | `#527070` | `#656b70` |
 | faint text | `#747688` | `#5e7d7d` | `#72787d` |
 | body text | `#8a929c` | `#839590` | `#889397` |
@@ -30,7 +30,7 @@ at than the original.
 
 | | Nocturne | Verdigris | Ashen |
 | --- | --- | --- | --- |
-| text contrast | 5.29:1 | 5.27:1 | 5.7:1 |
+| text contrast | 5.6:1 | 5.27:1 | 5.7:1 |
 
 <!-- palettes:end -->
 

@@ -129,7 +129,7 @@
   "dE": 0.0,
   "pair": {
    "solarized": 0.0,
-   "nocturne": 15.5,
+   "nocturne": 15.8,
    "verdigris": 8.3,
    "ashen": 12.1
   }
@@ -152,8 +152,8 @@
   "note": "",
   "blurb": "Violet. Sky blue is the one bright colour; everything else is nearly drained.",
   "colors": {
-   "base03": "#181d33",
-   "base02": "#222840",
+   "base03": "#11182d",
+   "base02": "#1b2139",
    "base01": "#676a7a",
    "base00": "#747688",
    "base0": "#8a929c",
@@ -190,96 +190,96 @@
   "roles": {
    "fn": {
     "hue": 235,
-    "dist": 53,
+    "dist": 51,
     "L": 61,
     "C": 8,
-    "reach": 0.426,
+    "reach": 0.449,
     "used": 21,
     "merged": ""
    },
    "str": {
     "hue": 229,
-    "dist": 59,
+    "dist": 57,
     "L": 68,
     "C": 30,
-    "reach": 0.487,
+    "reach": 0.509,
     "used": 77,
     "merged": ""
    },
    "meta": {
     "hue": 31,
-    "dist": 102,
+    "dist": 104,
     "L": 41,
     "C": 15,
-    "reach": 0.27,
+    "reach": 0.293,
     "used": 20,
     "merged": ""
    },
    "kw": {
     "hue": 78,
-    "dist": 150,
+    "dist": 152,
     "L": 60,
     "C": 15,
-    "reach": 0.427,
+    "reach": 0.45,
     "used": 23,
     "merged": ""
    },
    "num": {
     "hue": 180,
-    "dist": 108,
+    "dist": 106,
     "L": 56,
     "C": 19,
-    "reach": 0.381,
+    "reach": 0.403,
     "used": 50,
     "merged": "numbers and types"
    },
    "ty": {
     "hue": 180,
-    "dist": 108,
+    "dist": 106,
     "L": 56,
     "C": 19,
-    "reach": 0.381,
+    "reach": 0.403,
     "used": 50,
     "merged": "numbers and types"
    },
    "err": {
     "hue": 9,
-    "dist": 81,
+    "dist": 83,
     "L": 42,
     "C": 9,
-    "reach": 0.268,
+    "reach": 0.291,
     "used": 13,
     "merged": "errors and preprocessor"
    },
    "sp": {
     "hue": 9,
-    "dist": 81,
+    "dist": 83,
     "L": 42,
     "C": 9,
-    "reach": 0.268,
+    "reach": 0.291,
     "used": 13,
     "merged": "errors and preprocessor"
    }
   },
-  "ground": 288,
+  "ground": 286,
   "paper": 152,
   "mirror": 1,
-  "clear": 53,
+  "clear": 51,
   "peak": 77,
-  "far": 0.487,
-  "spreadr": 1.82,
-  "c_body": 5.29,
-  "c_cmt": 3.1,
+  "far": 0.509,
+  "spreadr": 1.75,
+  "c_body": 5.6,
+  "c_cmt": 3.29,
   "lch": {
    "base03": [
-    11.36,
-    16.06,
-    288.26
+    8.67,
+    15.77,
+    286.04
    ],
    "base02": [
-    16.64,
-    16.8,
-    286.76
+    13.33,
+    17.23,
+    287.63
    ],
    "base01": [
     45.08,
@@ -352,12 +352,12 @@
     9.38
    ]
   },
-  "dE": 15.5,
+  "dE": 15.8,
   "pair": {
-   "solarized": 15.5,
+   "solarized": 15.8,
    "nocturne": 0.0,
-   "verdigris": 20.2,
-   "ashen": 12.6
+   "verdigris": 19.8,
+   "ashen": 11.6
   }
  },
  {
@@ -581,7 +581,7 @@
   "dE": 8.3,
   "pair": {
    "solarized": 8.3,
-   "nocturne": 20.2,
+   "nocturne": 19.8,
    "verdigris": 0.0,
    "ashen": 10.7
   }
@@ -798,7 +798,7 @@
   "dE": 12.1,
   "pair": {
    "solarized": 12.1,
-   "nocturne": 12.6,
+   "nocturne": 11.6,
    "verdigris": 10.7,
    "ashen": 0.0
   }

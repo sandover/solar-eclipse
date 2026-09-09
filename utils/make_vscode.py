@@ -21,10 +21,34 @@ def shade(hexv, dL):
 def alpha(hexv, a):
     return hexv + format(int(round(a * 255)), '02x')
 
+# In a code editor the token colours cover the screen, so the invariant that
+# matters most is Solarized's: no coloured token brighter than the prose. Our
+# shape deliberately breaks it for strings -- which is fine in a markdown file
+# where strings are rare, and wrong in a JSON file where they are everything.
+def calm(colors, roles=('fn','str','meta','kw','num','ty','err','sp')):
+    c = dict(colors)
+    bodyL = lab2lch(hex2lab(c['base0']))[0]
+    seen = {}
+    for k in roles:
+        if c[k] in seen:
+            c[k] = seen[c[k]]
+            continue
+        src = c[k]
+        L, C, h = lab2lch(hex2lab(src))
+        if L > bodyL or C > CHROMA_CAP:
+            out, _ = lch2hex((min(L, bodyL), min(C, CHROMA_CAP), h))
+            seen[src] = out
+            c[k] = out
+        else:
+            seen[src] = src
+    return c
+
+CHROMA_CAP = 24.0
+
 def workbench(c):
     bg, hl = c['base03'], c['base02']
-    chrome = shade(bg, -1.6)          # sidebar, status bar, inactive tabs
-    over   = shade(bg, +2.2)          # popups and hovers sit above the page
+    chrome = shade(bg, -4.0)          # sidebar, status bar, inactive tabs
+    over   = shade(bg, +3.2)          # popups and hovers sit above the page
     dim, txt, bright = c['base01'], c['base0'], c['base1']
     faint  = c['base00']
     accent = c['str']                 # the standout drives focus and badges
@@ -166,7 +190,7 @@ def semantic(c):
     }
 
 def build(s):
-    c = s['colors']
+    c = calm(s['colors'])
     return {
       "$schema": "vscode://schemas/color-theme",
       "name": f"Solar Eclipse {s['label']}",

@@ -54,7 +54,7 @@ ROLES6=[('fn','function names','everywhere'),('str','strings','everywhere'),
         ('meta','special','occasional'),('kw','keywords','common'),
         ('nt','numbers and types','occasional'),('ea','errors and preprocessor','rare')]
 
-GROUND_L={'ashen':7.5}
+GROUND_L={'ashen':7.5, 'nocturne':8.5}
 def universe(G,mirror=1,cm=1.0,swap=False,ban=None,six=False,gL=None):
     cols={}; meta={}
     gl=(G-mirror*PAPER)%360
