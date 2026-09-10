@@ -1,36 +1,36 @@
 # Solar Eclipse
 
-Three dark colour schemes built to sit alongside Solarized Dark, so several
+Four dark colour schemes built to sit alongside Solarized Dark, so several
 windows can be told apart at a glance without any of them being harder to look
 at than the original.
 
-**Nocturne** (violet) · **Verdigris** (weathered copper) · **Ashen** (near-grey)
-— with Solarized itself as a fourth.
+**Nocturne** (violet) · **Verdigris** (weathered copper) · **Ashen** (near-grey) · **Umbra** (firelight)
+— with Solarized itself as a fifth.
 
 <!-- palettes:start -->
 
-| role | Nocturne | Verdigris | Ashen |
-| --- | --- | --- | --- |
-| background | `#001a2d` | `#002324` | `#0f181e` |
-| highlight | `#05253a` | `#002e2f` | `#182228` |
-| comments | `#5f6c7b` | `#527070` | `#656b70` |
-| faint text | `#6b7988` | `#5e7d7d` | `#72787d` |
-| body text | `#85939b` | `#839590` | `#889397` |
-| bright text | `#94a0a6` | `#94a19c` | `#97a0a2` |
-| pale | `#e3ebd9` | `#f8e5d7` | `#e7ead7` |
-| palest | `#f1f9e7` | `#fff5ed` | `#f6f8e5` |
-| function names | `#85969e` | `#84939d` | `#87838f` |
-| strings | `#55b2ce` | `#53b3c5` | `#67a7a6` |
-| special | `#7a5955` | `#546490` | `#785863` |
-| keywords | `#a08e77` | `#9f9179` | `#849585` |
-| numbers | `#5d8f85` | `#937668` | `#937469` |
-| type names | `#5d8f85` | `#937668` | `#937469` |
-| errors | `#725d60` | `#6d707e` | `#716e64` |
-| preprocessor | `#725d60` | `#6d707e` | `#716e64` |
+| role | Nocturne | Verdigris | Ashen | Umbra |
+| --- | --- | --- | --- | --- |
+| background | `#001a2d` | `#002324` | `#0f181e` | `#281713` |
+| highlight | `#05253a` | `#002e2f` | `#182228` | `#34211c` |
+| comments | `#5f6c7b` | `#527070` | `#656b70` | `#766764` |
+| faint text | `#6b7988` | `#5e7d7d` | `#72787d` | `#837471` |
+| body text | `#85939b` | `#839590` | `#889397` | `#9b8e8e` |
+| bright text | `#94a0a6` | `#94a19c` | `#97a0a2` | `#a79c9d` |
+| pale | `#e3ebd9` | `#f8e5d7` | `#e7ead7` | `#dce9fb` |
+| palest | `#f1f9e7` | `#fff5ed` | `#f6f8e5` | `#f1f7ff` |
+| function names | `#85969e` | `#84939d` | `#87838f` | `#8f8f81` |
+| strings | `#55b2ce` | `#53b3c5` | `#67a7a6` | `#4faabd` |
+| special | `#7a5955` | `#546490` | `#785863` | `#4c6f51` |
+| keywords | `#a08e77` | `#9f9179` | `#849585` | `#8b8aa5` |
+| numbers | `#5d8f85` | `#937668` | `#937469` | `#5d8e86` |
+| type names | `#5d8f85` | `#937668` | `#937469` | `#5d8e86` |
+| errors | `#725d60` | `#6d707e` | `#716e64` | `#6c737a` |
+| preprocessor | `#725d60` | `#6d707e` | `#716e64` | `#6c737a` |
 
-| | Nocturne | Verdigris | Ashen |
-| --- | --- | --- | --- |
-| text contrast | 5.6:1 | 5.27:1 | 5.7:1 |
+| | Nocturne | Verdigris | Ashen | Umbra |
+| --- | --- | --- | --- | --- |
+| text contrast | 5.6:1 | 5.27:1 | 5.7:1 | 5.44:1 |
 
 <!-- palettes:end -->
 
@@ -86,11 +86,11 @@ python3 utils/make_vscode.py
 
 ## Caveats
 
-- Text contrast runs 4.75 to 5.70:1 across the four rather than being uniform.
+- Text contrast runs 4.75 to 5.70:1 across the five rather than being uniform.
   Darker grounds raise it; that spread is what separates the backgrounds.
-- The closest pair of backgrounds is Solarized and Verdigris, 0.040 apart in
-  OKLab where 0.05 reads as clearly different. Only their lightness gap
-  separates them.
+- The closest pair of backgrounds is Nocturne and Ashen, 0.033 apart in
+  OKLab where 0.05 reads as clearly different. Only their lightness and
+  saturation gap separates them; their hues are 14 degrees apart.
 - **A ground recedes in proportion to how close its hue sits to the daylight
   axis** — roughly hue 45 to 225 in CIELAB, warm at one end and cool at the
   other. Colour constancy discounts variation along that axis, so a ground near
@@ -102,5 +102,11 @@ python3 utils/make_vscode.py
 - Warm hues fail at both ends in a palette this drained: saturated they read as
   too red, drained they read as skin. Accents avoid the band. Drained *greens*
   are fine — they read as sage.
+- That warning is about **accents, not grounds**. Umbra's ground is warm and it
+  recedes, because at L*10 nothing reads as skin and hue 40 is 5 degrees off the
+  daylight axis — as on-axis as Solarized's blue. The earlier warm schemes that
+  failed sat 75 to 87 degrees off it. Warm was never the problem; off-axis was.
+  Umbra bans the corpse band for accents, since a warm ground otherwise lays
+  them straight through it.
 - The choices past the measured rules are one person's taste, tuned by hand.
   They are not claimed to generalise.

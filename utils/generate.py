@@ -54,7 +54,7 @@ ROLES6=[('fn','function names','everywhere'),('str','strings','everywhere'),
         ('meta','special','occasional'),('kw','keywords','common'),
         ('nt','numbers and types','occasional'),('ea','errors and preprocessor','rare')]
 
-GROUND_L={'ashen':7.5, 'nocturne':8.5}
+GROUND_L={'ashen':7.5, 'nocturne':8.5, 'umbra':10.0}
 def universe(G,mirror=1,cm=1.0,swap=False,ban=None,six=False,gL=None):
     cols={}; meta={}
     gl=(G-mirror*PAPER)%360
@@ -171,6 +171,15 @@ SPECS=[
  ('ashen','Ashen','neutral',250,1,0.40,1,'',
   'Colour drained almost out, and the darkest of the four, so it recedes.',
   None,True,None),
+
+ # The warm end of the daylight axis. Sloe and Damson failed at 75-87 deg off it,
+ # not for being warm; hue 40 is 5 deg off, as on-axis as Solarized's blue. It is
+ # also the only quarter of the wheel the suite wasn't using, so it separates from
+ # the other four better than any of them separate from each other. Corpse band
+ # banned, because a warm ground puts accents straight through it.
+ ('umbra','Umbra','warm',40,1,0.70,1,'',
+  'Firelight rather than moonlight: the one warm ground, and the only one that is not a shade of night.',
+  (312,90),True,None),
 ]
 
 prev={s['name']:s['colors'] for s in json.load(open(ROOT / 'schemes.json'))}

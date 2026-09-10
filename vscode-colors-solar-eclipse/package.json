@@ -26,6 +26,11 @@
         "label": "Solar Eclipse Ashen",
         "uiTheme": "vs-dark",
         "path": "./themes/Solar Eclipse Ashen-color-theme.json"
+      },
+      {
+        "label": "Solar Eclipse Umbra",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Umbra-color-theme.json"
       }
     ]
   }

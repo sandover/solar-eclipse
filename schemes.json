@@ -131,7 +131,8 @@
    "solarized": 0.0,
    "nocturne": 11.5,
    "verdigris": 8.3,
-   "ashen": 12.1
+   "ashen": 12.1,
+   "umbra": 25.1
   }
  },
  {
@@ -170,14 +171,14 @@
    "sp": "#725d60"
   },
   "prev": {
-   "base03": "#11182d",
-   "base02": "#1b2139",
-   "base01": "#676a7a",
-   "base00": "#747688",
-   "base0": "#8a929c",
-   "base1": "#979fa8",
-   "base2": "#daeddf",
-   "base3": "#e8fbed",
+   "base03": "#001a2d",
+   "base02": "#05253a",
+   "base01": "#5f6c7b",
+   "base00": "#6b7988",
+   "base0": "#85939b",
+   "base1": "#94a0a6",
+   "base2": "#e3ebd9",
+   "base3": "#f1f9e7",
    "fn": "#85969e",
    "str": "#55b2ce",
    "meta": "#7a5955",
@@ -357,7 +358,8 @@
    "solarized": 11.5,
    "nocturne": 0.0,
    "verdigris": 15.7,
-   "ashen": 10.2
+   "ashen": 10.2,
+   "umbra": 23.9
   }
  },
  {
@@ -583,7 +585,8 @@
    "solarized": 8.3,
    "nocturne": 15.7,
    "verdigris": 0.0,
-   "ashen": 10.7
+   "ashen": 10.7,
+   "umbra": 22.5
   }
  },
  {
@@ -800,7 +803,226 @@
    "solarized": 12.1,
    "nocturne": 10.2,
    "verdigris": 10.7,
-   "ashen": 0.0
+   "ashen": 0.0,
+   "umbra": 15.5
+  }
+ },
+ {
+  "name": "umbra",
+  "label": "Umbra",
+  "family": "warm",
+  "fav": 1,
+  "picked": [],
+  "note": "",
+  "blurb": "Firelight rather than moonlight: the one warm ground, and the only one that is not a shade of night.",
+  "colors": {
+   "base03": "#281713",
+   "base02": "#34211c",
+   "base01": "#766764",
+   "base00": "#837471",
+   "base0": "#9b8e8e",
+   "base1": "#a79c9d",
+   "base2": "#dce9fb",
+   "base3": "#f1f7ff",
+   "fn": "#8f8f81",
+   "str": "#4faabd",
+   "meta": "#4c6f51",
+   "kw": "#8b8aa5",
+   "num": "#5d8e86",
+   "ty": "#5d8e86",
+   "err": "#6c737a",
+   "sp": "#6c737a"
+  },
+  "prev": {
+   "base03": "#281713",
+   "base02": "#34211c",
+   "base01": "#766764",
+   "base00": "#837471",
+   "base0": "#9b8e8e",
+   "base1": "#a79c9d",
+   "base2": "#dce9fb",
+   "base3": "#f1f7ff",
+   "fn": "#8f8f81",
+   "str": "#4faabd",
+   "meta": "#4c6f51",
+   "kw": "#8b8aa5",
+   "num": "#5d8e86",
+   "ty": "#5d8e86",
+   "err": "#6c737a",
+   "sp": "#6c737a"
+  },
+  "roles": {
+   "fn": {
+    "hue": 109,
+    "dist": 71,
+    "L": 56,
+    "C": 32,
+    "reach": 0.361,
+    "used": 50,
+    "merged": ""
+   },
+   "str": {
+    "hue": 219,
+    "dist": 179,
+    "L": 57,
+    "C": 28,
+    "reach": 0.381,
+    "used": 85,
+    "merged": ""
+   },
+   "meta": {
+    "hue": 146,
+    "dist": 108,
+    "L": 52,
+    "C": 40,
+    "reach": 0.334,
+    "used": 65,
+    "merged": ""
+   },
+   "kw": {
+    "hue": 293,
+    "dist": 105,
+    "L": 58,
+    "C": 56,
+    "reach": 0.414,
+    "used": 77,
+    "merged": ""
+   },
+   "num": {
+    "hue": 183,
+    "dist": 145,
+    "L": 60,
+    "C": 33,
+    "reach": 0.401,
+    "used": 85,
+    "merged": "numbers and types"
+   },
+   "ty": {
+    "hue": 183,
+    "dist": 145,
+    "L": 60,
+    "C": 33,
+    "reach": 0.401,
+    "used": 85,
+    "merged": "numbers and types"
+   },
+   "err": {
+    "hue": 256,
+    "dist": 142,
+    "L": 58,
+    "C": 36,
+    "reach": 0.396,
+    "used": 85,
+    "merged": "errors and preprocessor"
+   },
+   "sp": {
+    "hue": 256,
+    "dist": 142,
+    "L": 58,
+    "C": 36,
+    "reach": 0.396,
+    "used": 85,
+    "merged": "errors and preprocessor"
+   }
+  },
+  "ground": 38,
+  "paper": 265,
+  "mirror": 1,
+  "clear": 72,
+  "peak": 85,
+  "far": 0.414,
+  "spreadr": 1.24,
+  "c_body": 5.44,
+  "c_cmt": 3.19,
+  "lch": {
+   "base03": [
+    9.88,
+    10.07,
+    37.6
+   ],
+   "base02": [
+    14.96,
+    10.97,
+    40.21
+   ],
+   "base01": [
+    44.9,
+    6.64,
+    35.68
+   ],
+   "base00": [
+    50.11,
+    6.48,
+    35.67
+   ],
+   "base0": [
+    60.13,
+    5.14,
+    19.92
+   ],
+   "base1": [
+    65.3,
+    4.29,
+    12.41
+   ],
+   "base2": [
+    91.89,
+    10.2,
+    265.32
+   ],
+   "base3": [
+    97.0,
+    4.55,
+    263.45
+   ],
+   "fn": [
+    59.04,
+    7.9,
+    109.26
+   ],
+   "str": [
+    65.03,
+    27.97,
+    219.85
+   ],
+   "meta": [
+    43.51,
+    23.14,
+    146.41
+   ],
+   "kw": [
+    58.4,
+    15.36,
+    293.27
+   ],
+   "num": [
+    55.48,
+    18.4,
+    183.09
+   ],
+   "ty": [
+    55.48,
+    18.4,
+    183.09
+   ],
+   "err": [
+    48.08,
+    4.89,
+    256.86
+   ],
+   "sp": [
+    48.08,
+    4.89,
+    256.86
+   ]
+  },
+  "dE": 25.1,
+  "pair": {
+   "solarized": 25.1,
+   "nocturne": 23.9,
+   "verdigris": 22.5,
+   "ashen": 15.5,
+   "umbra": 0.0
   }
  }
 ]
