@@ -31,6 +31,11 @@
         "label": "Solar Eclipse Umbra",
         "uiTheme": "vs-dark",
         "path": "./themes/Solar Eclipse Umbra-color-theme.json"
+      },
+      {
+        "label": "Solar Eclipse Totality",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Totality-color-theme.json"
       }
     ]
   }

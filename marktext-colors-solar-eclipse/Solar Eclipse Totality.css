@@ -1,0 +1,98 @@
+/* solar-eclipse-totality for MarkText
+ * Paste into Preferences -> Theme -> Custom CSS.
+ * Overrides whichever built-in theme is selected. */
+:root {
+  --themeColor: #6497a5;
+  --themeColor90: rgba(120, 123, 133, 0.9);
+  --themeColor80: rgba(120, 123, 133, 0.8);
+  --themeColor70: rgba(120, 123, 133, 0.7);
+  --themeColor60: rgba(120, 123, 133, 0.6);
+  --themeColor50: rgba(120, 123, 133, 0.5);
+  --themeColor40: rgba(120, 123, 133, 0.4);
+  --themeColor30: rgba(120, 123, 133, 0.3);
+  --themeColor20: rgba(120, 123, 133, 0.2);
+  --themeColor10: rgba(120, 123, 133, 0.1);
+  --highlightColor: rgba(120, 123, 133, 0.6);
+  --selectionColor: rgba(0, 27, 33, 0.8);
+  --editorColor: #728586;
+  --editorColor80: rgba(114, 133, 134, 0.8);
+  --editorColor60: rgba(114, 133, 134, 0.6);
+  --editorColor50: rgba(114, 133, 134, 0.5);
+  --editorColor40: rgba(114, 133, 134, 0.4);
+  --editorColor30: rgba(114, 133, 134, 0.3);
+  --editorColor10: rgba(114, 133, 134, 0.1);
+  --editorColor04: rgba(114, 133, 134, 0.04);
+  --editorBgColor: #000d11;
+  --deleteColor: #3a5a4f;
+  --iconColor: rgba(114, 133, 134, 0.56);
+  --codeBgColor: #001b21;
+  --codeBlockBgColor: #001b21;
+  --footnoteBgColor: rgba(0, 27, 33, 0.3);
+  --inputBgColor: #000000;
+  --focusColor: #6497a5;
+  --buttonFontColor: rgba(114, 133, 134, 0.6);
+  --buttonBgColor: #001b21;
+  --buttonBorder: 1px solid rgba(0, 0, 0, 0.2);
+  --buttonShadow: none;
+  --buttonFontColorHover: var(--buttonFontColor);
+  --buttonBgColorHover: #132c33;
+  --buttonBorderHover: 1px solid rgba(0, 0, 0, 0.3);
+  --buttonFontColorActive: var(--buttonFontColor);
+  --buttonBgColorActive: #000c10;
+  --buttonBorderActive: var(--buttonBorder);
+  --buttonPrimaryFontColor: #000d11;
+  --buttonPrimaryBgColor: var(--themeColor);
+  --buttonPrimaryBorder: none;
+  --buttonPrimaryShadow: none;
+  --buttonPrimaryFontColorHover: var(--buttonPrimaryFontColor);
+  --buttonPrimaryBgColorHover: #6497a5;
+  --buttonPrimaryBorderHover: var(--buttonPrimaryBorder);
+  --buttonPrimaryFontColorActive: var(--buttonPrimaryFontColor);
+  --buttonPrimaryBgColorActive: #5e616b;
+  --buttonPrimaryBorderActive: var(--buttonPrimaryBorder);
+  --buttonPrimaryFocusBorder: none;
+  --buttonPrimaryFocusShadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--themeColor);
+  --tableBorderColor: #001b21;
+  /* Markdown element colors */
+  --headingColor: #829291;
+  --h1Color: #6497a5;
+  --h2Color: #577386;
+  --h3Color: #818577;
+  --h4Color: #3a5a4f;
+  --h5Color: #787b85;
+  --h6Color: #675f58;
+  --blockquoteTextColor: rgba(114, 133, 134, 0.6);
+  --blockquoteBorderColor: #436069;
+  --hrColor: #001b21;
+  --linkColor: #6497a5;
+  --strongColor: #829291;
+  --emColor: #577386;
+  --listMarkerColor: #577386;
+  /*marktext*/
+  --sideBarColor: rgba(114, 133, 134, 0.6);
+  --sideBarIconColor: var(--iconColor);
+  --sideBarTitleColor: rgba(114, 133, 134, 0.8);
+  --sideBarTextColor: rgba(114, 133, 134, 0.4);
+  --sideBarBgColor: #000000;
+  --sideBarItemHoverBgColor: rgba(114, 133, 134, 0.03);
+  --itemBgColor: #001b21;
+  --floatFontColor: rgba(114, 133, 134, 0.7);
+  --floatBgColor: #001b21;
+  --floatHoverColor: rgba(114, 133, 134, 0.04);
+  --floatBorderColor: rgba(0, 0, 0, 0.05);
+  --floatShadow: rgba(0, 0, 0, 0.2);
+  --maskColor: rgba(0, 0, 0, 0.7);
+  --editorAreaWidth: 750px;
+}
+
+/* fenced code blocks: Prism hardcodes these, so they are set here */
+.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #436069; background: none; }
+.token.punctuation { color: #4f6d76; background: none; }
+.token.keyword,.token.atrule,.token.important { color: #818577; background: none; }
+.token.string,.token.char,.token.attr-value,.token.regex { color: #6497a5; background: none; }
+.token.function,.token.function-name,.token.selector { color: #787b85; background: none; }
+.token.number,.token.boolean,.token.constant,.token.symbol { color: #577386; background: none; }
+.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #577386; background: none; }
+.token.operator,.token.variable,.token.entity,.token.url { color: #728586; background: none; }
+.token.deleted { color: #675f58; background: none; }
+.token.inserted { color: #818577; background: none; }

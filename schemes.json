@@ -132,7 +132,8 @@
    "nocturne": 11.5,
    "verdigris": 8.3,
    "ashen": 12.1,
-   "umbra": 25.1
+   "umbra": 25.1,
+   "totality": 16.2
   }
  },
  {
@@ -359,7 +360,8 @@
    "nocturne": 0.0,
    "verdigris": 15.7,
    "ashen": 10.2,
-   "umbra": 23.9
+   "umbra": 23.9,
+   "totality": 13.7
   }
  },
  {
@@ -586,7 +588,8 @@
    "nocturne": 15.7,
    "verdigris": 0.0,
    "ashen": 10.7,
-   "umbra": 22.5
+   "umbra": 22.5,
+   "totality": 12.6
   }
  },
  {
@@ -804,7 +807,8 @@
    "nocturne": 10.2,
    "verdigris": 10.7,
    "ashen": 0.0,
-   "umbra": 15.5
+   "umbra": 15.5,
+   "totality": 5.3
   }
  },
  {
@@ -1022,7 +1026,227 @@
    "nocturne": 23.9,
    "verdigris": 22.5,
    "ashen": 15.5,
-   "umbra": 0.0
+   "umbra": 0.0,
+   "totality": 15.8
+  }
+ },
+ {
+  "name": "totality",
+  "label": "Totality",
+  "family": "neutral",
+  "fav": 1,
+  "picked": [],
+  "note": "",
+  "blurb": "One stop down from everything else: near-black, with the text dimmed to match so it never glares.",
+  "colors": {
+   "base03": "#000d11",
+   "base02": "#001b21",
+   "base01": "#436069",
+   "base00": "#4f6d76",
+   "base0": "#728586",
+   "base1": "#829291",
+   "base2": "#dfd6c4",
+   "base3": "#ede4d2",
+   "fn": "#787b85",
+   "str": "#6497a5",
+   "meta": "#634d60",
+   "kw": "#818577",
+   "num": "#896767",
+   "ty": "#896767",
+   "err": "#675f58",
+   "sp": "#675f58"
+  },
+  "prev": {
+   "base03": "#000d11",
+   "base02": "#001b21",
+   "base01": "#39575f",
+   "base00": "#45636c",
+   "base0": "#687b7c",
+   "base1": "#788786",
+   "base2": "#d4cbb9",
+   "base3": "#e2d9c7",
+   "fn": "#787b85",
+   "str": "#6193a2",
+   "meta": "#634d60",
+   "kw": "#777b6d",
+   "num": "#856364",
+   "ty": "#856364",
+   "err": "#665e57",
+   "sp": "#665e57"
+  },
+  "roles": {
+   "fn": {
+    "hue": 280,
+    "dist": 51,
+    "L": 48,
+    "C": 24,
+    "reach": 0.362,
+    "used": 41,
+    "merged": ""
+   },
+   "str": {
+    "hue": 225,
+    "dist": 4,
+    "L": 52,
+    "C": 18,
+    "reach": 0.382,
+    "used": 60,
+    "merged": ""
+   },
+   "meta": {
+    "hue": 330,
+    "dist": 101,
+    "L": 44,
+    "C": 26,
+    "reach": 0.335,
+    "used": 30,
+    "merged": ""
+   },
+   "kw": {
+    "hue": 120,
+    "dist": 109,
+    "L": 54,
+    "C": 31,
+    "reach": 0.408,
+    "used": 46,
+    "merged": ""
+   },
+   "num": {
+    "hue": 20,
+    "dist": 151,
+    "L": 51,
+    "C": 35,
+    "reach": 0.414,
+    "used": 42,
+    "merged": "numbers and types"
+   },
+   "ty": {
+    "hue": 20,
+    "dist": 151,
+    "L": 51,
+    "C": 35,
+    "reach": 0.414,
+    "used": 42,
+    "merged": "numbers and types"
+   },
+   "err": {
+    "hue": 70,
+    "dist": 159,
+    "L": 50,
+    "C": 40,
+    "reach": 0.396,
+    "used": 65,
+    "merged": "errors and preprocessor"
+   },
+   "sp": {
+    "hue": 70,
+    "dist": 159,
+    "L": 50,
+    "C": 40,
+    "reach": 0.396,
+    "used": 65,
+    "merged": "errors and preprocessor"
+   }
+  },
+  "ground": 229,
+  "paper": 90,
+  "mirror": 1,
+  "clear": 5,
+  "peak": 65,
+  "far": 0.414,
+  "spreadr": 1.24,
+  "c_body": 5.08,
+  "c_cmt": 2.92,
+  "lch": {
+   "base03": [
+    2.97,
+    4.21,
+    229.33
+   ],
+   "base02": [
+    8.07,
+    10.42,
+    224.0
+   ],
+   "base01": [
+    38.86,
+    11.82,
+    226.22
+   ],
+   "base00": [
+    44.1,
+    12.02,
+    225.12
+   ],
+   "base0": [
+    54.1,
+    7.22,
+    203.28
+   ],
+   "base1": [
+    59.29,
+    6.1,
+    193.48
+   ],
+   "base2": [
+    85.89,
+    9.99,
+    89.61
+   ],
+   "base3": [
+    90.85,
+    9.87,
+    89.7
+   ],
+   "fn": [
+    51.67,
+    5.9,
+    279.64
+   ],
+   "str": [
+    59.49,
+    18.4,
+    223.73
+   ],
+   "meta": [
+    35.61,
+    14.94,
+    329.65
+   ],
+   "kw": [
+    54.84,
+    8.19,
+    120.67
+   ],
+   "num": [
+    46.97,
+    14.63,
+    21.26
+   ],
+   "ty": [
+    46.97,
+    14.63,
+    21.26
+   ],
+   "err": [
+    40.85,
+    5.48,
+    70.12
+   ],
+   "sp": [
+    40.85,
+    5.48,
+    70.12
+   ]
+  },
+  "dE": 16.2,
+  "pair": {
+   "solarized": 16.2,
+   "nocturne": 13.7,
+   "verdigris": 12.6,
+   "ashen": 5.3,
+   "umbra": 15.8,
+   "totality": 0.0
   }
  }
 ]

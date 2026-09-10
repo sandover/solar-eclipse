@@ -33,15 +33,15 @@ def max_C(L,h):
         else: hi=mid
     return lo
 
-def place(h, target, bg, role, cscale):
+def place(h, target, bg, role, cscale, Llo=49.0, Lhi=60.1):
     """Chroma is fixed by the role, the way Solarized fixes it. Lightness is the free
        variable, chosen so the colour lands the right distance from the background."""
     want=ROLE_C[role]*cscale
-    lo,hi,f=GREEN_DAMP
-    if lo<=h<=hi: want*=f
+    glo,ghi,f=GREEN_DAMP
+    if glo<=h<=ghi: want*=f
     best=(1e9,54.0,0.0,0.0)
-    L=49.0
-    while L<=60.101:
+    L=Llo
+    while L<=Lhi+0.001:
         C=min(want, CEIL*max_C(L,h))
         hx,_=lch2hex((L,C,h))
         err=abs(okdE(hx,bg)-target)
@@ -54,13 +54,18 @@ ROLES6=[('fn','function names','everywhere'),('str','strings','everywhere'),
         ('meta','special','occasional'),('kw','keywords','common'),
         ('nt','numbers and types','occasional'),('ea','errors and preprocessor','rare')]
 
-GROUND_L={'ashen':7.5, 'nocturne':8.5, 'umbra':10.0}
-def universe(G,mirror=1,cm=1.0,swap=False,ban=None,six=False,gL=None):
+GROUND_L={'ashen':7.5, 'nocturne':8.5, 'umbra':10.0, 'totality':3.0}
+# how far the whole text ladder drops with the ground, per scheme. 6.0 is the
+# most it can drop while body text stays inside the 4.75-5.7:1 he has lived with
+# and comments stay above Solarized's own 2.79:1 floor.
+LEVEL={'totality':6.0}
+def universe(G,mirror=1,cm=1.0,swap=False,ban=None,six=False,gL=None,lvl=0.0):
     cols={}; meta={}
     gl=(G-mirror*PAPER)%360
     for k,L,C in LADDER:
         if gL is not None and k=='base03': L=gL
-        if gL is not None and k=='base02': L=gL+5.0
+        elif gL is not None and k=='base02': L=gL+5.0
+        elif lvl: L=max(2.0, L-lvl)
         if k in ('base2','base3'): h,c=gl,C
         elif k in DRIFT:           h,c=(G-mirror*DRIFT[k])%360, C*(1+(cm-1)*0.5)
         else:                      h,c=G, C*cm
@@ -131,7 +136,7 @@ def universe(G,mirror=1,cm=1.0,swap=False,ban=None,six=False,gL=None):
             TARGET[key]=sum(TARGET[m] for m in mem)/len(mem)
             ROLE_C[key]=sum(ROLE_C[m] for m in mem)/len(mem)
         h=HUE.get(key, (G+mirror*OFF.get(key,0))%360)
-        L,C,got=place(h,TARGET[key],refbg,key,cscale)
+        L,C,got=place(h,TARGET[key],refbg,key,cscale,49.0-lvl,60.1-lvl)
         hx,_=lch2hex((L,C,h))
         for slot in (MERGE[key] if key in MERGE else (key,)):
             cols[slot]=hx
@@ -180,6 +185,18 @@ SPECS=[
  ('umbra','Umbra','warm',40,1,0.70,1,'',
   'Firelight rather than moonlight: the one warm ground, and the only one that is not a shade of night.',
   (312,90),True,None),
+
+ # The ground-hue plane is full: five schemes already tile it, and every new
+ # position lands inside 0.03 of one of them, under the 0.05 where two grounds
+ # read as clearly different. So this one separates on level instead. Ground at
+ # L*3 and the whole text ladder down with it, which keeps the gentle contrast
+ # rather than turning a black ground into a glare. Hue sits on the daylight
+ # axis exactly, the most receding place there is -- which at this depth is the
+ # point: it is the only ground in the set that reads as absence rather than
+ # as a colour.
+ ('totality','Totality','neutral',225,1,1.30,1,'',
+  'One stop down from everything else: near-black, with the text dimmed to match so it never glares.',
+  None,True,None),
 ]
 
 prev={s['name']:s['colors'] for s in json.load(open(ROOT / 'schemes.json'))}
@@ -194,7 +211,8 @@ for name,label,fam,G,mir,cm,fav,note,blurb,ban,six,picked in SPECS:
                            used=round(C/max_C(L,h)*100), merged='')
         gl=round(lab2lch(hex2lab(SOL['base3']))[2])
     else:
-        cols,meta,gl=universe(G,mir,cm,swap=(name=='nocturne'),ban=ban,six=six,gL=GROUND_L.get(name))
+        cols,meta,gl=universe(G,mir,cm,swap=(name=='nocturne'),ban=ban,six=six,
+                              gL=GROUND_L.get(name),lvl=LEVEL.get(name,0.0))
     if picked:
         ent_picked=set()
         for slot,hx in picked.items():
