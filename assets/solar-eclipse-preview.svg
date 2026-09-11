@@ -13,7 +13,7 @@
 <g font-family="ui-monospace,monospace" font-size="12">
 <text x="34" y="88" fill="#586e75">01</text><text x="65" y="88" fill="#859900">const</text><text x="107" y="88" fill="#839496"> scheme = </text><text x="180" y="88" fill="#2aa198">"solarized"</text>
 <text x="34" y="110" fill="#586e75">02</text><text x="65" y="110" fill="#859900">return</text><text x="114" y="110" fill="#839496"> contrast &gt; </text><text x="202" y="110" fill="#d33682">4.75</text>
-<text x="34" y="132" fill="#586e75">03</text><text x="65" y="132" fill="#586e75">// less glare, same information</text>
+<text x="34" y="132" fill="#586e75">#</text><text x="65" y="132" fill="#2aa198" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>
 </g>
 <g transform="translate(20 177)">
 <rect x="0" width="65" height="20" fill="#002b36"/>
@@ -44,7 +44,7 @@
 <g font-family="ui-monospace,monospace" font-size="12">
 <text x="34" y="88" fill="#5f6c7b">01</text><text x="65" y="88" fill="#a08b66">const</text><text x="107" y="88" fill="#8a9297"> scheme = </text><text x="180" y="88" fill="#4ca1b7">"nocturne"</text>
 <text x="34" y="110" fill="#5f6c7b">02</text><text x="65" y="110" fill="#a08b66">return</text><text x="114" y="110" fill="#8a9297"> contrast &gt; </text><text x="202" y="110" fill="#5b917b">4.75</text>
-<text x="34" y="132" fill="#5f6c7b">03</text><text x="65" y="132" fill="#5f6c7b">// less glare, same information</text>
+<text x="34" y="132" fill="#5f6c7b">#</text><text x="65" y="132" fill="#a5b0bf" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>
 </g>
 <g transform="translate(20 177)">
 <rect x="0" width="65" height="20" fill="#001a2d"/>
@@ -75,7 +75,7 @@
 <g font-family="ui-monospace,monospace" font-size="12">
 <text x="34" y="88" fill="#5a6e6e">01</text><text x="65" y="88" fill="#5f979b">const</text><text x="107" y="88" fill="#8b9291"> scheme = </text><text x="180" y="88" fill="#4f9dba">"verdigris"</text>
 <text x="34" y="110" fill="#5a6e6e">02</text><text x="65" y="110" fill="#5f979b">return</text><text x="114" y="110" fill="#8b9291"> contrast &gt; </text><text x="202" y="110" fill="#668aa7">4.75</text>
-<text x="34" y="132" fill="#5a6e6e">03</text><text x="65" y="132" fill="#5a6e6e">// less glare, same information</text>
+<text x="34" y="132" fill="#5a6e6e">#</text><text x="65" y="132" fill="#b2b5a4" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>
 </g>
 <g transform="translate(20 177)">
 <rect x="0" width="65" height="20" fill="#012324"/>
@@ -106,7 +106,7 @@
 <g font-family="ui-monospace,monospace" font-size="12">
 <text x="34" y="88" fill="#656b70">01</text><text x="65" y="88" fill="#709da6">const</text><text x="107" y="88" fill="#979ca0"> scheme = </text><text x="180" y="88" fill="#64a6a8">"ashen"</text>
 <text x="34" y="110" fill="#656b70">02</text><text x="65" y="110" fill="#709da6">return</text><text x="114" y="110" fill="#979ca0"> contrast &gt; </text><text x="202" y="110" fill="#649796">4.75</text>
-<text x="34" y="132" fill="#656b70">03</text><text x="65" y="132" fill="#656b70">// less glare, same information</text>
+<text x="34" y="132" fill="#656b70">#</text><text x="65" y="132" fill="#a9b6b3" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>
 </g>
 <g transform="translate(20 177)">
 <rect x="0" width="65" height="20" fill="#0f181e"/>
@@ -137,7 +137,7 @@
 <g font-family="ui-monospace,monospace" font-size="12">
 <text x="34" y="88" fill="#6c6a69">01</text><text x="65" y="88" fill="#809cb4">const</text><text x="107" y="88" fill="#9f9e9a"> scheme = </text><text x="180" y="88" fill="#6ca6bd">"umbra"</text>
 <text x="34" y="110" fill="#6c6a69">02</text><text x="65" y="110" fill="#809cb4">return</text><text x="114" y="110" fill="#9f9e9a"> contrast &gt; </text><text x="202" y="110" fill="#6a98a5">4.75</text>
-<text x="34" y="132" fill="#6c6a69">03</text><text x="65" y="132" fill="#6c6a69">// less glare, same information</text>
+<text x="34" y="132" fill="#6c6a69">#</text><text x="65" y="132" fill="#aaa5b3" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>
 </g>
 <g transform="translate(20 177)">
 <rect x="0" width="65" height="20" fill="#1d1b19"/>
@@ -168,7 +168,7 @@
 <g font-family="ui-monospace,monospace" font-size="12">
 <text x="34" y="88" fill="#436069">01</text><text x="65" y="88" fill="#7e855e">const</text><text x="107" y="88" fill="#7c8588"> scheme = </text><text x="180" y="88" fill="#4291a1">"totality"</text>
 <text x="34" y="110" fill="#436069">02</text><text x="65" y="110" fill="#7e855e">return</text><text x="114" y="110" fill="#7c8588"> contrast &gt; </text><text x="202" y="110" fill="#98708d">4.75</text>
-<text x="34" y="132" fill="#436069">03</text><text x="65" y="132" fill="#436069">// less glare, same information</text>
+<text x="34" y="132" fill="#436069">#</text><text x="65" y="132" fill="#9daaa6" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>
 </g>
 <g transform="translate(20 177)">
 <rect x="0" width="65" height="20" fill="#000d11"/>

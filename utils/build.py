@@ -57,7 +57,7 @@ def preview_svg():
             f'<g font-family="ui-monospace,monospace" font-size="12">',
             f'<text x="34" y="88" fill="{b01}">01</text><text x="65" y="88" fill="{c["kw"]}">const</text><text x="107" y="88" fill="{b0}"> scheme = </text><text x="180" y="88" fill="{c["str"]}">"{text(scheme["name"])}"</text>',
             f'<text x="34" y="110" fill="{b01}">02</text><text x="65" y="110" fill="{c["kw"]}">return</text><text x="114" y="110" fill="{b0}"> contrast &gt; </text><text x="202" y="110" fill="{c["num"]}">4.75</text>',
-            f'<text x="34" y="132" fill="{b01}">03</text><text x="65" y="132" fill="{b01}">// less glare, same information</text>',
+            f'<text x="34" y="132" fill="{b01}">#</text><text x="65" y="132" fill="{scheme.get("markdown_title", c["str"])}" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>',
             '</g>',
             '<g transform="translate(20 177)">',
         ]
