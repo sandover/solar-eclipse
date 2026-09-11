@@ -167,7 +167,7 @@ SPECS=[
  # Cove, Malachite and Verdigris all converged on the same palette, so they are
  # one scheme. Verdigris's ground, Cove's blue standout, Verdigris's orange in
  # place of Cove's pink, Malachite's violet in place of the green.
- ('verdigris','Verdigris','green',199,1,1.25,1,'',
+ ('verdigris','Verdigris','green',199,1,0.85,1,'',
   'Weathered copper. No green, no pink, no red.',
   None,True,
   {'fn':'#84939d','str':'#53b3c5','meta':'#546490','kw':'#9f9179',
@@ -177,13 +177,9 @@ SPECS=[
   'Colour drained almost out, and the darkest of the four, so it recedes.',
   None,True,None),
 
- # The warm end of the daylight axis. Sloe and Damson failed at 75-87 deg off it,
- # not for being warm; hue 40 is 5 deg off, as on-axis as Solarized's blue. It is
- # also the only quarter of the wheel the suite wasn't using, so it separates from
- # the other four better than any of them separate from each other. Corpse band
- # banned, because a warm ground puts accents straight through it.
- ('umbra','Umbra','warm',40,1,0.70,1,'',
-  'Firelight rather than moonlight: the one warm ground, and the only one that is not a shade of night.',
+ # Near-neutral charcoal with a trace of warmth, at the same lightness.
+ ('umbra','Umbra','warm',65,1,0.12,1,'',
+  'Warm charcoal: nearly neutral, with just a trace of brown.',
   (312,90),True,None),
 
  # The ground-hue plane is full: five schemes already tile it, and every new
@@ -252,6 +248,59 @@ FAVS=set()
 WARM=(312,80); WARM_CAP=15.0
 def iswarm(h): return h>=WARM[0] or h<=WARM[1]
 
+# Text tuning is independent of ground saturation. L*, chroma, hue:
+# keep ordinary text neutral; spend colour on distinct syntax roles.
+TEXT_LCH = {'nocturne': {'base0': (60, 4, 240),
+              'base1': (65, 3, 240),
+              'fn': (59, 12, 245),
+              'str': (62, 27, 225),
+              'kw': (59, 23, 85),
+              'num': (56, 24, 165),
+              'ty': (56, 24, 165),
+              'meta': (53, 23, 310),
+              'err': (54, 16, 355),
+              'sp': (54, 16, 355)},
+ 'verdigris': {'base0': (60, 3, 190),
+               'base1': (65, 3, 190),
+               'fn': (59, 14, 260),
+               'str': (61, 27, 235),
+               'kw': (59, 19, 205),
+               'num': (56, 20, 255),
+               'ty': (56, 20, 255),
+               'meta': (54, 18, 265),
+               'err': (55, 21, 250),
+               'sp': (55, 21, 250)},
+ 'ashen': {'base0': (64, 3, 250),
+           'base1': (69, 3, 250),
+           'fn': (62, 10, 230),
+           'str': (64, 22, 200),
+           'kw': (62, 16, 215),
+           'num': (59, 18, 195),
+           'ty': (59, 18, 195),
+           'meta': (57, 12, 235),
+           'err': (59, 19, 245),
+           'sp': (59, 19, 245)},
+ 'umbra': {'base0': (65, 2, 95),
+           'base1': (70, 2, 95),
+           'fn': (62, 10, 240),
+           'str': (65, 22, 235),
+           'kw': (63, 16, 255),
+           'num': (60, 17, 225),
+           'ty': (60, 17, 225),
+           'meta': (58, 12, 250),
+           'err': (61, 20, 260),
+           'sp': (61, 20, 260)},
+ 'totality': {'base0': (55, 4, 225),
+              'base1': (60, 4, 225),
+              'fn': (54, 16, 265),
+              'str': (56, 25, 220),
+              'kw': (54, 22, 115),
+              'num': (52, 23, 335),
+              'ty': (52, 23, 335),
+              'meta': (50, 25, 295),
+              'err': (50, 25, 40),
+              'sp': (50, 25, 40)}}
+
 for s in schemes:
     if s['name']=='solarized': continue          # the control stays untouched
     for k,_l,_f,_o in ROLES:
@@ -261,6 +310,22 @@ for s in schemes:
         C=C*cs
         if iswarm(h): C=min(C, WARM_CAP)
         s['colors'][k],_=lch2hex((L+dl, C, h))
+    for k, lch in TEXT_LCH.get(s['name'], {}).items():
+        s['colors'][k], _ = lch2hex(lch)
+    # Recompute diagnostics from the final colours, after all text tuning.
+    bg = s['colors']['base03']
+    gh = lab2lch(hex2lab(bg))[2]
+    for k, _, _, _ in ROLES:
+        L, C, h = lab2lch(hex2lab(s['colors'][k]))
+        s['roles'][k].update(hue=round(h), dist=round(abs((h-gh+180)%360-180)),
+            L=round(L), C=round(C), reach=round(okdE(s['colors'][k], bg), 3),
+            used=round(C/max_C(L, h)*100))
+    reaches = [m['reach'] for m in s['roles'].values()]
+    s['far'] = round(max(reaches), 3)
+    s['spreadr'] = round(max(reaches)/min(reaches), 2)
+    s['peak'] = max(m['used'] for m in s['roles'].values())
+    s['c_body'] = round(contrast(s['colors']['base0'], bg), 2)
+    s['c_cmt'] = round(contrast(s['colors']['base01'], bg), 2)
     # starting point for every colour, so the page can recompute it live
     s['lch']={k:[round(v,2) for v in lab2lch(hex2lab(s['colors'][k]))] for k in KEYS16}
     for junk in ('tune','btune','tdef'):
