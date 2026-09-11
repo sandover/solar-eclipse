@@ -33,9 +33,13 @@ closed**, or the running app may overwrite it from memory on quit.
 
 ## Two things that needed hand-mapping
 
-**Headings.** MarkText runs h1 red through h6 blue. Matched by role, h1 lands on
-our dimmest colour, so headings are re-pointed by prominence instead: brightest
-at h1, quietest at h6.
+**Headings.** MarkText runs h1 red through h6 blue -- a different Solarized hue
+per level. Only h1 keeps an accent (the standout colour); h2 through h6 are
+pinned to the same bright neutral tone and separate by size and weight
+instead. A note or README is mostly headings, the densest, most-scanned
+structure on the page, so colouring every level the way a rare token type gets
+coloured in code would spend the most colour exactly where "brightness carries
+the distinction, not hue" matters most.
 
 **Code blocks, twice.** Rendered code is Prism, which hardcodes its token
 colours as literal hexes rather than variables. Code you are *editing* is

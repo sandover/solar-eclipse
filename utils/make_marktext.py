@@ -90,8 +90,15 @@ def decorpse(colors, roles=('fn','str','meta','kw','num','ty','err','sp')):
 ROLE_OVERRIDE = {
     '--themeColor': 'str', '--linkColor': 'str', '--focusColor': 'str',
     '--headingColor': 'base1', '--strongColor': 'base1',
-    '--h1Color': 'str',  '--h2Color': 'num', '--h3Color': 'kw',
-    '--h4Color': 'meta', '--h5Color': 'fn',  '--h6Color': 'err',
+    # Only h1 carries an accent hue. The base CSS gives h2-h6 their own
+    # Solarized hues (orange, yellow, green, cyan, blue) which translate()
+    # would otherwise reproduce as a rainbow per level -- so they are pinned
+    # to base1 explicitly rather than left to inherit. A colour per level put
+    # the most colour on the densest, most-scanned part of a note, the
+    # opposite of "brightness carries the distinction, not hue".
+    '--h1Color': 'str',
+    '--h2Color': 'base1', '--h3Color': 'base1',
+    '--h4Color': 'base1', '--h5Color': 'base1', '--h6Color': 'base1',
     '--emColor': 'num', '--listMarkerColor': 'num', '--deleteColor': 'meta',
     '--blockquoteBorderColor': 'base01',
 }

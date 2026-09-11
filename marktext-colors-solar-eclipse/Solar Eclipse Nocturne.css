@@ -56,11 +56,11 @@
   /* Markdown element colors */
   --headingColor: #94a0a6;
   --h1Color: #55b2ce;
-  --h2Color: #5d8f85;
-  --h3Color: #968da6;
-  --h4Color: #686148;
-  --h5Color: #85969e;
-  --h6Color: #5a6558;
+  --h2Color: #94a0a6;
+  --h3Color: #94a0a6;
+  --h4Color: #94a0a6;
+  --h5Color: #94a0a6;
+  --h6Color: #94a0a6;
   --blockquoteTextColor: rgba(133, 147, 155, 0.6);
   --blockquoteBorderColor: #5f6c7b;
   --hrColor: #05253a;

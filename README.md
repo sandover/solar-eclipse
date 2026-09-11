@@ -69,6 +69,7 @@ README and one file per scheme.
 | `schemes.json` | canonical palettes — the source every port is built from |
 | `marktext-colors-solar-eclipse/` | Custom CSS for MarkText |
 | `vscode-colors-solar-eclipse/` | theme extension for VS Code |
+| `obsidian-colors-solar-eclipse/` | theme folders for Obsidian |
 | `utils/` | generator, build scripts, and the analysis behind each finding |
 | `index.html` | tuning tool: previews and per-colour sliders |
 | `how.html` | a measured account of how Solarized works |
@@ -82,6 +83,7 @@ python3 utils/generate.py        # palettes -> schemes.json
 python3 utils/build.py           # pages, and the table above
 python3 utils/make_marktext.py ashen
 python3 utils/make_vscode.py
+python3 utils/make_obsidian.py
 ```
 
 ## Caveats
