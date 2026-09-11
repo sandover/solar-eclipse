@@ -139,7 +139,7 @@ def workbench(c):
       "textLink.foreground": accent, "textLink.activeForeground": shade(accent, +6),
     }
 
-def tokens(c):
+def tokens(c, heading_color=None):
     def r(scope, fg=None, style=None):
         s = {"scope": scope, "settings": {}}
         if fg: s["settings"]["foreground"] = fg
@@ -172,7 +172,7 @@ def tokens(c):
       # enough to head a section, and a drained scheme has two or three -- so a
       # ramp lands on the warm accent, which is everywhere in a document full of
       # ## sections. Weight separates the rest.
-      r("markup.heading.1, markup.heading.1 entity.name", c['str'], "bold"),
+      r("markup.heading.1, markup.heading.1 entity.name", heading_color or c['str'], "bold"),
       r("markup.heading, entity.name.section", c['base1'], "bold"),
       r("punctuation.definition.heading", c['base01']),
       r("markup.bold", c['base1'], "bold"),
@@ -209,7 +209,7 @@ def build(s):
       "semanticHighlighting": True,
       "colors": workbench(c),
       "semanticTokenColors": semantic(c),
-      "tokenColors": tokens(c),
+      "tokenColors": tokens(c, heading_color=s.get('markdown_title')),
     }
 
 if __name__ == '__main__':

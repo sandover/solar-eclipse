@@ -362,7 +362,8 @@
    "ashen": 10.2,
    "umbra": 17.6,
    "totality": 13.7
-  }
+  },
+  "markdown_title": "#a5b0bf"
  },
  {
   "name": "verdigris",
@@ -590,7 +591,8 @@
    "ashen": 10.5,
    "umbra": 13.6,
    "totality": 12.4
-  }
+  },
+  "markdown_title": "#b2b5a4"
  },
  {
   "name": "ashen",
@@ -809,7 +811,8 @@
    "ashen": 0.0,
    "umbra": 8.0,
    "totality": 5.3
-  }
+  },
+  "markdown_title": "#a9b6b3"
  },
  {
   "name": "umbra",
@@ -1028,7 +1031,8 @@
    "ashen": 8.0,
    "umbra": 0.0,
    "totality": 9.1
-  }
+  },
+  "markdown_title": "#aaa5b3"
  },
  {
   "name": "totality",
@@ -1247,6 +1251,7 @@
    "ashen": 5.3,
    "umbra": 9.1,
    "totality": 0.0
-  }
+  },
+  "markdown_title": "#9daaa6"
  }
 ]

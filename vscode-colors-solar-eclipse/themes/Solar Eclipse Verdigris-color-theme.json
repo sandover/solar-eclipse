@@ -270,7 +270,7 @@
     {
       "scope": "markup.heading.1, markup.heading.1 entity.name",
       "settings": {
-        "foreground": "#5899b3",
+        "foreground": "#b2b5a4",
         "fontStyle": "bold"
       }
     },

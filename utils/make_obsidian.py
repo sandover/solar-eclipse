@@ -307,6 +307,13 @@ def build_vars(s):
     for name, role in CALLOUT.items():
         v[f'--callout-{name}'] = rgb_of(c[role])
 
+    v['--h1-color'] = s.get('markdown_title', c['str'])
+    if s['name'] == 'umbra':
+        # Large selection surfaces stay neutral.
+        selection = shade(hl, 4.0)
+        for key in ('--nav-item-background-active', '--nav-item-background-selected',
+                    '--text-selection', '--table-selection'):
+            v[key] = selection
     return v
 
 def render_css(s, v):

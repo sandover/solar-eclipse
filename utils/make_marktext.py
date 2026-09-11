@@ -204,7 +204,8 @@ if __name__ == '__main__':
             continue
         var = l.split(':', 1)[0].strip()
         if var in ROLE_OVERRIDE:
-            l = f"{var}: {palette[ROLE_OVERRIDE[var]]};"
+            colour = s.get('markdown_title', palette['str']) if var == '--h1Color' else palette[ROLE_OVERRIDE[var]]
+            l = f"{var}: {colour};"
         lines.append('  ' + l)
     body = (f"/* solar-eclipse-{name} for MarkText\n"
             f" * Paste into Preferences -> Theme -> Custom CSS.\n"

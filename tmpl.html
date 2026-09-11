@@ -84,6 +84,15 @@ h1,h2,h3{text-wrap:balance;margin:0}
 .win-title{margin-left:6px;opacity:.85}
 .win-body{padding:13px 14px 16px;font-family:var(--mono);font-size:11.5px;line-height:1.72;min-height:200px}
 .win + .win .win-body{min-height:0}
+.win-layout{display:flex;align-items:stretch}
+.win-layout .win-body{flex:1;min-width:0;overflow-x:auto}
+.sample-sidebar{flex:0 0 92px;box-sizing:border-box;padding:13px 6px;
+  background:color-mix(in srgb,var(--base03) 80%,black);border-right:1px solid var(--base02);
+  font-family:var(--sans);font-size:10px;line-height:1.5;color:var(--base00)}
+.sample-sidebar .folder{padding:2px 5px 8px;color:var(--base01)}
+.sample-sidebar .file{padding:5px;border-radius:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sample-sidebar .selected{background:var(--selection);color:var(--base1)}
+
 .code{display:grid;grid-template-columns:auto 1fr;column-gap:13px}
 .ln{text-align:right;user-select:none}
 .cur{margin:0 -14px;padding:0 14px}
@@ -315,7 +324,9 @@ ROLES.forEach(function(r){ LABEL[r[0]] = r[1]; });
 
 function vars(s){
   var c = C(s);
-  return KEYS.map(function(k){ return '--'+k+':'+c[k]; }).join(';');
+  return KEYS.map(function(k){ return '--'+k+':'+c[k]; }).join(';')+
+    ';--heading:'+(s.markdown_title || c.str)+
+    ';--selection:'+(s.name==='umbra' ? 'color-mix(in srgb,'+c.base02+' 92%,white)' : 'color-mix(in srgb,'+c.str+' 14%,transparent)');
 }
 var TITLES = {code:'palette.ts', chat:'Why this feels calm', md:'Palette notes.md', none:''};
 
@@ -354,7 +365,7 @@ function chat(){
 }
 function md(){
   return '<div class="md" style="color:var(--base0)">'+
-  '<div class="h1" style="color:var(--str)">Palette notes</div>'+
+  '<div class="h1" style="color:var(--heading)">Palette notes</div>'+
   '<div style="color:var(--base01);font-size:11px">Updated today &middot; '+
     '<span style="color:var(--sp)">#colour</span> <span style="color:var(--sp)">#desk-setup</span></div>'+
   '<div class="h2" style="color:var(--base1)">What actually matters</div>'+
@@ -382,7 +393,12 @@ function win(s, mode){
       '<span class="dot" style="background:var(--ty)"></span>'+
       '<span class="dot" style="background:var(--kw)"></span>'+
       '<span class="win-title">'+TITLES[m]+'</span></div>'+
-    '<div class="win-body">'+PREV[m]()+'</div></div>';
+    '<div class="win-layout"><div class="sample-sidebar" aria-label="Sample file sidebar">'+
+      '<div class="folder">⌄ Workspace</div>'+
+      '<div class="file">Overview</div>'+
+      '<div class="file selected">'+TITLES[m]+'</div>'+
+      '<div class="file">Work log</div><div class="file">Archive</div>'+
+    '</div><div class="win-body">'+PREV[m]()+'</div></div></div>';
 }
 var tok = document.createElement('style');
 tok.textContent = '.win .c{color:var(--base01)}.win .k{color:var(--kw)}.win .s{color:var(--str)}'+

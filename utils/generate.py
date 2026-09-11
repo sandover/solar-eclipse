@@ -248,6 +248,9 @@ FAVS=set()
 WARM=(312,80); WARM_CAP=15.0
 def iswarm(h): return h>=WARM[0] or h<=WARM[1]
 
+# Main Markdown titles use restrained tints independent of syntax accents.
+MARKDOWN_TITLES = {'nocturne': '#a5b0bf', 'verdigris': '#b2b5a4', 'ashen': '#a9b6b3', 'umbra': '#aaa5b3', 'totality': '#9daaa6'}
+
 # Text tuning is independent of ground saturation. L*, chroma, hue:
 # keep ordinary text neutral; spend colour on distinct syntax roles.
 TEXT_LCH = {'nocturne': {'base0': (60, 4, 240),
@@ -312,6 +315,7 @@ for s in schemes:
         s['colors'][k],_=lch2hex((L+dl, C, h))
     for k, lch in TEXT_LCH.get(s['name'], {}).items():
         s['colors'][k], _ = lch2hex(lch)
+    s['markdown_title'] = MARKDOWN_TITLES[s['name']]
     # Recompute diagnostics from the final colours, after all text tuning.
     bg = s['colors']['base03']
     gh = lab2lch(hex2lab(bg))[2]
