@@ -38,3 +38,4 @@ Copy values below, or use the `colors` object for each theme in [schemes.json](s
 
 <!-- palettes:end -->
 
+</details>
