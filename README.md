@@ -1,12 +1,10 @@
 # Solar Eclipse
 
-Five muted dark themes based on Solarized, for telling your windows apart at a glance.
+Five muted dark themes based on Solarized.
 
 ![Nocturne, Verdigris, Ashen, Umbra, and Totality beside Solarized Dark, with editor previews and colour palettes.](assets/solar-eclipse-preview.svg)
 
 **Install:** [VS Code](vscode-colors-solar-eclipse/README.md) · [Obsidian](obsidian-colors-solar-eclipse/README.md) · [MarkText](marktext-colors-solar-eclipse/README.md)
-
-Open [index.html](index.html) locally to preview and tune the themes, or [how.html](how.html) for the colour analysis.
 
 <details>
 <summary>Palette reference — hex values by role</summary>
@@ -40,6 +38,3 @@ Copy values below, or use the `colors` object for each theme in [schemes.json](s
 
 <!-- palettes:end -->
 
-</details>
-
-Run `python3 utils/build.py` to rebuild the pages, SVG, and palette table.
