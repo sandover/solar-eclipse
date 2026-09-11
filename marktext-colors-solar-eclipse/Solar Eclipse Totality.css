@@ -86,6 +86,8 @@
 }
 
 /* fenced code blocks: Prism hardcodes these, so they are set here */
+code[class*='language-'], pre.ag-paragraph { color: #728586; }
+.language-css .token.string, .style .token.string { color: #6497a5; }
 .token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #436069; background: none; }
 .token.punctuation { color: #4f6d76; background: none; }
 .token.keyword,.token.atrule,.token.important { color: #818577; background: none; }
@@ -96,3 +98,31 @@
 .token.operator,.token.variable,.token.entity,.token.url { color: #728586; background: none; }
 .token.deleted { color: #675f58; background: none; }
 .token.inserted { color: #818577; background: none; }
+/* the built-in theme hardcodes these, with no variable to override */
+.title-bar .frameless-titlebar-button > div > svg { fill: #728586; }
+.title-bar .frameless-titlebar-minimize:hover,
+.title-bar .frameless-titlebar-toggle:hover { background-color: rgba(114, 133, 134, 0.05); }
+.side-bar { border-right: 1px solid #000000 !important; }
+.editor-tabs:after,
+.editor-tabs ul.tabs-container:after { border-bottom: 1px solid #000000; }
+/* the raw editor is CodeMirror, which MarkText still paints Railscasts */
+.cm-s-railscasts { background: #001b21; color: #728586; }
+.cm-s-railscasts div.CodeMirror-selected { background: #082329 !important; }
+.cm-s-railscasts .CodeMirror-gutters { background: #001b21; border-right: 0; }
+.cm-s-railscasts .CodeMirror-linenumber { color: #436069; }
+.cm-s-railscasts .CodeMirror-cursor { border-left: 1px solid #829291 !important; }
+.cm-s-railscasts .CodeMirror-activeline-background { background: #041f25; }
+.cm-s-railscasts .CodeMirror-matchingbracket { text-decoration: underline; color: #829291 !important; }
+.cm-s-railscasts span.cm-comment { color: #436069; }
+.cm-s-railscasts span.cm-atom { color: #577386; }
+.cm-s-railscasts span.cm-number { color: #577386; }
+.cm-s-railscasts span.cm-property, .cm-s-railscasts span.cm-attribute { color: #577386; }
+.cm-s-railscasts span.cm-keyword { color: #818577; }
+.cm-s-railscasts span.cm-string { color: #6497a5; }
+.cm-s-railscasts span.cm-variable { color: #728586; }
+.cm-s-railscasts span.cm-variable-2 { color: #787b85; }
+.cm-s-railscasts span.cm-def { color: #787b85; }
+.cm-s-railscasts span.cm-error { background: none; color: #675f58; }
+.cm-s-railscasts span.cm-bracket { color: #4f6d76; }
+.cm-s-railscasts span.cm-tag { color: #577386; }
+.cm-s-railscasts span.cm-link { color: #6497a5; }

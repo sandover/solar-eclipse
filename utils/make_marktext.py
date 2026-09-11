@@ -112,9 +112,71 @@ PRISM = [
 ]
 
 def prism_rules(c):
-    out = ['', '/* fenced code blocks: Prism hardcodes these, so they are set here */']
+    out = ['', '/* fenced code blocks: Prism hardcodes these, so they are set here */',
+           "code[class*='language-'], pre.ag-paragraph { color: %s; }" % c['base0'],
+           # these two beat a plain .token.string on specificity, so they need saying
+           ".language-css .token.string, .style .token.string { color: %s; }" % c['str']]
     for sel, role in PRISM:
         out.append('.token.%s { color: %s; background: none; }' % (sel, c[role]))
+    return '\n'.join(out)
+
+
+def shade(hexv, dL):
+    L, C, H = lab2lch(hex2lab(hexv))
+    return lch2hex((max(0.0, min(100.0, L + dL)), C, H))[0]
+
+
+# The built-in theme sets these with literal hexes and no variable after them,
+# so they survive the :root block and keep whatever base theme is selected
+# showing through -- the title bar glyphs, the sidebar edge, the tab underline.
+def leak_rules(c):
+    edge = shade(c['base03'], -4.0)
+    return '\n'.join([
+        '', '/* the built-in theme hardcodes these, with no variable to override */',
+        '.title-bar .frameless-titlebar-button > div > svg { fill: %s; }' % c['base0'],
+        '.title-bar .frameless-titlebar-minimize:hover,',
+        '.title-bar .frameless-titlebar-toggle:hover '
+        '{ background-color: rgba(%s, 0.05); }' % rgb_of(c['base0']),
+        '.side-bar { border-right: 1px solid %s !important; }' % edge,
+        '.editor-tabs:after,',
+        '.editor-tabs ul.tabs-container:after { border-bottom: 1px solid %s; }' % edge,
+    ])
+
+
+# The raw editor is CodeMirror, not Prism, and MarkText hands it the Railscasts
+# theme for every dark scheme: a #2b2b2b box with red keywords and amber
+# strings. None of it is a variable, so a code fence you are editing ignores
+# the palette entirely until these are set.
+CM = [
+    ('', 'background: %(base02)s; color: %(base0)s;'),
+    (' div.CodeMirror-selected', 'background: %(base01_dim)s !important;'),
+    (' .CodeMirror-gutters', 'background: %(base02)s; border-right: 0;'),
+    (' .CodeMirror-linenumber', 'color: %(base01)s;'),
+    (' .CodeMirror-cursor', 'border-left: 1px solid %(base1)s !important;'),
+    (' .CodeMirror-activeline-background', 'background: %(active)s;'),
+    (' .CodeMirror-matchingbracket', 'text-decoration: underline; color: %(base1)s !important;'),
+    (' span.cm-comment', 'color: %(base01)s;'),
+    (' span.cm-atom', 'color: %(num)s;'),
+    (' span.cm-number', 'color: %(num)s;'),
+    (' span.cm-property, .cm-s-railscasts span.cm-attribute', 'color: %(ty)s;'),
+    (' span.cm-keyword', 'color: %(kw)s;'),
+    (' span.cm-string', 'color: %(str)s;'),
+    (' span.cm-variable', 'color: %(base0)s;'),
+    (' span.cm-variable-2', 'color: %(fn)s;'),
+    (' span.cm-def', 'color: %(fn)s;'),
+    (' span.cm-error', 'background: none; color: %(err)s;'),
+    (' span.cm-bracket', 'color: %(base00)s;'),
+    (' span.cm-tag', 'color: %(ty)s;'),
+    (' span.cm-link', 'color: %(str)s;'),
+]
+
+def codemirror_rules(c):
+    v = dict(c)
+    v['active'] = shade(c['base02'], 2.0)
+    v['base01_dim'] = shade(c['base02'], 4.0)
+    out = ['', '/* the raw editor is CodeMirror, which MarkText still paints Railscasts */']
+    for sel, body in CM:
+        out.append('.cm-s-railscasts%s { %s }' % (sel, body % v))
     return '\n'.join(out)
 
 
@@ -141,7 +203,8 @@ if __name__ == '__main__':
             f" * Paste into Preferences -> Theme -> Custom CSS.\n"
             f" * Overrides whichever built-in theme is selected. */\n"
             ":root {\n" + "\n".join(lines) + "\n}\n"
-            + prism_rules(palette) + "\n")
+            + prism_rules(palette) + leak_rules(palette)
+            + codemirror_rules(palette) + "\n")
     out = str(ROOT / 'marktext-colors-solar-eclipse' / f'Solar Eclipse {s["label"]}.css')
     open(out, 'w', encoding='utf-8').write(body)
     print(f'{out}: {len(body)} bytes, '
