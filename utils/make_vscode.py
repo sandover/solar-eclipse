@@ -2,7 +2,7 @@
 """Build a VS Code colour-theme extension from schemes.json.
 
 Unlike MarkText, VS Code installs real themes: a folder under ~/.vscode/extensions
-with a package.json declaring them. One extension carries all three schemes, so
+with a package.json declaring them. One extension carries all schemes, so
 they appear together in the theme picker.
 
 The warm accent is left where it is here. In a markdown editor it lands on every
@@ -45,9 +45,139 @@ def calm(colors, roles=('fn','str','meta','kw','num','ty','err','sp')):
 
 CHROMA_CAP = 24.0
 
+def verdigris_colors(colors):
+    """Relate the reading scale and accents to the established green ground.
+
+    CIELAB D65 / LCh: supporting neutrals follow the ground; body text moves
+    toward a warmer near-neutral. Accent hues occupy a neighboring arc.
+    Lightness stays near the body scale rather than increasing saturation
+    and brightness together. This is a visual candidate, not a harmony proof.
+    """
+    c = dict(colors)
+    ground_lightness, ground_chroma, ground_hue = lab2lch(hex2lab(c['base03']))
+    roles = {
+        'base02': (ground_lightness + 5, ground_chroma, 0),
+        'base01': (45, 8, 0), 'base00': (50, 8, 0),
+        'base1': (61, 8, -90),
+        'base2': (74, 6, -35), 'base3': (80, 6, -35),
+        'fn': (59, 14, 30), 'str': (60, 16, 0),
+        'kw': (59, 16, -30), 'meta': (57, 16, -60),
+        'num': (58, 22, -105), 'ty': (58, 18, -90),
+        'err': (58, 22, -145), 'sp': (60, 22, -145),
+        'bracket_olive': (59, 18, -70),
+        'heading1': (65, 18, -30), 'heading2': (62, 12, 10),
+    }
+    # User-selected A1 is the exact reading reference. calm() brings syntax
+    # lightness down with it; heading candidates remain a separate exploration.
+    c['base0'] = '#878779'
+    for role, (lightness, chroma, offset) in roles.items():
+        c[role], used_chroma = lch2hex((lightness, chroma, (ground_hue + offset) % 360))
+        if used_chroma < chroma - .01:
+            raise ValueError(f'Verdigris {role} needs explicit gamut review')
+    return c
+
+def verdigris_workbench(c):
+    """Extend the full workbench with roles that otherwise inherit vivid defaults."""
+    v = workbench(c)
+    v.pop('editorIndentGuide.activeIndentGuide1', None)
+    bg, surface = c['base03'], c['base02']
+    text, bright, dim = c['base0'], c['base1'], c['base00']
+    accent, gold, error = c['str'], c['ty'], c['err']
+    border, raised = shade(surface, 6), shade(bg, 3.2)
+    v.update({
+        'foreground': text, 'descriptionForeground': dim,
+        'disabledForeground': c['base01'], 'icon.foreground': dim,
+        'errorForeground': error, 'selection.background': alpha(accent, .25),
+        'textPreformat.foreground': bright, 'textPreformat.background': surface,
+        'editorIndentGuide.activeBackground1': c['base01'],
+        'editorBracketHighlight.unexpectedBracket.foreground': error,
+        'editorWarning.foreground': gold,
+        'editorOverviewRuler.errorForeground': alpha(error, .7),
+        'editorOverviewRuler.warningForeground': alpha(gold, .7),
+        'editorOverviewRuler.infoForeground': alpha(accent, .7),
+        'editorOverviewRuler.addedForeground': alpha(c['kw'], .7),
+        'editorOverviewRuler.modifiedForeground': alpha(gold, .7),
+        'editorOverviewRuler.deletedForeground': alpha(error, .7),
+        'editorInlayHint.foreground': dim, 'editorInlayHint.background': surface,
+        'editorCodeLens.foreground': dim, 'editorLink.activeForeground': bright,
+        'editorLightBulb.foreground': gold,
+        'editorLightBulbAutoFix.foreground': accent,
+        'editorGhostText.foreground': c['base01'],
+        'notifications.background': raised, 'notifications.foreground': text,
+        'notifications.border': border, 'notificationCenterHeader.background': surface,
+        'notificationsErrorIcon.foreground': error,
+        'notificationsWarningIcon.foreground': gold,
+        'notificationsInfoIcon.foreground': accent,
+        'quickInput.background': raised, 'quickInput.foreground': text,
+        'quickInputList.focusBackground': surface,
+        'quickInputList.focusForeground': bright,
+        'menu.selectionBackground': surface, 'menu.selectionForeground': bright,
+        'menu.separatorBackground': border, 'menu.border': border,
+        'button.secondaryBackground': surface, 'button.secondaryForeground': text,
+        'button.secondaryHoverBackground': shade(surface, 3),
+        'checkbox.background': surface, 'checkbox.foreground': accent,
+        'checkbox.border': border,
+        'inputValidation.errorBackground': alpha(error, .12),
+        'inputValidation.errorBorder': error,
+        'inputValidation.warningBackground': alpha(gold, .12),
+        'inputValidation.warningBorder': gold,
+        'inputValidation.infoBackground': alpha(accent, .12),
+        'inputValidation.infoBorder': accent,
+        'settings.headerForeground': bright,
+        'settings.modifiedItemIndicator': gold,
+        'settings.focusedRowBackground': alpha(accent, .05),
+        'list.focusHighlightForeground': accent,
+        'list.inactiveSelectionForeground': text,
+        'list.hoverForeground': bright,
+        'terminal.selectionBackground': alpha(accent, .22),
+        'terminal.findMatchBackground': alpha(gold, .28),
+        'terminal.findMatchHighlightBackground': alpha(gold, .12),
+    })
+    # Terminal labels are protocol names. Magenta uses olive here deliberately.
+    for name, role in {'Red': 'err', 'Green': 'kw', 'Yellow': 'num',
+                       'Blue': 'fn', 'Magenta': 'meta', 'Cyan': 'str',
+                       'White': 'base0', 'Black': 'base02'}.items():
+        v[f'terminal.ansi{name}'] = c[role]
+        v[f'terminal.ansiBright{name}'] = c['base01'] if name == 'Black' else shade(c[role], 4)
+    for level in range(1, 7):
+        color = (c['num'], c['bracket_olive'], c['kw'])[(level - 1) % 3]
+        v[f'editorBracketHighlight.foreground{level}'] = color
+        v[f'editorBracketPairGuide.background{level}'] = alpha(color, .12)
+        v[f'editorBracketPairGuide.activeBackground{level}'] = alpha(color, .30)
+    return v
+
+# VS Code-specific tuning keeps other app ports independent.
+READING_BASES = {
+    'nocturne': {'base03': '#0c1b28', 'base02': '#162735', 'str': '#829da9'},
+    'ashen': {'base0': '#8f9598', 'base1': '#9da4a7', 'str': '#899fa7'},
+    'totality': {'base03': '#0a1418', 'base02': '#142126', 'str': '#7c939d'},
+    'umbra': {'base03': '#25222c', 'base02': '#302c38',
+              'base0': '#9e9da1', 'base1': '#aba9ae', 'str': '#8fabb3'},
+    'umbra-b': {'base03': '#2b282e', 'base02': '#353239',
+                'base01': '#75766d', 'base00': '#898b80',
+                'base0': '#a4a69b', 'base1': '#b1b3a8', 'str': '#8fa6a6'},
+    'umbra-d': {'base03': '#292b2b', 'base02': '#333636',
+                'base01': '#78746c', 'base00': '#8e887e',
+                'base0': '#aaa499', 'base1': '#b7b1a6', 'str': '#8ba5ae'},
+}
+
+def theme_schemes(schemes):
+    """Keep the original names and add the two selected Umbra candidates."""
+    result = [s for s in schemes if s['name'] != 'solarized']
+    umbra = next(s for s in result if s['name'] == 'umbra')
+    return result + [{**umbra, 'name': f'umbra-{suffix.lower()}',
+                      'label': f'Umbra {suffix}'} for suffix in ('B', 'D')]
+
+def install_schemes(schemes):
+    from solarized_reference import palette, green_palette
+    return theme_schemes(schemes) + [
+        dict(name='solarized', label='Solarized Dark Reading', colors=palette()),
+        dict(name='solarized-green', label='Solarized Green', colors=green_palette())]
+
+
 def workbench(c):
     bg, hl = c['base03'], c['base02']
-    chrome = shade(bg, -4.0)          # sidebar, status bar, inactive tabs
+    chrome = shade(bg, -min(4.0, hex2lab(bg)[0] * .45))
     over   = shade(bg, +3.2)          # popups and hovers sit above the page
     dim, txt, bright = c['base01'], c['base0'], c['base1']
     faint  = c['base00']
@@ -137,9 +267,12 @@ def workbench(c):
       "gitDecoration.untrackedResourceForeground": c['meta'],
       "gitDecoration.ignoredResourceForeground": dim,
       "textLink.foreground": accent, "textLink.activeForeground": shade(accent, +6),
+      "textBlockQuote.background": hl, "textBlockQuote.border": dim,
+      "textCodeBlock.background": hl, "textSeparator.foreground": shade(hl, +6),
     }
 
-def tokens(c, heading_color=None):
+def tokens(c, headings=None):
+    h1, h2 = headings or (c['base1'], c['str'])
     def r(scope, fg=None, style=None):
         s = {"scope": scope, "settings": {}}
         if fg: s["settings"]["foreground"] = fg
@@ -165,15 +298,11 @@ def tokens(c, heading_color=None):
       r("meta.decorator, punctuation.decorator, entity.name.function.decorator", c['meta']),
       r("invalid, invalid.illegal", c['err']),
       r("invalid.deprecated", c['err'], "italic"),
-      # Prose is mostly headings and inline code. Painting both with the standout
-      # puts the loudest colour on the most frequent thing -- the same error as
-      # strings in a JSON file. Headings descend; inline code goes quiet.
-      # Only h1 carries colour. A heading ramp needs several cool tones bright
-      # enough to head a section, and a drained scheme has two or three -- so a
-      # ramp lands on the warm accent, which is everywhere in a document full of
-      # ## sections. Weight separates the rest.
-      r("markup.heading.1, markup.heading.1 entity.name", heading_color or c['str'], "bold"),
+      # Neutral titles, quiet accent sections, and softer subheadings.
+      r("markup.heading.1, markup.heading.1 entity.name", h1, "bold"),
       r("markup.heading, entity.name.section", c['base1'], "bold"),
+      r("markup.heading.2, markup.heading.2 entity.name", h2, "bold"),
+      r("markup.heading.3, markup.heading.3 entity.name, markup.heading.4, markup.heading.4 entity.name", c['fn'], "bold"),
       r("punctuation.definition.heading", c['base01']),
       r("markup.bold", c['base1'], "bold"),
       r("markup.italic", c['base1'], "italic"),
@@ -201,22 +330,32 @@ def semantic(c):
     }
 
 def build(s):
-    c = calm(s['colors'])
+    colors = {**s['colors'], **READING_BASES.get(s['name'], {})}
+    if s['name'] == 'verdigris':
+        colors = verdigris_colors(colors)
+    c = calm(colors)
+    from markdown_design import prose
+    r = prose(s['name'], c)
+    markdown = [{"scope": scope, "settings": {"foreground": r[role]}}
+                for scope, role in [(f"markup.heading.{n}, markup.heading.{n} entity.name", f'h{n}') for n in range(1,7)] + [
+                    ('markup.bold', 'bold'), ('markup.italic', 'italic'),
+                    ('markup.quote', 'quote'), ('markup.underline.link, string.other.link', 'link'),
+                    ('markup.inline.raw, markup.raw.inline', 'inline'),
+                    ('markup.list punctuation.definition.list, punctuation.definition.list.begin', 'marker')]]
     return {
       "$schema": "vscode://schemas/color-theme",
       "name": f"Solar Eclipse {s['label']}",
       "type": "dark",
       "semanticHighlighting": True,
-      "colors": workbench(c),
+      "colors": verdigris_workbench(c) if s['name'] == 'verdigris' else workbench(c),
       "semanticTokenColors": semantic(c),
-      "tokenColors": tokens(c, heading_color=s.get('markdown_title')),
+      "tokenColors": tokens(c, (c['heading1'], c['heading2']) if s['name'] == 'verdigris' else None) + markdown,
     }
 
 if __name__ == '__main__':
     out = ROOT / 'vscode-colors-solar-eclipse'
     (out / 'themes').mkdir(parents=True, exist_ok=True)
-    schemes = [s for s in json.load(open(ROOT / 'schemes.json'))
-               if s['name'] != 'solarized']
+    schemes = install_schemes(json.load(open(ROOT / 'schemes.json')))
     contributes = []
     for s in schemes:
         label = f"Solar Eclipse {s['label']}"
@@ -239,3 +378,23 @@ if __name__ == '__main__':
     json.dump(pkg, open(out / 'package.json', 'w', encoding='utf-8'),
               indent=2, ensure_ascii=False)
     print("package.json:", ", ".join(t["label"] for t in contributes))
+    # Keep embedded Markdown headings identical to the source-editor rules.
+    css_path = out / 'markdown-editor.css'
+    css = css_path.read_text()
+    start = '/* Verdigris headings: generated by utils/make_vscode.py. */'
+    end = '/* End Verdigris headings. */'
+    before, rest = css.split(start, 1)
+    _, after = rest.split(end, 1)
+    from markdown_design import prose
+    rules = []
+    for scheme in schemes:
+        c = {**scheme['colors'], **READING_BASES.get(scheme['name'], {})}
+        if scheme['name'] == 'verdigris':
+            c = verdigris_colors(c)
+        r = prose(scheme['name'], c)
+        selectors = {**{f'h{n}': f'h{n}' for n in range(1,7)},
+                     'strong':'bold', 'em':'italic', 'a':'link',
+                     'code':'inline', 'blockquote':'quote', 'li::marker':'marker'}
+        for selector, role in selectors.items():
+            rules.append(f'body[data-vscode-theme-name="Solar Eclipse {scheme["label"]}"] .vditor-reset {selector} {{ color: {r[role]} !important; }}')
+    css_path.write_text(before + start + '\n' + '\n'.join(rules) + '\n' + end + after)

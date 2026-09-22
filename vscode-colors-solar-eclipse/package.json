@@ -36,6 +36,26 @@
         "label": "Solar Eclipse Totality",
         "uiTheme": "vs-dark",
         "path": "./themes/Solar Eclipse Totality-color-theme.json"
+      },
+      {
+        "label": "Solar Eclipse Umbra B",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Umbra B-color-theme.json"
+      },
+      {
+        "label": "Solar Eclipse Umbra D",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Umbra D-color-theme.json"
+      },
+      {
+        "label": "Solar Eclipse Solarized Dark Reading",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Solarized Dark Reading-color-theme.json"
+      },
+      {
+        "label": "Solar Eclipse Solarized Green",
+        "uiTheme": "vs-dark",
+        "path": "./themes/Solar Eclipse Solarized Green-color-theme.json"
       }
     ]
   }

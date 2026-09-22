@@ -63,6 +63,27 @@ def build(block, target):
 # Each offending colour keeps its brightness and vividness and moves to the
 # coolest hue that stays clear of the rest. The palette itself is untouched.
 WARM = (312, 90)
+CHROMA_CAP = 24.0
+
+def calm(colors, roles=('fn','str','meta','kw','num','ty','err','sp')):
+    """Use the same restrained accent palette as the VS Code themes."""
+    c = dict(colors)
+    bodyL = lab2lch(hex2lab(c['base0']))[0]
+    seen = {}
+    for k in roles:
+        if c[k] in seen:
+            c[k] = seen[c[k]]
+            continue
+        src = c[k]
+        L, C, h = lab2lch(hex2lab(src))
+        if L > bodyL or C > CHROMA_CAP:
+            out, _ = lch2hex((min(L, bodyL), min(C, CHROMA_CAP), h))
+            seen[src] = out
+            c[k] = out
+        else:
+            seen[src] = src
+    return c
+
 def decorpse(colors, roles=('fn','str','meta','kw','num','ty','err','sp')):
     """Merged roles share a hex, so work per distinct colour and move them together."""
     c = dict(colors)
@@ -87,8 +108,10 @@ def decorpse(colors, roles=('fn','str','meta','kw','num','ty','err','sp')):
         hues.append(float(bh))
     return c
 
-ROLE_OVERRIDE = {
-    '--themeColor': 'str', '--linkColor': 'str', '--focusColor': 'str',
+BASELINE_ROLE_OVERRIDE = {
+    '--themeColor': 'str', '--focusColor': 'str',
+    '--editorColor': 'base0',
+    '--linkColor': 'fn',
     '--headingColor': 'base1', '--strongColor': 'base1',
     # Only h1 carries an accent hue. The base CSS gives h2-h6 their own
     # Solarized hues (orange, yellow, green, cyan, blue) which translate()
@@ -99,9 +122,20 @@ ROLE_OVERRIDE = {
     '--h1Color': 'str',
     '--h2Color': 'base1', '--h3Color': 'base1',
     '--h4Color': 'base1', '--h5Color': 'base1', '--h6Color': 'base1',
-    '--emColor': 'num', '--listMarkerColor': 'num', '--deleteColor': 'meta',
-    '--blockquoteBorderColor': 'base01',
+    '--emColor': 'base1', '--listMarkerColor': 'base01', '--deleteColor': 'err',
+    '--blockquoteTextColor': 'base0',
+    '--blockquoteBorderColor': 'base00',
+    '--tableBorderColor': 'base01', '--hrColor': 'base01',
 }
+
+# Nocturne is the one MarkText scheme the user has actually evaluated. Keep its
+# reduced prose colour and raised reading ramp independent of the clean VS Code
+# baseline used by the other schemes.
+NOCTURNE_ROLE_OVERRIDE = dict(BASELINE_ROLE_OVERRIDE, **{
+    '--linkColor': 'base1',
+    '--listMarkerColor': 'base1',
+    '--deleteColor': 'base0',
+})
 
 # Prism's token colours are hardcoded hexes in the bundle, not variables, so
 # fenced code blocks need their own rules or they keep Solarized's palette.
@@ -131,6 +165,41 @@ def prism_rules(c):
 def shade(hexv, dL):
     L, C, H = lab2lch(hex2lab(hexv))
     return lch2hex((max(0.0, min(100.0, L + dL)), C, H))[0]
+
+
+def ensure_contrast(hexv, background, ratio):
+    """Lighten a dark-theme foreground just enough to reach a contrast floor."""
+    if contrast(hexv, background) >= ratio:
+        return hexv
+    L, C, H = lab2lch(hex2lab(hexv))
+    for step in range(1, 401):
+        candidate, _ = lch2hex((min(100.0, L + step / 10), C, H))
+        if contrast(candidate, background) >= ratio:
+            return candidate
+    return '#ffffff'
+
+
+def readable_code_palette(colors):
+    """Keep every meaningful code token legible against its block background."""
+    c = dict(colors)
+    roles = ('base01', 'base00', 'base0', 'base1',
+             'fn', 'str', 'meta', 'kw', 'num', 'ty', 'err', 'sp')
+    groups = {}
+    for role in roles:
+        groups.setdefault(c[role], []).append(role)
+    for hexv, grouped_roles in groups.items():
+        readable = ensure_contrast(hexv, c['base02'], 4.5)
+        for role in grouped_roles:
+            c[role] = readable
+    return c
+
+
+def reading_palette(colors):
+    """Raise sustained-reading text independently of the source code palette."""
+    c = dict(colors)
+    c['base0'] = ensure_contrast(c['base0'], c['base03'], 7.0)
+    c['base1'] = ensure_contrast(c['base1'], c['base03'], 8.0)
+    return c
 
 
 # The built-in theme sets these with literal hexes and no variable after them,
@@ -194,7 +263,10 @@ if __name__ == '__main__':
                  encoding='utf-8').read()
     schemes = {s['name']: s for s in json.load(open(ROOT / 'schemes.json'))}
     s = schemes[name]
-    palette = decorpse(s['colors'])
+    is_nocturne = name == 'nocturne'
+    palette = decorpse(s['colors']) if is_nocturne else calm(s['colors'])
+    reading = reading_palette(palette) if is_nocturne else palette
+    role_override = NOCTURNE_ROLE_OVERRIDE if is_nocturne else BASELINE_ROLE_OVERRIDE
     css = build(block, palette)
     css = re.sub(r'/\*.*?\*/', '', css, count=1, flags=re.S)
     lines = []
@@ -203,16 +275,36 @@ if __name__ == '__main__':
         if not l:
             continue
         var = l.split(':', 1)[0].strip()
-        if var in ROLE_OVERRIDE:
-            colour = s.get('markdown_title', palette['str']) if var == '--h1Color' else palette[ROLE_OVERRIDE[var]]
+        if var == '--editorAreaWidth':
+            l = '--editorAreaWidth: 700px;'
+        if var in role_override:
+            if var == '--h1Color':
+                title = s.get('markdown_title', palette['str'])
+                colour = (ensure_contrast(title, palette['base03'], 8.0)
+                          if is_nocturne else title)
+            else:
+                colour = reading[role_override[var]]
             l = f"{var}: {colour};"
         lines.append('  ' + l)
     body = (f"/* solar-eclipse-{name} for MarkText\n"
             f" * Paste into Preferences -> Theme -> Custom CSS.\n"
             f" * Overrides whichever built-in theme is selected. */\n"
             ":root {\n" + "\n".join(lines) + "\n}\n"
-            + prism_rules(palette) + leak_rules(palette)
-            + codemirror_rules(palette) + "\n")
+            + prism_rules(readable_code_palette(palette)) + leak_rules(palette)
+            + codemirror_rules(readable_code_palette(palette)) + "\n")
+    from markdown_design import prose
+    from obsidian_reading import BASE_COLORS
+    c = {**palette, **BASE_COLORS.get(name, {})}
+    r = prose(name, c)
+    values = {'editorColor': c['base0'], 'editorBgColor': c['base03'],
+              'codeBgColor': c['base02'], 'codeBlockBgColor': c['base02'],
+              'headingColor': c['base1'], 'strongColor':r['bold'],
+              'emColor':r['italic'], 'linkColor':r['link'],
+              'inlineCodeColor':r['inline'], 'blockquoteTextColor':r['quote'], 'listMarkerColor':r['marker'],
+              'blockquoteBorderColor':r['marker'], 'selectionColor':r['selection'],
+              **{f'h{n}Color':r[f'h{n}'] for n in range(1,7)}}
+    body += '\n/* Coordinated prose colors. */\n:root {\n' + ''.join(
+        f'  --{key}: {value};\n' for key, value in values.items()) + '}\n'
     out = str(ROOT / 'marktext-colors-solar-eclipse' / f'Solar Eclipse {s["label"]}.css')
     open(out, 'w', encoding='utf-8').write(body)
     print(f'{out}: {len(body)} bytes, '

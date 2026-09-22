@@ -2,7 +2,7 @@
  * Paste into Preferences -> Theme -> Custom CSS.
  * Overrides whichever built-in theme is selected. */
 :root {
-  --themeColor: #4291a1;
+  --themeColor: #438e9d;
   --themeColor90: rgba(110, 131, 156, 0.9);
   --themeColor80: rgba(110, 131, 156, 0.8);
   --themeColor70: rgba(110, 131, 156, 0.7);
@@ -23,13 +23,13 @@
   --editorColor10: rgba(124, 133, 136, 0.1);
   --editorColor04: rgba(124, 133, 136, 0.04);
   --editorBgColor: #000d11;
-  --deleteColor: #75739d;
+  --deleteColor: #9d6a5e;
   --iconColor: rgba(124, 133, 136, 0.56);
   --codeBgColor: #001b21;
   --codeBlockBgColor: #001b21;
   --footnoteBgColor: rgba(0, 27, 33, 0.3);
   --inputBgColor: #000000;
-  --focusColor: #4291a1;
+  --focusColor: #438e9d;
   --buttonFontColor: rgba(124, 133, 136, 0.6);
   --buttonBgColor: #001b21;
   --buttonBorder: 1px solid rgba(0, 0, 0, 0.2);
@@ -45,14 +45,14 @@
   --buttonPrimaryBorder: none;
   --buttonPrimaryShadow: none;
   --buttonPrimaryFontColorHover: var(--buttonPrimaryFontColor);
-  --buttonPrimaryBgColorHover: #4291a1;
+  --buttonPrimaryBgColorHover: #438e9d;
   --buttonPrimaryBorderHover: var(--buttonPrimaryBorder);
   --buttonPrimaryFontColorActive: var(--buttonPrimaryFontColor);
   --buttonPrimaryBgColorActive: #546981;
   --buttonPrimaryBorderActive: var(--buttonPrimaryBorder);
   --buttonPrimaryFocusBorder: none;
   --buttonPrimaryFocusShadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--themeColor);
-  --tableBorderColor: #001b21;
+  --tableBorderColor: #436069;
   /* Markdown element colors */
   --headingColor: #899295;
   --h1Color: #9daaa6;
@@ -61,13 +61,13 @@
   --h4Color: #899295;
   --h5Color: #899295;
   --h6Color: #899295;
-  --blockquoteTextColor: rgba(124, 133, 136, 0.6);
-  --blockquoteBorderColor: #436069;
-  --hrColor: #001b21;
-  --linkColor: #4291a1;
+  --blockquoteTextColor: #7c8588;
+  --blockquoteBorderColor: #4f6d76;
+  --hrColor: #436069;
+  --linkColor: #6e839c;
   --strongColor: #899295;
-  --emColor: #538671;
-  --listMarkerColor: #538671;
+  --emColor: #899295;
+  --listMarkerColor: #436069;
   /*marktext*/
   --sideBarColor: rgba(124, 133, 136, 0.6);
   --sideBarIconColor: var(--iconColor);
@@ -82,21 +82,21 @@
   --floatBorderColor: rgba(0, 0, 0, 0.05);
   --floatShadow: rgba(0, 0, 0, 0.2);
   --maskColor: rgba(0, 0, 0, 0.7);
-  --editorAreaWidth: 750px;
+  --editorAreaWidth: 700px;
 }
 
 /* fenced code blocks: Prism hardcodes these, so they are set here */
 code[class*='language-'], pre.ag-paragraph { color: #7c8588; }
-.language-css .token.string, .style .token.string { color: #4291a1; }
-.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #436069; background: none; }
-.token.punctuation { color: #4f6d76; background: none; }
+.language-css .token.string, .style .token.string { color: #438e9d; }
+.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #67858e; background: none; }
+.token.punctuation { color: #66858e; background: none; }
 .token.keyword,.token.atrule,.token.important { color: #7e855e; background: none; }
-.token.string,.token.char,.token.attr-value,.token.regex { color: #4291a1; background: none; }
+.token.string,.token.char,.token.attr-value,.token.regex { color: #438e9d; background: none; }
 .token.function,.token.function-name,.token.selector { color: #6e839c; background: none; }
-.token.number,.token.boolean,.token.constant,.token.symbol { color: #538671; background: none; }
-.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #538671; background: none; }
+.token.number,.token.boolean,.token.constant,.token.symbol { color: #9c7491; background: none; }
+.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #9c7491; background: none; }
 .token.operator,.token.variable,.token.entity,.token.url { color: #7c8588; background: none; }
-.token.deleted { color: #37827d; background: none; }
+.token.deleted { color: #a77467; background: none; }
 .token.inserted { color: #7e855e; background: none; }
 /* the built-in theme hardcodes these, with no variable to override */
 .title-bar .frameless-titlebar-button > div > svg { fill: #7c8588; }
@@ -109,20 +109,43 @@ code[class*='language-'], pre.ag-paragraph { color: #7c8588; }
 .cm-s-railscasts { background: #001b21; color: #7c8588; }
 .cm-s-railscasts div.CodeMirror-selected { background: #082329 !important; }
 .cm-s-railscasts .CodeMirror-gutters { background: #001b21; border-right: 0; }
-.cm-s-railscasts .CodeMirror-linenumber { color: #436069; }
+.cm-s-railscasts .CodeMirror-linenumber { color: #67858e; }
 .cm-s-railscasts .CodeMirror-cursor { border-left: 1px solid #899295 !important; }
 .cm-s-railscasts .CodeMirror-activeline-background { background: #041f25; }
 .cm-s-railscasts .CodeMirror-matchingbracket { text-decoration: underline; color: #899295 !important; }
-.cm-s-railscasts span.cm-comment { color: #436069; }
-.cm-s-railscasts span.cm-atom { color: #538671; }
-.cm-s-railscasts span.cm-number { color: #538671; }
-.cm-s-railscasts span.cm-property, .cm-s-railscasts span.cm-attribute { color: #538671; }
+.cm-s-railscasts span.cm-comment { color: #67858e; }
+.cm-s-railscasts span.cm-atom { color: #9c7491; }
+.cm-s-railscasts span.cm-number { color: #9c7491; }
+.cm-s-railscasts span.cm-property, .cm-s-railscasts span.cm-attribute { color: #9c7491; }
 .cm-s-railscasts span.cm-keyword { color: #7e855e; }
-.cm-s-railscasts span.cm-string { color: #4291a1; }
+.cm-s-railscasts span.cm-string { color: #438e9d; }
 .cm-s-railscasts span.cm-variable { color: #7c8588; }
 .cm-s-railscasts span.cm-variable-2 { color: #6e839c; }
 .cm-s-railscasts span.cm-def { color: #6e839c; }
-.cm-s-railscasts span.cm-error { background: none; color: #37827d; }
-.cm-s-railscasts span.cm-bracket { color: #4f6d76; }
-.cm-s-railscasts span.cm-tag { color: #538671; }
-.cm-s-railscasts span.cm-link { color: #4291a1; }
+.cm-s-railscasts span.cm-error { background: none; color: #a77467; }
+.cm-s-railscasts span.cm-bracket { color: #66858e; }
+.cm-s-railscasts span.cm-tag { color: #9c7491; }
+.cm-s-railscasts span.cm-link { color: #438e9d; }
+
+/* Coordinated prose colors. */
+:root {
+  --editorColor: #7c8588;
+  --editorBgColor: #0a1418;
+  --codeBgColor: #142126;
+  --codeBlockBgColor: #142126;
+  --headingColor: #899295;
+  --strongColor: #899295;
+  --emColor: #7c8588;
+  --linkColor: #7e9d9e;
+  --inlineCodeColor: #899789;
+  --blockquoteTextColor: #7c8588;
+  --listMarkerColor: #899789;
+  --blockquoteBorderColor: #899789;
+  --selectionColor: #7e9d9e38;
+  --h1Color: #829da8;
+  --h2Color: #9c9177;
+  --h3Color: #9fa8a6;
+  --h4Color: #9fa8a6;
+  --h5Color: #899295;
+  --h6Color: #899295;
+}

@@ -27,55 +27,44 @@ true here -- don't rename the folder after copying it.
 
 ## What each theme covers
 
-186 CSS custom properties per scheme, generated from `schemes.json`: the
-twelve-step `--color-base-*` neutral ramp, the eight-colour extended palette,
-backgrounds, text, interactive and accent colours, code/syntax highlighting,
-headings, links, blockquotes, callouts, tags, lists, checkboxes, tables,
-scrollbars, dividers, the titlebar, ribbon, status bar, tabs, and the file
-explorer.
+The themes cover reading surfaces, headings, links, lists, quotes, callouts,
+tags, checkboxes, tables, navigation, tabs, and controls. They are dark-only;
+set **Appearance -> Base color scheme** to Dark.
 
-These are dark-only, like the VS Code and MarkText ports -- everything is
-set under `.theme-dark` and nothing is defined for `.theme-light`. Leave
-**Appearance -> Base color scheme** on Dark.
+## Reading design
 
-## Two decisions specific to this app
+All five themes use dedicated prose roles from `utils/obsidian_reading.py`.
 
-**The neutral ramp isn't neutral.** Obsidian's own `--color-base-00..100`
-scale is genuinely grey. This one walks the six lightness steps already in
-the palette -- background, highlight, comments, faint text, body text,
-bright text -- which are already a ramp along the scheme's own hue, and fills
-in the gaps between them in OKLab-adjacent CIELAB space. A plugin that reaches
-for `--color-base-60` gets a tone that belongs to the scheme instead of a
-generic grey.
+- Titles, major sections, and smaller headings have distinct, coordinated
+  hues. H3/H4 share a color family; H5/H6 return to a quiet neutral.
+  Size, weight, and spacing support the hierarchy at every level.
+- Body text uses the shared palette with a small brightness reduction for
+  Ashen and a cooler silver tone for Umbra. The theme preserves the fonts
+  selected in appearance settings.
+- A 1.6 line height and wider list-item spacing give dense notes more air.
+  Reading view adds a little more space between top-level list items.
+- Links share one accent, with a thin, subdued underline in the document.
+- The selected file has a tinted background and a narrow location marker.
+- Quotes and tags use a secondary accent. Highlights use a muted warm tint.
+  Success, warning, and error callouts have distinct semantic colors.
+- Readable line length is 740px when Obsidian's readable-line-length option
+  is enabled. Existing font-size and line-length preferences remain available.
 
-**Only h1 carries colour.** A note is mostly headings, the densest,
-most-scanned structure on the page -- more so than a MarkText document and
-the opposite of a code file, where a coloured token type is rare. Colouring
-every heading level the way VS Code colours syntax would put the most colour
-exactly where "brightness carries the distinction, not hue" matters most, so
-`h1` keeps the standout accent and `h2` through `h6` are pinned to the same
-bright neutral tone, separated by size and weight instead. Obsidian and
-MarkText agree on this now; VS Code already did the equivalent for markdown
-inside a code file, colouring only `h1` and leaving the rest bold.
+Umbra pairs silver titles, mineral-blue sections, and lilac subheadings
+with a smoky plum-gray reading surface and a cooler slate sidebar and tab bar.
+Nocturne uses silver, mist blue, and lavender on deep
+blue. Ashen pairs warm stone titles with blue and sage on graphite.
+Totality uses dim silver, faded blue, and dusky violet on deep ink.
+Verdigris pairs its deep green background with warm silver titles, blue
+sections and links, olive-gold subheadings, and occasional brass highlights.
+Ashen and Nocturne use quieter blue accents to reduce their visual intensity.
+Nocturne's background has less blue saturation. Totality lifts its near-black
+surface slightly and dims its accents so links sit closer to body text.
 
-**Prose accents still get the MarkText correction.** Where an accent does
-appear -- callouts, tags, links -- a warm mid-chroma hue that a code editor
-would spend sparingly on numbers is moved to the coolest hue clear of the
-rest, same algorithm as the MarkText port. Left alone, a drained warm hue
-reads as skin rather than restraint once it's dense on a page instead of
-sparse in code.
-
-## Extended palette and callouts
-
-Obsidian expects eight named colours (red, orange, yellow, green, cyan,
-blue, purple, pink) but the schemes carry six accents for eight roles --
-numbers share type names, and errors share the preprocessor marker -- so
-`--color-red` equals `--color-orange`, and `--color-yellow` equals
-`--color-pink`. That's the same restraint as the other ports, not a mistake
-here specifically. Callout types (`note`, `warning`, `success`, ...) are
-mapped onto the same six accents by their usual sense -- `tip`/`important`
-land on the standout colour, `warning`/`caution` on the same tone as
-`danger`/`error`, and so on.
+`schemes.json` still supplies the shared base palette. Obsidian-specific
+changes do not change the VS Code or MarkText ports. The generated CSS uses
+Obsidian's built-in variables for most styling and a few scoped rules for
+links, list grouping, and the selected file.
 
 ## Rebuilding
 
@@ -87,3 +76,9 @@ python3 utils/make_obsidian.py
 variables are documented, not reverse-engineered from a bundled stylesheet,
 so the generator writes directly against the names in
 [Obsidian's CSS variable reference](https://docs.obsidian.md/Reference/CSS+variables/CSS+variables).
+
+
+The local set includes nine themes: Nocturne, Verdigris, Ashen, Umbra,
+Totality, Umbra B, Umbra D, Solarized Dark Reading, and Solarized Green.
+The Solarized reading themes are adaptations, separate from the bundled
+VS Code Solarized reference.

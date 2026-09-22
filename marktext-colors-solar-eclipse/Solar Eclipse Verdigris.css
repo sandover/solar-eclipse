@@ -2,7 +2,7 @@
  * Paste into Preferences -> Theme -> Custom CSS.
  * Overrides whichever built-in theme is selected. */
 :root {
-  --themeColor: #4f9dba;
+  --themeColor: #5899b3;
   --themeColor90: rgba(123, 144, 166, 0.9);
   --themeColor80: rgba(123, 144, 166, 0.8);
   --themeColor70: rgba(123, 144, 166, 0.7);
@@ -23,13 +23,13 @@
   --editorColor10: rgba(139, 146, 145, 0.1);
   --editorColor04: rgba(139, 146, 145, 0.04);
   --editorBgColor: #012324;
-  --deleteColor: #6b83a0;
+  --deleteColor: #5d89a5;
   --iconColor: rgba(139, 146, 145, 0.56);
   --codeBgColor: #082e2f;
   --codeBlockBgColor: #082e2f;
   --footnoteBgColor: rgba(8, 46, 47, 0.3);
   --inputBgColor: #001616;
-  --focusColor: #4f9dba;
+  --focusColor: #5899b3;
   --buttonFontColor: rgba(139, 146, 145, 0.6);
   --buttonBgColor: #082e2f;
   --buttonBorder: 1px solid rgba(0, 0, 0, 0.2);
@@ -45,14 +45,14 @@
   --buttonPrimaryBorder: none;
   --buttonPrimaryShadow: none;
   --buttonPrimaryFontColorHover: var(--buttonPrimaryFontColor);
-  --buttonPrimaryBgColorHover: #4f9dba;
+  --buttonPrimaryBgColorHover: #5899b3;
   --buttonPrimaryBorderHover: var(--buttonPrimaryBorder);
   --buttonPrimaryFontColorActive: var(--buttonPrimaryFontColor);
   --buttonPrimaryBgColorActive: #61758b;
   --buttonPrimaryBorderActive: var(--buttonPrimaryBorder);
   --buttonPrimaryFocusBorder: none;
   --buttonPrimaryFocusShadow: inset 0 0 0 1px rgba(0, 21, 21, 0.5), 0 0 0 1px var(--themeColor);
-  --tableBorderColor: #082e2f;
+  --tableBorderColor: #5a6e6e;
   /* Markdown element colors */
   --headingColor: #989f9f;
   --h1Color: #b2b5a4;
@@ -61,13 +61,13 @@
   --h4Color: #989f9f;
   --h5Color: #989f9f;
   --h6Color: #989f9f;
-  --blockquoteTextColor: rgba(139, 146, 145, 0.6);
-  --blockquoteBorderColor: #5a6e6e;
-  --hrColor: #082e2f;
-  --linkColor: #4f9dba;
+  --blockquoteTextColor: #8b9291;
+  --blockquoteBorderColor: #677b7c;
+  --hrColor: #5a6e6e;
+  --linkColor: #7b90a6;
   --strongColor: #989f9f;
-  --emColor: #668aa7;
-  --listMarkerColor: #668aa7;
+  --emColor: #989f9f;
+  --listMarkerColor: #5a6e6e;
   /*marktext*/
   --sideBarColor: rgba(139, 146, 145, 0.6);
   --sideBarIconColor: var(--iconColor);
@@ -82,22 +82,22 @@
   --floatBorderColor: rgba(0, 0, 0, 0.05);
   --floatShadow: rgba(0, 0, 0, 0.2);
   --maskColor: rgba(0, 0, 0, 0.7);
-  --editorAreaWidth: 750px;
+  --editorAreaWidth: 700px;
 }
 
 /* fenced code blocks: Prism hardcodes these, so they are set here */
 code[class*='language-'], pre.ag-paragraph { color: #8b9291; }
-.language-css .token.string, .style .token.string { color: #4f9dba; }
-.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #5a6e6e; background: none; }
-.token.punctuation { color: #677b7c; background: none; }
-.token.keyword,.token.atrule,.token.important { color: #5f979b; background: none; }
-.token.string,.token.char,.token.attr-value,.token.regex { color: #4f9dba; background: none; }
-.token.function,.token.function-name,.token.selector { color: #7b90a6; background: none; }
-.token.number,.token.boolean,.token.constant,.token.symbol { color: #668aa7; background: none; }
-.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #668aa7; background: none; }
+.language-css .token.string, .style .token.string { color: #5899b3; }
+.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #7f9494; background: none; }
+.token.punctuation { color: #7f9394; background: none; }
+.token.keyword,.token.atrule,.token.important { color: #61999d; background: none; }
+.token.string,.token.char,.token.attr-value,.token.regex { color: #5899b3; background: none; }
+.token.function,.token.function-name,.token.selector { color: #7d92a8; background: none; }
+.token.number,.token.boolean,.token.constant,.token.symbol { color: #7094b1; background: none; }
+.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #7094b1; background: none; }
 .token.operator,.token.variable,.token.entity,.token.url { color: #8b9291; background: none; }
-.token.deleted { color: #5d89a5; background: none; }
-.token.inserted { color: #5f979b; background: none; }
+.token.deleted { color: #6995b1; background: none; }
+.token.inserted { color: #61999d; background: none; }
 /* the built-in theme hardcodes these, with no variable to override */
 .title-bar .frameless-titlebar-button > div > svg { fill: #8b9291; }
 .title-bar .frameless-titlebar-minimize:hover,
@@ -109,20 +109,43 @@ code[class*='language-'], pre.ag-paragraph { color: #8b9291; }
 .cm-s-railscasts { background: #082e2f; color: #8b9291; }
 .cm-s-railscasts div.CodeMirror-selected { background: #133738 !important; }
 .cm-s-railscasts .CodeMirror-gutters { background: #082e2f; border-right: 0; }
-.cm-s-railscasts .CodeMirror-linenumber { color: #5a6e6e; }
+.cm-s-railscasts .CodeMirror-linenumber { color: #7f9494; }
 .cm-s-railscasts .CodeMirror-cursor { border-left: 1px solid #989f9f !important; }
 .cm-s-railscasts .CodeMirror-activeline-background { background: #0d3233; }
 .cm-s-railscasts .CodeMirror-matchingbracket { text-decoration: underline; color: #989f9f !important; }
-.cm-s-railscasts span.cm-comment { color: #5a6e6e; }
-.cm-s-railscasts span.cm-atom { color: #668aa7; }
-.cm-s-railscasts span.cm-number { color: #668aa7; }
-.cm-s-railscasts span.cm-property, .cm-s-railscasts span.cm-attribute { color: #668aa7; }
-.cm-s-railscasts span.cm-keyword { color: #5f979b; }
-.cm-s-railscasts span.cm-string { color: #4f9dba; }
+.cm-s-railscasts span.cm-comment { color: #7f9494; }
+.cm-s-railscasts span.cm-atom { color: #7094b1; }
+.cm-s-railscasts span.cm-number { color: #7094b1; }
+.cm-s-railscasts span.cm-property, .cm-s-railscasts span.cm-attribute { color: #7094b1; }
+.cm-s-railscasts span.cm-keyword { color: #61999d; }
+.cm-s-railscasts span.cm-string { color: #5899b3; }
 .cm-s-railscasts span.cm-variable { color: #8b9291; }
-.cm-s-railscasts span.cm-variable-2 { color: #7b90a6; }
-.cm-s-railscasts span.cm-def { color: #7b90a6; }
-.cm-s-railscasts span.cm-error { background: none; color: #5d89a5; }
-.cm-s-railscasts span.cm-bracket { color: #677b7c; }
-.cm-s-railscasts span.cm-tag { color: #668aa7; }
-.cm-s-railscasts span.cm-link { color: #4f9dba; }
+.cm-s-railscasts span.cm-variable-2 { color: #7d92a8; }
+.cm-s-railscasts span.cm-def { color: #7d92a8; }
+.cm-s-railscasts span.cm-error { background: none; color: #6995b1; }
+.cm-s-railscasts span.cm-bracket { color: #7f9394; }
+.cm-s-railscasts span.cm-tag { color: #7094b1; }
+.cm-s-railscasts span.cm-link { color: #5899b3; }
+
+/* Coordinated prose colors. */
+:root {
+  --editorColor: #8b9291;
+  --editorBgColor: #012324;
+  --codeBgColor: #082e2f;
+  --codeBlockBgColor: #082e2f;
+  --headingColor: #989f9f;
+  --strongColor: #989f9f;
+  --emColor: #8b9291;
+  --linkColor: #7eaaa6;
+  --inlineCodeColor: #8f9279;
+  --blockquoteTextColor: #8b9291;
+  --listMarkerColor: #8f9279;
+  --blockquoteBorderColor: #8f9279;
+  --selectionColor: #7eaaa638;
+  --h1Color: #6f9caf;
+  --h2Color: #9a9071;
+  --h3Color: #a3a39e;
+  --h4Color: #a3a39e;
+  --h5Color: #989f9f;
+  --h6Color: #989f9f;
+}

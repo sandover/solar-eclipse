@@ -14,7 +14,7 @@
   --themeColor10: rgba(121, 145, 161, 0.1);
   --highlightColor: rgba(121, 145, 161, 0.6);
   --selectionColor: rgba(5, 37, 58, 0.8);
-  --editorColor: #8a9297;
+  --editorColor: #9ca4aa;
   --editorColor80: rgba(138, 146, 151, 0.8);
   --editorColor60: rgba(138, 146, 151, 0.6);
   --editorColor50: rgba(138, 146, 151, 0.5);
@@ -23,7 +23,7 @@
   --editorColor10: rgba(138, 146, 151, 0.1);
   --editorColor04: rgba(138, 146, 151, 0.04);
   --editorBgColor: #001a2d;
-  --deleteColor: #8a779d;
+  --deleteColor: #9ca4aa;
   --iconColor: rgba(138, 146, 151, 0.56);
   --codeBgColor: #05253a;
   --codeBlockBgColor: #05253a;
@@ -52,22 +52,22 @@
   --buttonPrimaryBorderActive: var(--buttonPrimaryBorder);
   --buttonPrimaryFocusBorder: none;
   --buttonPrimaryFocusShadow: inset 0 0 0 1px rgba(0, 9, 19, 0.5), 0 0 0 1px var(--themeColor);
-  --tableBorderColor: #05253a;
+  --tableBorderColor: #5f6c7b;
   /* Markdown element colors */
-  --headingColor: #999fa2;
+  --headingColor: #aab0b3;
   --h1Color: #a5b0bf;
-  --h2Color: #999fa2;
-  --h3Color: #999fa2;
-  --h4Color: #999fa2;
-  --h5Color: #999fa2;
-  --h6Color: #999fa2;
-  --blockquoteTextColor: rgba(138, 146, 151, 0.6);
-  --blockquoteBorderColor: #5f6c7b;
-  --hrColor: #05253a;
-  --linkColor: #4ca1b7;
-  --strongColor: #999fa2;
-  --emColor: #5b917b;
-  --listMarkerColor: #5b917b;
+  --h2Color: #aab0b3;
+  --h3Color: #aab0b3;
+  --h4Color: #aab0b3;
+  --h5Color: #aab0b3;
+  --h6Color: #aab0b3;
+  --blockquoteTextColor: #9ca4aa;
+  --blockquoteBorderColor: #6b7988;
+  --hrColor: #5f6c7b;
+  --linkColor: #aab0b3;
+  --strongColor: #aab0b3;
+  --emColor: #aab0b3;
+  --listMarkerColor: #aab0b3;
   /*marktext*/
   --sideBarColor: rgba(138, 146, 151, 0.6);
   --sideBarIconColor: var(--iconColor);
@@ -82,21 +82,21 @@
   --floatBorderColor: rgba(0, 0, 0, 0.05);
   --floatShadow: rgba(0, 0, 0, 0.2);
   --maskColor: rgba(0, 0, 0, 0.7);
-  --editorAreaWidth: 750px;
+  --editorAreaWidth: 700px;
 }
 
 /* fenced code blocks: Prism hardcodes these, so they are set here */
 code[class*='language-'], pre.ag-paragraph { color: #8a9297; }
 .language-css .token.string, .style .token.string { color: #4ca1b7; }
-.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #5f6c7b; background: none; }
-.token.punctuation { color: #6b7988; background: none; }
+.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #7d8b9a; background: none; }
+.token.punctuation { color: #7c8b9a; background: none; }
 .token.keyword,.token.atrule,.token.important { color: #998d66; background: none; }
 .token.string,.token.char,.token.attr-value,.token.regex { color: #4ca1b7; background: none; }
 .token.function,.token.function-name,.token.selector { color: #7991a1; background: none; }
-.token.number,.token.boolean,.token.constant,.token.symbol { color: #5b917b; background: none; }
-.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #5b917b; background: none; }
+.token.number,.token.boolean,.token.constant,.token.symbol { color: #5e947e; background: none; }
+.token.class-name,.token.builtin,.token.tag,.token.attr-name,.token.property { color: #5e947e; background: none; }
 .token.operator,.token.variable,.token.entity,.token.url { color: #8a9297; background: none; }
-.token.deleted { color: #78866c; background: none; }
+.token.deleted { color: #7f8e73; background: none; }
 .token.inserted { color: #998d66; background: none; }
 /* the built-in theme hardcodes these, with no variable to override */
 .title-bar .frameless-titlebar-button > div > svg { fill: #8a9297; }
@@ -109,20 +109,43 @@ code[class*='language-'], pre.ag-paragraph { color: #8a9297; }
 .cm-s-railscasts { background: #05253a; color: #8a9297; }
 .cm-s-railscasts div.CodeMirror-selected { background: #102d43 !important; }
 .cm-s-railscasts .CodeMirror-gutters { background: #05253a; border-right: 0; }
-.cm-s-railscasts .CodeMirror-linenumber { color: #5f6c7b; }
+.cm-s-railscasts .CodeMirror-linenumber { color: #7d8b9a; }
 .cm-s-railscasts .CodeMirror-cursor { border-left: 1px solid #999fa2 !important; }
 .cm-s-railscasts .CodeMirror-activeline-background { background: #0b293f; }
 .cm-s-railscasts .CodeMirror-matchingbracket { text-decoration: underline; color: #999fa2 !important; }
-.cm-s-railscasts span.cm-comment { color: #5f6c7b; }
-.cm-s-railscasts span.cm-atom { color: #5b917b; }
-.cm-s-railscasts span.cm-number { color: #5b917b; }
-.cm-s-railscasts span.cm-property, .cm-s-railscasts span.cm-attribute { color: #5b917b; }
+.cm-s-railscasts span.cm-comment { color: #7d8b9a; }
+.cm-s-railscasts span.cm-atom { color: #5e947e; }
+.cm-s-railscasts span.cm-number { color: #5e947e; }
+.cm-s-railscasts span.cm-property, .cm-s-railscasts span.cm-attribute { color: #5e947e; }
 .cm-s-railscasts span.cm-keyword { color: #998d66; }
 .cm-s-railscasts span.cm-string { color: #4ca1b7; }
 .cm-s-railscasts span.cm-variable { color: #8a9297; }
 .cm-s-railscasts span.cm-variable-2 { color: #7991a1; }
 .cm-s-railscasts span.cm-def { color: #7991a1; }
-.cm-s-railscasts span.cm-error { background: none; color: #78866c; }
-.cm-s-railscasts span.cm-bracket { color: #6b7988; }
-.cm-s-railscasts span.cm-tag { color: #5b917b; }
+.cm-s-railscasts span.cm-error { background: none; color: #7f8e73; }
+.cm-s-railscasts span.cm-bracket { color: #7c8b9a; }
+.cm-s-railscasts span.cm-tag { color: #5e947e; }
 .cm-s-railscasts span.cm-link { color: #4ca1b7; }
+
+/* Coordinated prose colors. */
+:root {
+  --editorColor: #8a9297;
+  --editorBgColor: #0c1b28;
+  --codeBgColor: #162735;
+  --codeBlockBgColor: #162735;
+  --headingColor: #999fa2;
+  --strongColor: #999fa2;
+  --emColor: #8a9297;
+  --linkColor: #829fae;
+  --inlineCodeColor: #8e9b9d;
+  --blockquoteTextColor: #8a9297;
+  --listMarkerColor: #8e9b9d;
+  --blockquoteBorderColor: #8e9b9d;
+  --selectionColor: #829fae38;
+  --h1Color: #8ba9ba;
+  --h2Color: #a69a7c;
+  --h3Color: #a7afb1;
+  --h4Color: #a7afb1;
+  --h5Color: #999fa2;
+  --h6Color: #999fa2;
+}

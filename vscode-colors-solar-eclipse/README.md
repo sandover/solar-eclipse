@@ -1,7 +1,16 @@
 # Solar Eclipse for VS Code
 
+## WYSIWYG Markdown Editor
+
+The optional `zaaack.markdown-editor` extension embeds Vditor, so its document
+typography does not fully follow ordinary editor settings. Set
+`markdown-editor.customCss` to the contents of `markdown-editor.css` for an
+Inconsolata reading surface whose text and accents follow the active VS Code
+theme. The stylesheet intentionally leaves Vditor's alternating table rows,
+cell backgrounds, and borders unchanged.
+
 A real theme extension, unlike the MarkText port — one extension carrying all
-three schemes, so they appear together in the theme picker.
+seven schemes, so they appear together in the theme picker.
 
 ## Install
 
@@ -22,25 +31,44 @@ Then **Cmd-Shift-P → Developer: Reload Window**, and pick the theme from
 
 ## What each scheme covers
 
-127 workbench colours and 31 token rules, all derived from `schemes.json`:
-editor, sidebar, activity bar, status bar, tabs, panel, terminal (all sixteen
-ANSI slots), lists, inputs, git decorations and diffs. Semantic highlighting is
-on, with semantic token colours matching the TextMate rules.
+The extension includes Nocturne, Verdigris, Ashen, Umbra, Totality, and the
+Umbra B and Umbra D candidates. All cover the editor, navigation, terminal,
+code tokens, Markdown, and controls.
 
-Two derived tones are computed rather than taken from the palette: the chrome
-behind the sidebar and status bar sits 1.6 points darker than the editor
-background, and popups sit 2.2 points lighter, so panels read as layered without
-introducing a colour the scheme does not have.
+## Reading and color
 
-## One difference from the MarkText port
+VS Code-specific adjustments live in `utils/make_vscode.py`. They do not
+change the Obsidian or MarkText ports. Verdigris retains its established
+background and relates its text and accents to that ground in CIELAB D65. Nocturne has a less saturated background; Ashen
+has softer body text; Totality uses a slightly lifted dark surface.
 
-The warm accent stays where it is here. In a markdown editor that colour lands
-on every heading and reads as pallor, so the MarkText build moves it. In a code
-editor it lands on numbers and constants, which are sparse, so it reads as
-intended and is left alone.
+Umbra B pairs plum `#2b282e` with green silver `#a4a69b`. Umbra D pairs
+slate `#292b2b` with warm silver `#aaa499`. These are the selected reading
+candidates, available as separate themes for comparison.
+
+Code accents stay within the body text's lightness and a restrained chroma
+limit. Markdown titles use the bright neutral; second-level headings use
+the link accent. Embedded Markdown styling also softens heading rules and
+forces links to follow the active theme instead of a default bright blue.
+Verdigris uses related green-silver titles and quieter teal section headings. Inline code
+uses a quiet text color instead of the embedded editor's yellow default.
+The user's Inconsolata choice and existing table surfaces are preserved.
+
+Verdigris defines one coordinated green, olive, and muted-gold family across
+syntax, brackets, terminal colors, navigation, controls, notifications, and
+diagnostics. A restrained copper tone distinguishes errors. Bright terminal
+colors rise only slightly above their normal counterparts. The default vivid
+yellow and orchid bracket colors are explicitly replaced. These relationships
+are a visual candidate; numerical checks do not establish reading comfort.
 
 ## Rebuilding
 
 ```
 python3 utils/make_vscode.py
 ```
+
+
+The local set includes nine themes: Nocturne, Verdigris, Ashen, Umbra,
+Totality, Umbra B, Umbra D, Solarized Dark Reading, and Solarized Green.
+The Solarized reading themes are adaptations, separate from the bundled
+VS Code Solarized reference.

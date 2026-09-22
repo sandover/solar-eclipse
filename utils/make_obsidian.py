@@ -6,13 +6,11 @@ folder under .obsidian/themes/<name>/ with a manifest.json and a theme.css,
 and they show up together in Appearance -> Themes. So this generates one
 folder per scheme, the same five as the other ports.
 
-Obsidian is prose, like MarkText, not code like VS Code -- a note is mostly
-headings and paragraphs, so the same correction applies: a warm mid-chroma
-accent that a code editor spends on numbers would otherwise sit on every
-heading, and a drained warm hue reads as skin rather than restraint. Moved
-to the coolest hue clear of the rest, same as the MarkText port.
+Shared palette values supply the base surfaces. obsidian_reading.py assigns
+prose colors, spacing, and navigation details for all five themes.
 """
 import pathlib, json, re, math
+from obsidian_reading import BASE_COLORS, PALETTES, READING_CSS, SURROUNDS, reading_vars
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent
 exec(open(HERE / 'pal.py').read().split('# ---------- Solarized reference')[0])
@@ -143,10 +141,11 @@ CALLOUT = {
 }
 
 def build_vars(s):
-    c = decorpse(s['colors'])
+    colors = {**s['colors'], **BASE_COLORS.get(s['name'], {})}
+    c = decorpse(colors)
     ramp = base_ramp(c)
     bg, hl = c['base03'], c['base02']
-    chrome = darken_toward_black(bg, 4.0)
+    chrome = SURROUNDS.get(s['name'], darken_toward_black(bg, 4.0))
     over = shade(bg, +3.2)
     accent = c['str']
 
@@ -314,6 +313,13 @@ def build_vars(s):
         for key in ('--nav-item-background-active', '--nav-item-background-selected',
                     '--text-selection', '--table-selection'):
             v[key] = selection
+    v.update(reading_vars(s['name'], colors, alpha, shade))
+    if s['name'] in PALETTES:
+        h, saturation, lightness = hex2hsl(v['--interactive-accent'])
+        v['--accent-h'] = f'{h:.0f}'
+        v['--accent-s'] = f'{saturation:.0f}%'
+        v['--accent-l'] = f'{lightness:.0f}%'
+        v['--interactive-accent-hsl'] = hsl_triple(v['--interactive-accent'])
     return v
 
 def render_css(s, v):
@@ -328,6 +334,8 @@ def render_css(s, v):
         lines.append(f'  {k}: {v[k]};')
     lines.append('}')
     lines.append('')
+    if s['name'] in PALETTES:
+        lines.append(READING_CSS)
     return '\n'.join(lines)
 
 def manifest(s):
@@ -340,7 +348,11 @@ def manifest(s):
 
 if __name__ == '__main__':
     out = ROOT / 'obsidian-colors-solar-eclipse'
-    schemes = [s for s in json.load(open(ROOT / 'schemes.json')) if s['name'] != 'solarized']
+    from make_vscode import install_schemes, READING_BASES
+    schemes = install_schemes(json.load(open(ROOT / 'schemes.json')))
+    for s in schemes:
+        if s['name'] in ('umbra-b', 'umbra-d'):
+            s['colors'] = {**s['colors'], **READING_BASES[s['name']]}
     for s in schemes:
         name = f'Solar Eclipse {s["label"]}'
         theme_dir = out / name

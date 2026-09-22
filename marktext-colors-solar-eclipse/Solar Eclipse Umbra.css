@@ -23,7 +23,7 @@
   --editorColor10: rgba(159, 158, 154, 0.1);
   --editorColor04: rgba(159, 158, 154, 0.04);
   --editorBgColor: #1d1b19;
-  --deleteColor: #788e9f;
+  --deleteColor: #7797b6;
   --iconColor: rgba(159, 158, 154, 0.56);
   --codeBgColor: #282523;
   --codeBlockBgColor: #282523;
@@ -52,7 +52,7 @@
   --buttonPrimaryBorderActive: var(--buttonPrimaryBorder);
   --buttonPrimaryFocusBorder: none;
   --buttonPrimaryFocusShadow: inset 0 0 0 1px rgba(16, 13, 9, 0.5), 0 0 0 1px var(--themeColor);
-  --tableBorderColor: #282523;
+  --tableBorderColor: #6c6a69;
   /* Markdown element colors */
   --headingColor: #acaba7;
   --h1Color: #aaa5b3;
@@ -61,13 +61,13 @@
   --h4Color: #acaba7;
   --h5Color: #acaba7;
   --h6Color: #acaba7;
-  --blockquoteTextColor: rgba(159, 158, 154, 0.6);
-  --blockquoteBorderColor: #6c6a69;
-  --hrColor: #282523;
-  --linkColor: #6ca6bd;
+  --blockquoteTextColor: #9f9e9a;
+  --blockquoteBorderColor: #797776;
+  --hrColor: #6c6a69;
+  --linkColor: #8499a5;
   --strongColor: #acaba7;
-  --emColor: #6a98a5;
-  --listMarkerColor: #6a98a5;
+  --emColor: #acaba7;
+  --listMarkerColor: #6c6a69;
   /*marktext*/
   --sideBarColor: rgba(159, 158, 154, 0.6);
   --sideBarIconColor: var(--iconColor);
@@ -82,14 +82,14 @@
   --floatBorderColor: rgba(0, 0, 0, 0.05);
   --floatShadow: rgba(0, 0, 0, 0.2);
   --maskColor: rgba(0, 0, 0, 0.7);
-  --editorAreaWidth: 750px;
+  --editorAreaWidth: 700px;
 }
 
 /* fenced code blocks: Prism hardcodes these, so they are set here */
 code[class*='language-'], pre.ag-paragraph { color: #9f9e9a; }
 .language-css .token.string, .style .token.string { color: #6ca6bd; }
-.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #6c6a69; background: none; }
-.token.punctuation { color: #797776; background: none; }
+.token.comment,.token.block-comment,.token.prolog,.token.doctype,.token.cdata { color: #8e8b8a; background: none; }
+.token.punctuation { color: #8e8b8a; background: none; }
 .token.keyword,.token.atrule,.token.important { color: #809cb4; background: none; }
 .token.string,.token.char,.token.attr-value,.token.regex { color: #6ca6bd; background: none; }
 .token.function,.token.function-name,.token.selector { color: #8499a5; background: none; }
@@ -109,11 +109,11 @@ code[class*='language-'], pre.ag-paragraph { color: #9f9e9a; }
 .cm-s-railscasts { background: #282523; color: #9f9e9a; }
 .cm-s-railscasts div.CodeMirror-selected { background: #312d2b !important; }
 .cm-s-railscasts .CodeMirror-gutters { background: #282523; border-right: 0; }
-.cm-s-railscasts .CodeMirror-linenumber { color: #6c6a69; }
+.cm-s-railscasts .CodeMirror-linenumber { color: #8e8b8a; }
 .cm-s-railscasts .CodeMirror-cursor { border-left: 1px solid #acaba7 !important; }
 .cm-s-railscasts .CodeMirror-activeline-background { background: #2c2927; }
 .cm-s-railscasts .CodeMirror-matchingbracket { text-decoration: underline; color: #acaba7 !important; }
-.cm-s-railscasts span.cm-comment { color: #6c6a69; }
+.cm-s-railscasts span.cm-comment { color: #8e8b8a; }
 .cm-s-railscasts span.cm-atom { color: #6a98a5; }
 .cm-s-railscasts span.cm-number { color: #6a98a5; }
 .cm-s-railscasts span.cm-property, .cm-s-railscasts span.cm-attribute { color: #6a98a5; }
@@ -123,6 +123,29 @@ code[class*='language-'], pre.ag-paragraph { color: #9f9e9a; }
 .cm-s-railscasts span.cm-variable-2 { color: #8499a5; }
 .cm-s-railscasts span.cm-def { color: #8499a5; }
 .cm-s-railscasts span.cm-error { background: none; color: #7797b6; }
-.cm-s-railscasts span.cm-bracket { color: #797776; }
+.cm-s-railscasts span.cm-bracket { color: #8e8b8a; }
 .cm-s-railscasts span.cm-tag { color: #6a98a5; }
 .cm-s-railscasts span.cm-link { color: #6ca6bd; }
+
+/* Coordinated prose colors. */
+:root {
+  --editorColor: #9e9da1;
+  --editorBgColor: #25222c;
+  --codeBgColor: #302c38;
+  --codeBlockBgColor: #302c38;
+  --headingColor: #aba9ae;
+  --strongColor: #aba9ae;
+  --emColor: #9e9da1;
+  --linkColor: #97aaa9;
+  --inlineCodeColor: #a39b91;
+  --blockquoteTextColor: #9e9da1;
+  --listMarkerColor: #a39b91;
+  --blockquoteBorderColor: #a39b91;
+  --selectionColor: #97aaa938;
+  --h1Color: #9aadb8;
+  --h2Color: #b0a083;
+  --h3Color: #b4afb5;
+  --h4Color: #b4afb5;
+  --h5Color: #aba9ae;
+  --h6Color: #aba9ae;
+}

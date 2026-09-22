@@ -18,7 +18,16 @@ def build(template, data, out, strip=()):
         t.replace('__DATA__', json.dumps(d, separators=(',', ':'))))
     print(f'{out}: {len(open(out, encoding="utf-8").read())} bytes')
 
-build(str(ROOT / 'tmpl.html'), str(ROOT / 'schemes.json'), str(ROOT / 'index.html'), strip=('pair',))
+from solarized_reference import palette
+# The control must never drift from the checked-in published reference.
+assert next(s for s in json.loads((ROOT / 'schemes.json').read_text())
+            if s['name'] == 'solarized')['colors'] == palette()
+from review_data import review_data
+payload = review_data(json.loads((ROOT / 'schemes.json').read_text()))
+(ROOT / 'index.html').write_text((ROOT / 'tmpl.html').read_text().replace(
+    '__DATA__', json.dumps(payload, separators=(',', ':'))))
+build(str(ROOT / 'review/gallery-template.html'), str(ROOT / 'schemes.json'),
+      str(ROOT / 'gallery.html'), strip=('pair',))
 build(str(ROOT / 'howtmpl.html'), str(ROOT / 'refdata.json'), str(ROOT / 'how.html'))
 
 
@@ -57,7 +66,7 @@ def preview_svg():
             f'<g font-family="ui-monospace,monospace" font-size="12">',
             f'<text x="34" y="88" fill="{b01}">01</text><text x="65" y="88" fill="{c["kw"]}">const</text><text x="107" y="88" fill="{b0}"> scheme = </text><text x="180" y="88" fill="{c["str"]}">"{text(scheme["name"])}"</text>',
             f'<text x="34" y="110" fill="{b01}">02</text><text x="65" y="110" fill="{c["kw"]}">return</text><text x="114" y="110" fill="{b0}"> contrast &gt; </text><text x="202" y="110" fill="{c["num"]}">4.75</text>',
-            f'<text x="34" y="132" fill="{b01}">#</text><text x="65" y="132" fill="{scheme.get("markdown_title", c["str"])}" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>',
+            f'<text x="34" y="132" fill="{b01}">#</text><text x="65" y="132" fill="{(c["fn"] if scheme["name"] == "solarized" else scheme.get("markdown_title", c["str"]))}" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>',
             '</g>',
             '<g transform="translate(20 177)">',
         ]

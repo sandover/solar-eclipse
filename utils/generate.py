@@ -146,9 +146,8 @@ def universe(G,mirror=1,cm=1.0,swap=False,ban=None,six=False,gL=None,lvl=0.0):
                             merged=(row[1] if key in MERGE else ''))
     return cols,meta,round(gl)
 
-SOL={'base03':'#002b36','base02':'#073642','base01':'#586e75','base00':'#657b83',
-     'base0':'#839496','base1':'#93a1a1','base2':'#eee8d5','base3':'#fdf6e3'}
-SOL.update(SOLACC)
+from solarized_reference import palette
+SOL = palette()
 
 SPECS=[
  ('solarized','Solarized Dark','control',230,1,1.00,0,'',

@@ -13,7 +13,7 @@
 <g font-family="ui-monospace,monospace" font-size="12">
 <text x="34" y="88" fill="#586e75">01</text><text x="65" y="88" fill="#859900">const</text><text x="107" y="88" fill="#839496"> scheme = </text><text x="180" y="88" fill="#2aa198">"solarized"</text>
 <text x="34" y="110" fill="#586e75">02</text><text x="65" y="110" fill="#859900">return</text><text x="114" y="110" fill="#839496"> contrast &gt; </text><text x="202" y="110" fill="#d33682">4.75</text>
-<text x="34" y="132" fill="#586e75">#</text><text x="65" y="132" fill="#2aa198" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>
+<text x="34" y="132" fill="#586e75">#</text><text x="65" y="132" fill="#268bd2" font-family="system-ui,sans-serif" font-size="14" font-weight="600">Palette notes</text>
 </g>
 <g transform="translate(20 177)">
 <rect x="0" width="65" height="20" fill="#002b36"/>

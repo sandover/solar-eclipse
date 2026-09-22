@@ -41,12 +41,32 @@ structure on the page, so colouring every level the way a rare token type gets
 coloured in code would spend the most colour exactly where "brightness carries
 the distinction, not hue" matters most.
 
+**Links.** Verdigris, Ashen, Umbra, and Totality use the same restrained link
+accent as their VS Code themes. Nocturne keeps its separately tuned neutral
+link text because that is the scheme in which visual vibration was observed.
+In either case, the underline continues to carry link identity.
+
+**Reading structure.** For the four baseline schemes, body text, headings,
+links, emphasis, list markers, and deleted text use the same semantic palette
+roles as VS Code. Blockquotes use the full body-text tone rather than a
+low-opacity wash. Table rules, quote rules, and dividers use the quiet neutral
+step: visible enough to organize a dense document without becoming a grid laid
+over it.
+
+**Reading surface.** The theme respects the editor font and size you chose,
+including a monospaced reading font such as Inconsolata. It narrows the text
+measure from 750px to 700px so long lines remain easier to track. Verdigris,
+Ashen, Umbra, and Totality retain their source/VS Code text brightness.
+Nocturne alone keeps the raised reading contrast produced by its MarkText
+feedback pass.
+
 **Code blocks, twice.** Rendered code is Prism, which hardcodes its token
 colours as literal hexes rather than variables. Code you are *editing* is
 CodeMirror, and MarkText hands it the Railscasts theme for every dark scheme —
 a `#2b2b2b` box with red keywords and amber strings, none of it a variable. A
 fence therefore changes palette the moment the cursor enters it unless both are
-set. Both are set.
+set. Both are set. MarkText-specific token tones are lifted only as much as
+needed to maintain at least 4.5:1 contrast against the code-block background.
 
 **What the built-in theme leaks.** Most of its rules write a literal hex and
 then the variable, so ours wins. Six do not: the title-bar glyph fill and its
@@ -54,15 +74,14 @@ hover, the sidebar's right edge, the two tab-bar underlines, and Prism's
 default text colour. Those keep whatever base theme is selected showing through
 until they are named explicitly, which they now are.
 
-## A correction specific to this app
+## A Nocturne correction specific to this app
 
-A markdown document is mostly headings and prose, so a warm mid-chroma accent
+In Nocturne, a markdown document is mostly headings and prose, so a warm mid-chroma accent
 that a code editor would spend on numbers ends up on every h2 and h3 here — and
 drained warm hues read as skin rather than as restraint. In these builds any
 such colour keeps its brightness and vividness and moves to the coolest hue
-clear of the rest. Merged roles move together. The palettes themselves are
-unchanged, so the code-editor ports keep the warm colour where it is used
-sparingly.
+clear of the rest. Merged roles move together. The other MarkText schemes now
+stay on the same restrained palette used by their VS Code counterparts.
 
 ## Rebuilding
 

@@ -2,6 +2,8 @@
 
 Five muted dark themes based on Solarized.
 
+Our [color exploration method](COLOR-METHOD.md) guides palette proposals and revisions.
+
 ![Nocturne, Verdigris, Ashen, Umbra, and Totality beside Solarized Dark, with editor previews and colour palettes.](assets/solar-eclipse-preview.svg)
 
 **Install:** [VS Code](vscode-colors-solar-eclipse/README.md) · [Obsidian](obsidian-colors-solar-eclipse/README.md) · [MarkText](marktext-colors-solar-eclipse/README.md)
@@ -39,3 +41,9 @@ Copy values below, or use the `colors` object for each theme in [schemes.json](s
 <!-- palettes:end -->
 
 </details>
+
+## Interactive color workshop
+
+Open [the workshop](index.html) to tune Markdown and code palettes, compare them,
+and save or export your choices. See [the workshop guide](review/README.md) for
+local serving, sharing, and build instructions.
