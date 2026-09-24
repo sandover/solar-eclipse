@@ -147,6 +147,20 @@ def reading_vars(name, colors, alpha, shade):
     return v
 
 
+CLAUDIAN_CSS = """
+/* Treat Claudian conversations as reading content, even in a sidebar. */
+.theme-dark .claudian-messages-wrapper {
+  background-color: var(--background-primary);
+}
+.theme-dark .claudian-message-content {
+  font-size: var(--font-text-size);
+  line-height: var(--line-height-normal);
+}
+.theme-dark .claudian-message-content p:not(:last-child) {
+  margin-bottom: 0.75em;
+}
+"""
+
 READING_CSS = """
 /* Give links a quiet underline without weakening their text contrast. */
 .theme-dark .markdown-rendered a,

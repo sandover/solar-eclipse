@@ -10,7 +10,7 @@ Shared palette values supply the base surfaces. obsidian_reading.py assigns
 prose colors, spacing, and navigation details for all five themes.
 """
 import pathlib, json, re, math
-from obsidian_reading import BASE_COLORS, PALETTES, READING_CSS, SURROUNDS, reading_vars
+from obsidian_reading import BASE_COLORS, CLAUDIAN_CSS, PALETTES, READING_CSS, SURROUNDS, reading_vars
 HERE = pathlib.Path(__file__).resolve().parent
 ROOT = HERE.parent
 exec(open(HERE / 'pal.py').read().split('# ---------- Solarized reference')[0])
@@ -334,6 +334,7 @@ def render_css(s, v):
         lines.append(f'  {k}: {v[k]};')
     lines.append('}')
     lines.append('')
+    lines.append(CLAUDIAN_CSS)
     if s['name'] in PALETTES:
         lines.append(READING_CSS)
     return '\n'.join(lines)
