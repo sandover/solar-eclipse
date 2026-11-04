@@ -129,12 +129,15 @@
     "gitDecoration.deletedResourceForeground": "#6a93ac",
     "gitDecoration.untrackedResourceForeground": "#718d9a",
     "gitDecoration.ignoredResourceForeground": "#656b70",
-    "textLink.foreground": "#8298a0",
-    "textLink.activeForeground": "#92a8b0",
-    "textBlockQuote.background": "#182228",
-    "textBlockQuote.border": "#656b70",
+    "textLink.foreground": "#80b1b5",
+    "textLink.activeForeground": "#90c1c5",
+    "textBlockQuote.background": "#a79d8714",
+    "textBlockQuote.border": "#a79d87",
     "textCodeBlock.background": "#182228",
-    "textSeparator.foreground": "#242f35"
+    "textSeparator.foreground": "#80b1b56b",
+    "textPreformat.foreground": "#d7ba7d",
+    "textPreformat.background": "#182228",
+    "widget.border": "#242f35"
   },
   "semanticTokenColors": {
     "function": "#8098a1",

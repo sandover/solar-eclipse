@@ -1,5 +1,25 @@
 # Solar Eclipse for VS Code
 
+## Native Markdown Editor
+
+VS Code's built-in **Markdown Editor** reads UI theme colors for body text,
+links, inline code, code surfaces, and quote borders. All nine themes assign
+those colors from their existing reading palettes, with VS Code's warm yellow
+(`#d7ba7d`) for inline code. Links keep the reading link hue with slightly more
+lightness and chroma so they stand apart from body text. Quotes use the muted
+gold section accent for their border and an eight-percent tint behind the text.
+Heading rules and horizontal dividers repeat the link color at low opacity.
+Code blocks retain the theme's syntax colors and existing background.
+
+The installed VS Code implementation gives headings, bold text, and list
+markers the body color. It does not read our Markdown syntax colors or load
+`markdown.styles` or extension preview stylesheets. Our cool titles and muted
+gold section headings therefore appear in the source editor and the optional
+Vditor editor, but the native editor keeps them neutral. Adding colors there
+requires support from VS Code.
+
+These UI colors also apply wherever VS Code uses the same text roles.
+
 ## WYSIWYG Markdown Editor
 
 The optional `zaaack.markdown-editor` extension embeds Vditor, so its document
@@ -47,10 +67,10 @@ slate `#292b2b` with warm silver `#aaa499`. These are the selected reading
 candidates, available as separate themes for comparison.
 
 Code accents stay within the body text's lightness and a restrained chroma
-limit. Markdown titles use the bright neutral; second-level headings use
-the link accent. Embedded Markdown styling also softens heading rules and
+limit. Markdown source titles use cool accents; second-level headings use
+muted gold, and subordinate headings use pale mineral tones. Embedded Markdown styling also softens heading rules and
 forces links to follow the active theme instead of a default bright blue.
-Verdigris uses related green-silver titles and quieter teal section headings. Inline code
+Inline code
 uses a quiet text color instead of the embedded editor's yellow default.
 The user's Inconsolata choice and existing table surfaces are preserved.
 

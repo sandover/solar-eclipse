@@ -336,6 +336,25 @@ def build(s):
     c = calm(colors)
     from markdown_design import prose
     r = prose(s['name'], c)
+    ui = verdigris_workbench(c) if s['name'] == 'verdigris' else workbench(c)
+    # Give links more separation from body text while retaining their hue.
+    link_l, link_c, link_h = lab2lch(hex2lab(r['link']))
+    link, _ = lch2hex((link_l + 3, link_c + 8, link_h))
+    # The native rich Markdown editor reads these UI colors, not markup scopes.
+    # It inherits body text for headings and emphasis and loads no preview CSS.
+    ui.update({
+        'textLink.foreground': link,
+        'textLink.activeForeground': shade(link, +6),
+        # Keep VS Code's warm yellow: the user prefers it for inline code.
+        'textPreformat.foreground': '#d7ba7d',
+        'textPreformat.background': c['base02'],
+        'textBlockQuote.border': r['h2'],
+        'textBlockQuote.background': alpha(r['h2'], .08),
+        # The native editor further softens this shared heading/divider color.
+        'textSeparator.foreground': alpha(link, .42),
+        # Native Markdown uses this shared border around fenced code blocks.
+        'widget.border': shade(c['base02'], +6),
+    })
     markdown = [{"scope": scope, "settings": {"foreground": r[role]}}
                 for scope, role in [(f"markup.heading.{n}, markup.heading.{n} entity.name", f'h{n}') for n in range(1,7)] + [
                     ('markup.bold', 'bold'), ('markup.italic', 'italic'),
@@ -347,7 +366,7 @@ def build(s):
       "name": f"Solar Eclipse {s['label']}",
       "type": "dark",
       "semanticHighlighting": True,
-      "colors": verdigris_workbench(c) if s['name'] == 'verdigris' else workbench(c),
+      "colors": ui,
       "semanticTokenColors": semantic(c),
       "tokenColors": tokens(c, (c['heading1'], c['heading2']) if s['name'] == 'verdigris' else None) + markdown,
     }
